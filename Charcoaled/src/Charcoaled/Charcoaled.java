@@ -55,8 +55,10 @@ public class Charcoaled {
         //Room.java
         Room roomOne = new Room();
         
-        roomOne.setCoordinates(321);
-        roomOne.setStatus("Closed");
+        roomOne.setRow(5);
+        roomOne.setColumn(5);
+        roomOne.setVisited(true);
+        roomOne.setAmountRemaining(24);
         
         String roomInfo = roomOne.toString();
         System.out.println(roomInfo);

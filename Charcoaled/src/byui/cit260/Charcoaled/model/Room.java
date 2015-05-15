@@ -15,38 +15,58 @@ import java.util.Objects;
 public class Room implements Serializable{
     
     //class instance variables
-    private double coordinates;
-    private String status;
+    private double row;
+    private double column;
+    private boolean visited;
+    private double amountRemaining;
 
     public Room() {
     }
 
     @Override
     public String toString() {
-        return "Room{" + "coordinates=" + coordinates + ", status=" + status + '}';
+        return "Room{" + "row=" + row + ", column=" + column + ", visited=" + visited + ", amountRemaining=" + amountRemaining + '}';
     }
 
-    public double getCoordinates() {
-        return coordinates;
+    public double getRow() {
+        return row;
     }
 
-    public void setCoordinates(double coordinates) {
-        this.coordinates = coordinates;
+    public void setRow(double row) {
+        this.row = row;
     }
 
-    public String getStatus() {
-        return status;
+    public double getColumn() {
+        return column;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setColumn(double column) {
+        this.column = column;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public double getAmountRemaining() {
+        return amountRemaining;
+    }
+
+    public void setAmountRemaining(double amountRemaining) {
+        this.amountRemaining = amountRemaining;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.coordinates) ^ (Double.doubleToLongBits(this.coordinates) >>> 32));
-        hash = 53 * hash + Objects.hashCode(this.status);
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.row) ^ (Double.doubleToLongBits(this.row) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.column) ^ (Double.doubleToLongBits(this.column) >>> 32));
+        hash = 89 * hash + (this.visited ? 1 : 0);
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.amountRemaining) ^ (Double.doubleToLongBits(this.amountRemaining) >>> 32));
         return hash;
     }
 
@@ -59,14 +79,20 @@ public class Room implements Serializable{
             return false;
         }
         final Room other = (Room) obj;
-        if (Double.doubleToLongBits(this.coordinates) != Double.doubleToLongBits(other.coordinates)) {
+        if (Double.doubleToLongBits(this.row) != Double.doubleToLongBits(other.row)) {
             return false;
         }
-        if (!Objects.equals(this.status, other.status)) {
+        if (Double.doubleToLongBits(this.column) != Double.doubleToLongBits(other.column)) {
+            return false;
+        }
+        if (this.visited != other.visited) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.amountRemaining) != Double.doubleToLongBits(other.amountRemaining)) {
             return false;
         }
         return true;
     }
-    
+
     
 }
