@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author montchri
+ * @author raquel
  */
 public class Person implements Serializable {
     

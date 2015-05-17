@@ -12,12 +12,17 @@ import byui.cit260.Charcoaled.model.Player;
 import byui.cit260.Charcoaled.model.Room;
 import byui.cit260.Charcoaled.model.MapBuilding;
 import byui.cit260.Charcoaled.model.Person;
+import byui.cit260.Charcoaled.model.ToRescue;
+import byui.cit260.Charcoaled.model.Obstacles;
+import byui.cit260.Charcoaled.model.Items;
+
 
 /**
  *
  * @author oscar
  */
 public class Charcoaled {
+    
 
     /**
      * @param args the command line arguments
@@ -31,7 +36,24 @@ public class Charcoaled {
         map.setColumnCount(10);
         String mapInfo = map.toString();
         System.out.println(mapInfo);
+        
+        //Obstacles.java
+        Obstacles obstacles = new Obstacles();
+        obstacles.setName("calculation");
+        obstacles.setType("riddles");
+        String obstaclesInfo = obstacles.toString();
+        System.out.println(obstaclesInfo);
 
+        
+       //Items.java
+        Items axe1 = new Items();
+        axe1.setName("axe");
+        axe1.setType ("axe");
+        axe1.setUsed(false);
+        String axe1Info = axe1.toString();
+        System.out.println(axe1Info);
+        
+        
         //Person.java
         Person person = new Person();
         person.setHasFinalPassKey(true);
@@ -39,6 +61,17 @@ public class Charcoaled {
         person.setPassKey("key");
         String personInfo = person.toString();
         System.out.println(personInfo);
+        
+        //ToRescue.java
+        ToRescue rescue = new ToRescue();
+        rescue.setName("raquel");
+        rescue.setGender("female");
+        rescue.setNeedsRescue(true);
+      
+        String toRescueInfo = rescue.toString();
+        System.out.println(toRescueInfo);
+               
+     
         
         //Player.java
         Player playerOne = new Player();
