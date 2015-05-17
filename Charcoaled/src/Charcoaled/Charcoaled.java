@@ -10,6 +10,8 @@ import byui.cit260.Charcoaled.model.Game;
 import byui.cit260.Charcoaled.model.Inventory;
 import byui.cit260.Charcoaled.model.Player;
 import byui.cit260.Charcoaled.model.Room;
+import byui.cit260.Charcoaled.model.MapBuilding;
+import byui.cit260.Charcoaled.model.Person;
 
 /**
  *
@@ -22,6 +24,22 @@ public class Charcoaled {
      */
     public static void main(String[] args) {
         
+        
+        //MapBuilding.java
+        MapBuilding map = new MapBuilding();
+        map.setRowCount(5);
+        map.setColumnCount(10);
+        String mapInfo = map.toString();
+        System.out.println(mapInfo);
+
+        //Person.java
+        Person person = new Person();
+        person.setHasFinalPassKey(true);
+        person.setNeedsRescue(true);
+        person.setPassKey("key");
+        String personInfo = person.toString();
+        System.out.println(personInfo);
+        
         //Player.java
         Player playerOne = new Player();
         
@@ -32,6 +50,7 @@ public class Charcoaled {
         String playerInfo = playerOne.toString();
         System.out.println(playerInfo);
         
+       
         //Game.java
         Game gameOne = new Game();
         
