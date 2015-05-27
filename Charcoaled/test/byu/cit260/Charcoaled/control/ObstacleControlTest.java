@@ -39,14 +39,26 @@ public class ObstacleControlTest {
      */
     @Test
     public void testCalcTrapeziumVol() {
+        
+//Test Case #1
         System.out.println("calcTrapeziumVol");
-        double length = 15;
-        double height = 10;
-        double Base = 25;
-        double base = 20;
+        double length = 12;
+        double height = 6;
+        double Base = 4;
+        double base = 2;
         ObstacleControl instance = new ObstacleControl();
-        double expResult = 3375;
+        double expResult = 216;
         double result = instance.calcTrapeziumVol(length, height, Base, base);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        //Test Case #2
+        length = -10;
+        height = 12;
+        Base = 15;
+        base = -3;
+        expResult = -1;
+        result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

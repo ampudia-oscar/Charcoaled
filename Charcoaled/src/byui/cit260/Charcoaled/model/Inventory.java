@@ -16,6 +16,8 @@ public class Inventory implements Serializable{
     
     //class instance variables
     private String name;
+    private int numberOfAxes;
+    private int numberOfFireExtinguishers;
     private String type;
     private String description;
     private double totalItems;
