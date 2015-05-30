@@ -24,7 +24,7 @@ public class ObstacleControlTest {
     public void testCalcPyramidVol() {
         System.out.println("calcPyramidVol");
         
-        // Test Case 1
+        // Test Case #1
         double length = 9;
         double width = 22;
         double height = 23;
@@ -32,9 +32,8 @@ public class ObstacleControlTest {
         double expResult = 1518;
         double result = instance.calcPyramidVol(length, width, height);
         assertEquals(expResult, result, 0.0);
-        
        
-        // TODO review the generated test code and remove the default call to fail.
+         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
@@ -129,5 +128,131 @@ public class ObstacleControlTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+     /**
+     * Test of calcKiteArea method, of class ObstacleControl.
+     */
+    @Test
+    public void calcKiteArea() {
+        System.out.println("calcKiteArea");
+        
+        // Test Case #1
+        double base = 9;
+        double side= 16;
+        ObstacleControl instance = new ObstacleControl();
+        double expResult = 72;
+        double result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #2
+        base = -3;
+        side= 25;
+        expResult = -1;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #3
+        base = 20;
+        side= -35;
+        expResult = -1;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #4
+        base = 19;
+        side= 35;
+        expResult = -1;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #5
+        base = 1;
+        side= 5;
+        expResult = 2.5;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #6
+        base = 10;
+        side= 1;
+        expResult = 5;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #7
+        base = 20;
+        side= 10;
+        expResult = 100;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #8
+        base = 5;
+        side= 30;
+        expResult = 75;
+        result = instance.calcKiteArea(base, side);
+        assertEquals(expResult, result, 0.0);
+        
+        
 }
+        /**
+        * Test of calcHoursToSeconds method, of class ObstacleControl.
+        */
+         @Test
+        public void calcHoursToSeconds() {
+        System.out.println("calcHoursToSeconds");
+        
+        // Test Case #1
+        double hours = 45;
+        ObstacleControl instance = new ObstacleControl();
+        double expResult = 162000;
+        double result = instance.calcHoursToSeconds(hours);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #2
+        hours = -17;
+        expResult = -1;
+         result = instance.calcHoursToSeconds(hours);
+        assertEquals(expResult, result, 0.0);
+        
+        
+         // Test Case #3
+        hours = -35;
+        expResult = -1;
+         result = instance.calcHoursToSeconds(hours);
+        assertEquals(expResult, result, 0.0);
+        
+        
+         // Test Case #4
+        hours = 0;
+        expResult = -1;
+         result = instance.calcHoursToSeconds(hours);
+        assertEquals(expResult, result, 0.0);
+        
+        
+        // Test Case #5
+        hours = 1;
+        expResult = 3600;
+         result = instance.calcHoursToSeconds(hours);
+        assertEquals(expResult, result, 0.0);
+        
+        
+         // Test Case #6
+        hours = 47;
+        expResult = 169200;
+         result = instance.calcHoursToSeconds(hours);
+        assertEquals(expResult, result, 0.0);
+        }
+}
+        
+        
+        
+        
+        
