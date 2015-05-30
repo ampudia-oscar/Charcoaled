@@ -41,6 +41,17 @@ public class ObstacleControl {
         
     
     }
+    
+    public double calcTrianglePrismArea(double a, double b, double c, double height){
+        if (a < 1 || b < 1 || c < 1 || height < 1){
+            return -1;
+        }
+        
+        double s = (a+b+c)/2;
+        double Ab = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+        double Area = 2*Ab+(height*(a+b+c));
+        return Area;
+    }
     public double calcKiteArea (double side, double base) {
         if (base < 1 || side < 1){
         return -1;
