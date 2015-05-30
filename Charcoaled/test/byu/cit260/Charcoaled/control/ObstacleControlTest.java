@@ -193,8 +193,8 @@ public class ObstacleControlTest {
         
         
         // Test Case #8
-        base = 5;
-        side= 30;
+        base = 30;
+        side= 5;
         expResult = 75;
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
