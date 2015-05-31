@@ -24,7 +24,7 @@ public class ObstacleControlTest {
     public void testCalcPyramidVol() {
         System.out.println("calcPyramidVol");
         
-        // Test Case #1
+        // Test Case 1
         double length = 9;
         double width = 22;
         double height = 23;
@@ -32,9 +32,63 @@ public class ObstacleControlTest {
         double expResult = 1518;
         double result = instance.calcPyramidVol(length, width, height);
         assertEquals(expResult, result, 0.0);
-       
-         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
+        //Test Case 2
+        length = 46;
+        width = 1;
+        height = 24;
+        expResult = -1;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 3
+        length = 6;
+        width = -2;
+        height = 21;
+        expResult = -1;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 4
+        length = 14;
+        width = 14;
+        height = 0;
+        expResult = -1;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 5
+        length = 1;
+        width = 24;
+        height = 8;
+        expResult = 64;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 6
+        length = 17;
+        width = 25;
+        height = 10;
+        expResult = 1416.67;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 7
+        length = 25;
+        width = 20;
+        height = 25;
+        expResult = 4166.66;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 8
+        length = 5;
+        width = 16;
+        height = 3;
+        expResult = 80;
+        result = instance.calcPyramidVol(length, width, height);
+        assertEquals(expResult, result, 0.01);
+        
     }
 
     /**
@@ -42,9 +96,9 @@ public class ObstacleControlTest {
      */
     @Test
     public void testCalcTrapeziumVol() {
+        System.out.println("calcTrapeziumVol");   
         
         //Test Case #1
-        System.out.println("calcTrapeziumVol");
         double length = 12;
         double height = 6;
         double Base = 4;
@@ -53,7 +107,6 @@ public class ObstacleControlTest {
         double expResult = 216;
         double result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
-        
         
         //Test Case #2
         length = -10;
@@ -64,7 +117,6 @@ public class ObstacleControlTest {
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
         
-        
         //Test Case #3
         length = 20;
         height = -8;
@@ -73,7 +125,6 @@ public class ObstacleControlTest {
         expResult = -1;
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
-        
         
         //Test Case #4
         length = 5;
@@ -84,7 +135,6 @@ public class ObstacleControlTest {
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
         
-        
           //Test Case #5
         length = 1;
         height = 10;
@@ -93,7 +143,6 @@ public class ObstacleControlTest {
         expResult = 145;
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
-        
         
          //Test Case #6
         length = 5;
@@ -104,7 +153,6 @@ public class ObstacleControlTest {
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
         
-        
         //Test Case #7
         length = 15;
         height = 10;
@@ -113,7 +161,6 @@ public class ObstacleControlTest {
         expResult = 3375 ;
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
-        
         
         //Test Case #8
         length = 5;
@@ -124,10 +171,63 @@ public class ObstacleControlTest {
         result = instance.calcTrapeziumVol(length, height, Base, base);
         assertEquals(expResult, result, 0.0);
         
-        
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
+    
+     /**
+     * Test of calcTrianglePrismArea method, of class ObstacleControl.
+     */
+    @Test
+    public void testCalcTrianglePrismArea() {
+        System.out.println("calcTrianglePrismArea");
+    
+        //Test Case 1
+        double a = 5;
+        double b = 5;
+        double c = 5;
+        double height = 5;
+        ObstacleControl instance = new ObstacleControl();
+        double expResult = 96.65;
+        double result = instance.calcTrianglePrismArea(a, b, c, height);
+        assertEquals(expResult, result, 0.01);
+    
+        //Test Case 2
+        a = 6;
+        b = -3;
+        c = 20;
+        height = 2;
+        expResult = -1;
+        result = instance.calcTrianglePrismArea(a, b, c, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 3
+        a = 13;
+        b = 10;
+        c = 0;
+        height = 4;
+        expResult = -1;
+        result = instance.calcTrianglePrismArea(a, b, c, height);
+        assertEquals(expResult, result, 0.01);
+
+        //Test Case 4
+        a = 11;
+        b = 21;
+        c = 16;
+        height = 13;
+        expResult = 797.07;
+        result = instance.calcTrianglePrismArea(a, b, c, height);
+        assertEquals(expResult, result, 0.01);
+        
+        //Test Case 5
+        a = 19;
+        b = 9;
+        c = 24;
+        height = 6;
+        expResult = 469.33;
+        result = instance.calcTrianglePrismArea(a, b, c, height);
+        assertEquals(expResult, result, 0.01);
+        
+    }
+
      /**
      * Test of calcKiteArea method, of class ObstacleControl.
      */
@@ -143,14 +243,12 @@ public class ObstacleControlTest {
         double result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
         
-        
         // Test Case #2
         base = -3;
         side= 25;
         expResult = -1;
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
-        
         
         // Test Case #3
         base = 20;
@@ -159,14 +257,12 @@ public class ObstacleControlTest {
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
         
-        
         // Test Case #4
         base = 19;
         side= 35;
         expResult = -1;
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
-        
         
         // Test Case #5
         base = 1;
@@ -175,14 +271,12 @@ public class ObstacleControlTest {
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
         
-        
         // Test Case #6
         base = 10;
         side= 1;
         expResult = 5;
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
-        
         
         // Test Case #7
         base = 20;
@@ -191,7 +285,6 @@ public class ObstacleControlTest {
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
         
-        
         // Test Case #8
         base = 30;
         side= 5;
@@ -199,13 +292,12 @@ public class ObstacleControlTest {
         result = instance.calcKiteArea(base, side);
         assertEquals(expResult, result, 0.0);
         
-        
 }
         /**
         * Test of calcHoursToSeconds method, of class ObstacleControl.
         */
-         @Test
-        public void calcHoursToSeconds() {
+    @Test
+    public void calcHoursToSeconds() {
         System.out.println("calcHoursToSeconds");
         
         // Test Case #1
@@ -215,13 +307,11 @@ public class ObstacleControlTest {
         double result = instance.calcHoursToSeconds(hours);
         assertEquals(expResult, result, 0.0);
         
-        
         // Test Case #2
         hours = -17;
         expResult = -1;
          result = instance.calcHoursToSeconds(hours);
         assertEquals(expResult, result, 0.0);
-        
         
          // Test Case #3
         hours = -35;
@@ -229,13 +319,11 @@ public class ObstacleControlTest {
          result = instance.calcHoursToSeconds(hours);
         assertEquals(expResult, result, 0.0);
         
-        
          // Test Case #4
         hours = 0;
         expResult = -1;
          result = instance.calcHoursToSeconds(hours);
         assertEquals(expResult, result, 0.0);
-        
         
         // Test Case #5
         hours = 1;
@@ -243,16 +331,11 @@ public class ObstacleControlTest {
          result = instance.calcHoursToSeconds(hours);
         assertEquals(expResult, result, 0.0);
         
-        
          // Test Case #6
         hours = 47;
         expResult = 169200;
          result = instance.calcHoursToSeconds(hours);
         assertEquals(expResult, result, 0.0);
         }
+    
 }
-        
-        
-        
-        
-        
