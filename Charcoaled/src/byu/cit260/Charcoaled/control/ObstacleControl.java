@@ -38,8 +38,6 @@ public class ObstacleControl {
     
         double volume = length * height * ((Base + base)/2);
         return volume;
-        
-    
     }
     
     public double calcTrianglePrismArea(double a, double b, double c, double height){
@@ -52,6 +50,7 @@ public class ObstacleControl {
         double Area = 2*Ab+(height*(a+b+c));
         return Area;
     }
+    
     public double calcKiteArea (double side, double base) {
         if (base < 1 || side < 1){
         return -1;
@@ -64,7 +63,6 @@ public class ObstacleControl {
         return area;
     }
     
-    
     public double calcHoursToSeconds( double hours){
         if (hours < 1){
         return -1;
@@ -76,7 +74,6 @@ public class ObstacleControl {
         
         double seconds = hours * 3600;
         return seconds;
-        
     }
     
 }
