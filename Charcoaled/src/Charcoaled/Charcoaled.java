@@ -15,6 +15,7 @@ import byui.cit260.Charcoaled.model.Person;
 import byui.cit260.Charcoaled.model.ToRescue;
 import byui.cit260.Charcoaled.model.Obstacles;
 import byui.cit260.Charcoaled.model.Items;
+import byui.cit260.Charcoaled.view.StartProgramView;
 
 
 /**
@@ -27,9 +28,23 @@ public class Charcoaled {
     /**
      * @param args the command line arguments
      */
+    private static Player player = null;
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        Charcoaled.player = player;
+    }
+    
     public static void main(String[] args) {
         
+        StartProgramView spv = new StartProgramView();
+        spv.startProgram();
+         
         
+     /*   
         //MapBuilding.java
         MapBuilding map = new MapBuilding();
         map.setRowCount(5);
@@ -127,6 +142,7 @@ public class Charcoaled {
         
         String inventoryInfo = inventoryOne.toString();
         System.out.println(inventoryInfo);
+    */
     }
     
 }
