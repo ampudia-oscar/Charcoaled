@@ -16,15 +16,15 @@ public class HelpMenuView {
     public HelpMenuView() {
     }
     
-    private final String MENU = "\n"
-            +"\n---------"
-            +"\n | Help Menu"
-            +"\n --------"
-            +"\n G - Game Objective"
-            +"\n H - How to play"
-            +"\n D - Difficulty levels"            
-            +"\n E - Exit"
-            +"\n --------";
+    private final String MENU = 
+            "_________________        \n" +
+            "   HELP MENU     \\_______\n" +
+            "                         \n" +
+            " G - Game Objective      \n" +
+            " H - How to play         \n" +
+            " D - Difficulty levels   \n" +
+            " E - Exit                \n" +
+            "_________________________";
     
     void displayMenu(){
         
@@ -48,12 +48,15 @@ public class HelpMenuView {
         Scanner keyboard = new Scanner(System.in);
         
         while(!valid) {        
-            System.out.println("Select a value");
+            System.out.println("\nSelect a value");
             input = keyboard.nextLine();
             input = input.trim();
             
             if (input.length() > 1) {
-                System.out.println("Invalid value");
+                System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "               Invalid value - Please, try again.               \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
                 continue;
             }  
             break;
@@ -64,30 +67,39 @@ public class HelpMenuView {
     private void doAction(char selection) {
         switch(selection){
             case 'G':
+            case 'g':    
                 this.displayGameObjective();
                 break;
             case 'H':
+            case 'h':    
                 this.displayHowToPlay();
                 break;
             case 'D':
+            case 'd':
                 this.displayDifficultyLevels();
                 break;         
             case 'E':
                 return;
             default:
-                System.out.println("\n** Invalid selection *** Please try again.");
+                System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "             Invalid selection - Please, try again.             \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
         }        
     }
 
     private void displayGameObjective() {
-        System.out.println("\n** display Game Objective stub function called **");
+        System.out.println(
+                "\n***** displayGameObjective() function called *****\n");
     }
 
     private void displayHowToPlay() {
-        System.out.println("\n** display How to Play stub function called **");
+        System.out.println(
+                "\n***** displayHowToPlay() function called *****\n");
     }
 
     private void displayDifficultyLevels() {
-       System.out.println("\n** display Difficulty Levels stub function called **");
+       System.out.println(
+               "\n***** displayDifficultyLevels() function called *****\n");
     }
 }

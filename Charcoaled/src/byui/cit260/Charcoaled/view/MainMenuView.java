@@ -17,16 +17,16 @@ import java.util.Scanner;
  */
 public class MainMenuView {
     
-    private final String MENU = "\n"
-            +"\n---------"
-            +"\n | Main Menu"
-            +"\n --------"
-            +"\n G - Start Existing Game"
-            +"\n N - Start New Game"
-            +"\n H - Get help on how to play the game"
-            +"\n S - Save Game"
-            +"\n E - Exit"
-            +"\n --------";
+    private final String MENU = 
+        "__________________                     \n" +
+        "    MAIN MENU     \\____________________\n" +
+        "                                       \n" +
+        " G - Start Existing Game               \n" +
+        " N - Start New Game                    \n" +
+        " H - Get help on how to play the game  \n" +
+        " S - Save Game                         \n" +
+        " E - Exit                              \n" +
+        "_______________________________________";
     
     void displayMenu(){
         
@@ -50,12 +50,15 @@ public class MainMenuView {
         Scanner keyboard = new Scanner(System.in);
         
         while(!valid) {        
-            System.out.println("Select a value");
+            System.out.println("\nSelect a value:");
             input = keyboard.nextLine();
             input = input.trim();
             
             if (input.length() > 1) {
-                System.out.println("Invalid value");
+                System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "               Invalid value - Please, try again.               \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
                 continue;
             }  
             break;
@@ -66,21 +69,64 @@ public class MainMenuView {
     private void doAction(char selection) {
         switch(selection){
             case 'G':
+            case 'g':
                 this.startExistingGame();
                 break;
             case 'N':
+            case 'n':
                 this.startNewGame();
                 break;
             case 'H':
+            case 'h':    
                 this.displayHelpMenu();
                 break;
             case 'S':
+            case 's':
                 this.saveGame();
                 break;
             case 'E':
+                System.out.println(
+ "\n"
++"\n                   (  .    )                        "
++"\n               )          (           )           "  
++"\n                     .  '  .  '  .  ' .            " 
++"\n            (    , )      (.  )  (  ',    )         "
++"\n             .' ) ( . )   , ( ,     )  ( .          "
++"\n          ). , ( .   (  )( ,')  .' ( ,    )         "
++"\n         (_,) . ), ) _) _,')  (, ) '. ) ,.          "
++"\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^         "
++"\n         _._._._._._._._._._._._._._._._._         "
++"\n         | ___   ___    ___    ___   ___ |         "
++"\n         ||5|1| |5|2|  |5|3|  |5|4| |5|5||         "
++"\n         |IIIII_IIIII__IIIII__IIIII_IIIII|         "
++"\n         | ___   ___    ___    ___   ___ |         "
++"\n         ||4|1| |4|2|  |4|3|  |4|4| |4|5||         "
++"\n         |IIIII_IIIII__IIIII__IIIII_IIIII|         "
++"\n         | ___   ___    ___    ___   ___ |         "
++"\n )o(_    ||3|1| |3|2|  |3|3|  |3|4| |3|5||         "
++"\n/(|)\'    |IIIII_IIIII__IIIII__IIIII_IIIII|         "
++"\n H)o(_   | ___   ___    ___    ___   ___ |         "
++"\n  /(|)\'  ||2|1| |2|2|  |2|3|  |2|4| |2|5||         "
++"\n  H H    |IIIII_IIIII__IIIII__IIIII_IIIII|    /)   "
++"\n  H H    | ___   ___   _____   ___   ___ | __/ ),  "
++"\n   ~ ^~^ ||1|1| |1|2|  o~|~o  |1|4| |1|5||  ~^~^   "
++"\n  . ' .'.|IIIII_IIIII__|_|_|__IIIII_IIIII|'^~^'.', "
++"\n .,  , .|             /=====\\            |. . . . "
++"\n   `~ `  ^^~   ^^~'`  '     ` ,``~^^   ~^^     ~   "
++"\n .                     ,   '                       "
++"\n                                                   "
++"\n             Save the people and pets              "
++"\n       in the building before it burns down.       "
++"\n                                                   "        
++"\n                  COME BACK SOON!                  "
++"\n                                                   " 
++"\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
                 return;
             default:
-                System.out.println("\n** Invalid selection *** Please try again.");
+                System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "             Invalid selection - Please, try again.             \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
         }        
     }
 

@@ -35,18 +35,45 @@ public class StartProgramView {
 
     private void displayBanner() {
  
-         System.out.println("\n\n*****************************");
-         System.out.println("You play as a fireman/fire-woman. A large apartment"
-                 + "\n* complex is on fire and you are required to "
-                 + "\n* save the people or pets in the building before it burns down. "
-                 + "\n* There will be several rooms on each floor, and you have to use "
-                 + "\n* detective work to figure out what rooms the people are in");
-        
-         System.out.println("You will be required to overcome a number of obstacles by solving"
-            + "\n* calculations of problems, or answering questions and riddles in "
-            + "\n* order to unlock doors, resuscitate an unconscious person or to "
-            + "\n* figure out if a room is too hot to enter. The game will be timed "
-            + "\n* which will require you to work quickly to save everyone." );
+         System.out.println(
+"\n"
++"\n<<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>>"
++"\n ||    ____ _                               _          _   ||"
++"\n ||   / ___| |__   __ _ _ __ ___ ___   __ _| | ___  __| |  ||"
++"\n ||  | |   | '_ \\ / _` | '__/ __/ _ \\ / _` | |/ _ \\/ _` |  ||"
++"\n ||  | |___| | | | (_| | | | (_| (_) | (_| | |  __/ (_| |  ||"
++"\n ||   \\____|_| |_|\\__,_|_|  \\___\\___/ \\__,_|_|\\___|\\__,_|  ||"
++"\n ||                                                        ||"
++"\n<<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>>"
++"\n"
++"\n"        
++"\n                         …∞ WELCOME ∞…                        "
++"\n"
++"\n"
++"\n"
++"You play as a fireman/fire-woman. A large apartment complex\n"
++"is on fire and you are required to save the people or pets in\n"
++"the building before it burns down. There will be several rooms\n"
++"on each floor, and you have to use detective work to figure\n"
++"out what rooms the people are in.\n"
++"\n"
++"You will be required to overcome a number of obstacles by\n"
++"solving calculations of problems, or answering questions and\n"
++"riddles in order to unlock doors, resuscitate an unconscious\n"
++"person or to figure out if a room is too hot to enter. The\n"
++"game will be timed which will require you to work quickly to\n"
++"save everyone.\n"
++"\n   ,%,                                       _____[]_               "
++"\n   %%%,&&&,                     ,%%,       /        /\\              "
++"\n   %Y/%&&&&                     %%%%   ___/_____)__/ _\\__     ,%%,  "
++"\n ^^^||^&\\Y&^^^^^^^^^^^^^^^^^^^^^%Y/%^^/  \\     (  | /____/\\^^^%%%%^^"
++"\n   `    || _,..=xxxxxxxxxxxx,    ||   |(' |LI (.)I| | LI ||   %\\Y%  "
++"\n  -=      /L_Y.-\"\"\"\"\"\"\"\"\"`,-n-. `    *'---|__||___|_|____||_   ||   "
++"\n ________.--'[========]|L]J: []\\ __________*//*___________) )_______"
++"\n   _ _ _ |/ _ ''_ \" \" ||[ -_ 4 |  _  _  _  _  _  _  _  _  _  _  _  _"
++"\n         '-(_)-(_)----'v'-(_)--'                                    "
++"\n--------------------------------------------------------------------"
++"\n");
 
     }
 
@@ -57,12 +84,15 @@ public class StartProgramView {
         Scanner keyboard = new Scanner(System.in);
         
         while(!valid) {        
-            System.out.println("Enter the player's name below");
+            System.out.println("Enter the player's name below:");
             playerName = keyboard.nextLine();
             playerName = playerName.trim();
             
             if (playerName.length() < 2) {
-                System.out.println("Invalid name - the name must not be blank");
+                System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "           Invalid name - The name must not be blank            \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
                 continue;
             }  
             break;
@@ -71,10 +101,10 @@ public class StartProgramView {
     }    
     
     public void displayWelcomeMessage(Player player){
-        System.out.println("\n\n========================================");
-        System.out.println("\tWelcome to the game "+player.getName());
-        System.out.println("\tWe hope you have a lot of fun!");
-        System.out.println("========================================");
+        System.out.println(
+  "\n∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "     Welcome to the game "+player.getName()+". We hope you have a lot of fun!\n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
     
 }
