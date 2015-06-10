@@ -53,6 +53,7 @@ public class MainMenuView {
             System.out.println("\nSelect a value:");
             input = keyboard.nextLine();
             input = input.trim();
+            input = input.toUpperCase();
             
             if (input.length() > 1) {
                 System.out.println(
@@ -69,19 +70,15 @@ public class MainMenuView {
     private void doAction(char selection) {
         switch(selection){
             case 'G':
-            case 'g':
                 this.startExistingGame();
                 break;
             case 'N':
-            case 'n':
                 this.startNewGame();
                 break;
-            case 'H':
-            case 'h':    
+            case 'H':   
                 this.displayHelpMenu();
                 break;
             case 'S':
-            case 's':
                 this.saveGame();
                 break;
             case 'E':
@@ -135,8 +132,9 @@ public class MainMenuView {
     }
 
     private void startNewGame() {
-        GameControl.createNewGame(Charcoaled.getPlayer());
+        //GameControl.createNewGame(Charcoaled.getPlayer());
         GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMenu();
     }
 
     private void displayHelpMenu() {

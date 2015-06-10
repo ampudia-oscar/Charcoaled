@@ -51,6 +51,7 @@ public class HelpMenuView {
             System.out.println("\nSelect a value");
             input = keyboard.nextLine();
             input = input.trim();
+            input = input.toUpperCase();
             
             if (input.length() > 1) {
                 System.out.println(
@@ -66,16 +67,13 @@ public class HelpMenuView {
 
     private void doAction(char selection) {
         switch(selection){
-            case 'G':
-            case 'g':    
+            case 'G':   
                 this.displayGameObjective();
                 break;
-            case 'H':
-            case 'h':    
+            case 'H':   
                 this.displayHowToPlay();
                 break;
             case 'D':
-            case 'd':
                 this.displayDifficultyLevels();
                 break;         
             case 'E':
