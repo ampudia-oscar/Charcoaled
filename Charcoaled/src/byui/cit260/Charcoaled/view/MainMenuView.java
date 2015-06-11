@@ -25,6 +25,7 @@ public class MainMenuView {
         " N - Start New Game                    \n" +
         " H - Get help on how to play the game  \n" +
         " S - Save Game                         \n" +
+        "                                       \n" +
         " E - Exit                              \n" +
         "_______________________________________";
     
@@ -55,7 +56,7 @@ public class MainMenuView {
             input = input.trim();
             input = input.toUpperCase();
             
-            if (input.length() > 1) {
+            if (input.length() < 1) {
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "               Invalid value - Please, try again.               \n"

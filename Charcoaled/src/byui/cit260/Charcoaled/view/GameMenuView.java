@@ -17,20 +17,17 @@ public class GameMenuView {
     }
     
     private final String MENU = 
-            "________________                  \n" +
-            "   GAME MENU     \\_________________\n" +
-            "                                   \n" +
-            " W - Move up the stairs            \n" +
-            " A - Move to the door to the left  \n" +
-            " S - Move down the stairs          \n" +
-            " D - Move to the door to the right \n" +
-            " G - Enter Door                    \n" +
-            " V - View Items                    \n" +
-            " R - Drop/Remove Items             \n" +
-            " P - Pause                         \n" +
-            " X - Save Game                     \n" +
-            " E - Exit                          \n" +
-           "____________________________________";
+            "________________                              \n" +
+            "   GAME MENU     \\___________________________\n" +
+            "                                              \n" +
+            " W - Move up             M – Map              \n" +
+            " A - Move to the left    V - View Items       \n" +
+            " S - Move don            R - Drop/Remove Items\n" +
+            " D - Move to the right   P - Pause            \n" +
+            " G - Enter Door          X - Save Game        \n" +
+            "                                              \n" +
+            " E - Exit                                     \n" +
+           "_______________________________________________";
     
     void displayMenu(){
         
@@ -43,6 +40,7 @@ public class GameMenuView {
             
             this.doAction(selection);
         }while(selection !='E');
+        
         
     }
     
@@ -58,7 +56,7 @@ public class GameMenuView {
             input = input.trim();
             input = input.toUpperCase();
             
-            if (input.length() > 1) {
+            if (input.length() < 1) {
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "               Invalid value - Please, try again.               \n"
@@ -86,8 +84,11 @@ public class GameMenuView {
                 break; 
             case 'G':
                 this.enterDoor();
-                break; 
-             case 'V':
+                break;
+            case 'M':
+                this.displayMap();
+                break;
+            case 'V':
                 this.viewItems();
                 break; 
             case 'R':
@@ -109,23 +110,62 @@ public class GameMenuView {
         }        
     }
 
-    private void moveUp() {
+    public int apartment = 3;
+    public int floor = 1;
+    
+    private int moveUp() {
+        //System.out.println(
+        //        "\n***** moveUp() function called *****\n");
+        if (floor < 5){
+            floor += 1;
+        }
         System.out.println(
-                "\n***** moveUp() function called *****\n");
+                 "You are on floor "+floor+", apartment "+apartment+"."
+                +"\n ___ "
+                +"\n|"+floor+"|"+apartment+"|"
+                +"\nIIIII");
+        return floor;
     }
 
-    private void moveLeft() {
+    private int moveLeft() {
+        //System.out.println(
+        //        "\n***** moveLeft() function called *****\n");
+        if (apartment > 1){
+            apartment -= 1;
+        }
         System.out.println(
-                "\n***** moveLeft() function called *****\n");
+                 "You are on floor "+floor+", apartment "+apartment+"."
+                +"\n ___ "
+                +"\n|"+floor+"|"+apartment+"|"
+                +"\nIIIII");
+        return apartment;
     }
 
-    private void moveDown() {
-       System.out.println(
-               "\n***** moveDown() function called *****\n");
+    private int moveDown() {
+       //System.out.println(
+       //        "\n***** moveDown() function called *****\n");
+        if (floor > 1){
+            floor -= 1;
+        }
+        System.out.println(
+                 "You are on floor "+floor+", apartment "+apartment+"."
+                +"\n ___ "
+                +"\n|"+floor+"|"+apartment+"|"
+                +"\nIIIII");
+        return floor;
     }
-    private void moveRight() {
-       System.out.println(
-               "\n***** moveRight() function called *****\n");
+    private int moveRight() {
+       //System.out.println(
+       //        "\n***** moveRight() function called *****\n");
+        if (apartment < 5){
+            apartment += 1;
+        }
+        System.out.println(
+                 "You are on floor "+floor+", apartment "+apartment+"."
+                +"\n ___ "
+                +"\n|"+floor+"|"+apartment+"|"
+                +"\nIIIII");
+        return apartment;
     }
     private void enterDoor() {
        System.out.println(
@@ -147,4 +187,38 @@ public class GameMenuView {
        System.out.println(
                "\n***** saveGame() function called *****\n");
     }
+
+    private void displayMap() {
+                        System.out.println(
+ "\n"
++"\n                   (  .    )                        "
++"\n               )          (           )           "  
++"\n                     .  '  .  '  .  ' .            " 
++"\n            (    , )      (.  )  (  ',    )         "
++"\n             .' ) ( . )   , ( ,     )  ( .          "
++"\n          ). , ( .   (  )( ,')  .' ( ,    )         "
++"\n         (_,) . ), ) _) _,')  (, ) '. ) ,.          "
++"\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^         "
++"\n         _._._._._._._._._._._._._._._._._         "
++"\n         | ___   ___    ___    ___   ___ |         "
++"\n         ||5|1| |5|2|  |5|3|  |5|4| |5|5||         "
++"\n         |IIIII_IIIII__IIIII__IIIII_IIIII|         "
++"\n         | ___   ___    ___    ___   ___ |         "
++"\n         ||4|1| |4|2|  |4|3|  |4|4| |4|5||         "
++"\n         |IIIII_IIIII__IIIII__IIIII_IIIII|         "
++"\n         | ___   ___    ___    ___   ___ |         "
++"\n )o(_    ||3|1| |3|2|  |3|3|  |3|4| |3|5||         "
++"\n/(|)\'    |IIIII_IIIII__IIIII__IIIII_IIIII|         "
++"\n H)o(_   | ___   ___    ___    ___   ___ |         "
++"\n  /(|)\'  ||2|1| |2|2|  |2|3|  |2|4| |2|5||         "
++"\n  H H    |IIIII_IIIII__IIIII__IIIII_IIIII|    /)   "
++"\n  H H    | ___   ___   _____   ___   ___ | __/ ),  "
++"\n   ~ ^~^ ||1|1| |1|2|  o~|~o  |1|4| |1|5||  ~^~^   "
++"\n  . ' .'.|IIIII_IIIII__|_|_|__IIIII_IIIII|'^~^'.', "
++"\n .,  , .|             /=====\\            |. . . . "
++"\n   `~ `  ^^~   ^^~'`  '     ` ,``~^^   ~^^     ~   "
++"\n .                     ,   '                       "
++"\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+    }
+    
 }

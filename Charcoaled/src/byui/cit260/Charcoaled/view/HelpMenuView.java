@@ -23,6 +23,7 @@ public class HelpMenuView {
             " G - Game Objective      \n" +
             " H - How to play         \n" +
             " D - Difficulty levels   \n" +
+            "                         \n" +
             " E - Exit                \n" +
             "_________________________";
     
@@ -48,12 +49,12 @@ public class HelpMenuView {
         Scanner keyboard = new Scanner(System.in);
         
         while(!valid) {        
-            System.out.println("\nSelect a value");
+            System.out.println("\nSelect a value:");
             input = keyboard.nextLine();
             input = input.trim();
             input = input.toUpperCase();
             
-            if (input.length() > 1) {
+            if (input.length() < 1) {
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "               Invalid value - Please, try again.               \n"
