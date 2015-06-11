@@ -6,6 +6,7 @@
 package byui.cit260.Charcoaled.view;
 
 import java.util.Scanner;
+import byui.cit260.Charcoaled.view.RoomMenuView;
 
 /**
  *
@@ -170,6 +171,11 @@ public class GameMenuView {
     private void enterDoor() {
        System.out.println(
                "\n***** enterDoor() function called *****\n");
+       
+        RoomMenuView roomMenu = new RoomMenuView();
+        roomMenu.displayMenu();
+        
+        
     }
     private void viewItems() {
        System.out.println(
