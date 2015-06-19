@@ -15,10 +15,10 @@ import java.util.Scanner;
  *
  * @author oscar and raquel
  */
-public class MainMenuView {
+public class MainMenuView extends View {
     
-    private final String MENU = 
-        "__________________                     \n" +
+    public MainMenuView(){
+     super(   "__________________                     \n" +
         "    MAIN MENU     \\____________________\n" +
         "                                       \n" +
         " G - Start Existing Game               \n" +
@@ -27,48 +27,14 @@ public class MainMenuView {
         " S - Save Game                         \n" +
         "                                       \n" +
         " E - Exit                              \n" +
-        "_______________________________________";
-    
-    void displayMenu(){
-        
-        char selection = ' ';
-        do{
-            System.out.println(MENU);
-            
-            String input = this.getInput();
-            selection = input.charAt(0);
-            
-            this.doAction(selection);
-        }while(selection !='E');
-        
-        //System.out.println("*** MainMenuView.displayMenu() function called ***");
+        "_______________________________________");
     }
     
-    private String getInput() {
-
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
+@Override
+    public boolean doAction(Object obj) {
         
-        while(!valid) {        
-            System.out.println("\nSelect a value:");
-            input = keyboard.nextLine();
-            input = input.trim();
-            input = input.toUpperCase();
-            
-            if (input.length() < 1) {
-                System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "               Invalid value - Please, try again.               \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
-            }  
-            break;
-        }        
-        return input;        
-    }
-
-    private void doAction(char selection) {
+        char selection = (char)obj;
+        
         switch(selection){
             case 'G':
                 this.startExistingGame();
@@ -119,13 +85,14 @@ public class MainMenuView {
 +"\n                  COME BACK SOON!                  "
 +"\n                                                   " 
 +"\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-                return;
+                return true;
             default:
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             Invalid selection - Please, try again.             \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-        }        
+        }     
+        return true;
     }
 
     private void startExistingGame() {

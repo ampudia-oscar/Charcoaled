@@ -10,12 +10,10 @@ import java.util.Scanner;
  *
  * @author Raquel
  */
-public class RoomMenuView {
-    public RoomMenuView() {
-    }
+public class RoomMenuView  extends View {
     
-    private final String MENU = 
-            "________________                              \n" +
+    public RoomMenuView() { 
+        super("________________                              \n" +
             "   Room MENU     \\___________________________\n" +
             "                                              \n" +
             " W - Use Axe                                  \n" +
@@ -23,67 +21,12 @@ public class RoomMenuView {
             " S - Use Rope            R - Rescue Person    \n" +
             " D - Use Water                                \n" +
             " E - Exit                                     \n" +
-           "_______________________________________________";
+           "_______________________________________________");
+    }    
     
-    void displayMenu(){
-        
-        char selection = ' ';
-        do{
-            System.out.println(MENU);
-            
-            String input = this.getInput();
-            selection = input.charAt(0);
-            
-            this.doAction(selection);
-        }while(selection !='E');
-        
-        
-    }
-    
-    private String getInput() {
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        while(!valid) {        
-            System.out.println("\nSelect a value");
-            input = keyboard.nextLine();
-            input = input.trim();
-            input = input.toUpperCase();
-            
-            if (input.length() < 1) {
-                System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "               Invalid value - Please, try again.               \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
-            }  
-            break;
-        }        
-        return input;        
-    }
-    private String getAnswer() {
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        while(!valid) {        
-            System.out.println("\nSelect a value");
-            input = keyboard.nextLine();
-            input = input.trim();           
-            
-            if (input.length() < 1) {
-                System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "               Invalid value - Please, try again.               \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
-            }  
-            break;
-        }        
-        return input;        
-    }
-    private void doAction(char selection) {
+    @Override
+    public boolean doAction(Object obj) {        
+        char selection = (char)obj;
         switch(selection){
             case 'W':
                 this.useAxe();
@@ -101,13 +44,14 @@ public class RoomMenuView {
                 this.rescuePerson();
                 break;
            case 'E':
-                return;
+                return true;
             default:
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             Invalid selection - Please, try again.             \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-        }        
+        }  
+        return true;
     }
 
     private void useAxe() {
@@ -149,14 +93,10 @@ public class RoomMenuView {
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             Solve the following Calculation: Convert 45 hours to Seconds            \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+                
+        double userAnswer = Double.parseDouble(this.getInput());
         
-        
-        double userAnswer = Double.parseDouble(this.getAnswer());
-        
-        if (result == userAnswer) {
-        
-        
-        
+        if (result == userAnswer) {                
         System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             You have Rescued the Person !!!             \n"
@@ -168,11 +108,7 @@ public class RoomMenuView {
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             You have Failed to Rescue the Person !!!             \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");                  
-                
-                
-                
-        }
-        
-        
+                                
+        }        
     }    
 }

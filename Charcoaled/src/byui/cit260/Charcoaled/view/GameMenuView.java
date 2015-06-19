@@ -12,13 +12,12 @@ import byui.cit260.Charcoaled.view.RoomMenuView;
  *
  * @author oscar
  */
-public class GameMenuView {
+public class GameMenuView extends View {
 
     public GameMenuView() {
-    }
     
-    private final String MENU = 
-            "________________                              \n" +
+    
+    super(  "________________                              \n" +
             "   GAME MENU     \\___________________________\n" +
             "                                              \n" +
             " W - Move up             M – Map              \n" +
@@ -28,48 +27,13 @@ public class GameMenuView {
             " G - Enter Door          X - Save Game        \n" +
             "                                              \n" +
             " E - Exit                                     \n" +
-           "_______________________________________________";
+           "_______________________________________________");
+}
     
-    void displayMenu(){
-        
-        char selection = ' ';
-        do{
-            System.out.println(MENU);
-            
-            String input = this.getInput();
-            selection = input.charAt(0);
-            
-            this.doAction(selection);
-        }while(selection !='E');
-        
-        
-    }
     
-    private String getInput() {
-
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
+    public boolean doAction(Object obj) {
+        char selection = (char)obj;
         
-        while(!valid) {        
-            System.out.println("\nSelect a value");
-            input = keyboard.nextLine();
-            input = input.trim();
-            input = input.toUpperCase();
-            
-            if (input.length() < 1) {
-                System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "               Invalid value - Please, try again.               \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
-            }  
-            break;
-        }        
-        return input;        
-    }
-
-    private void doAction(char selection) {
         switch(selection){
             case 'W':  
                 this.moveUp();
@@ -102,13 +66,14 @@ public class GameMenuView {
                 this.saveGame();
                 break; 
            case 'E':
-                return;
+                return true;
             default:
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             Invalid selection - Please, try again.             \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-        }        
+        }
+        return true;
     }
 
     public int apartment = 3;

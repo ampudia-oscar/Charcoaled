@@ -9,15 +9,15 @@ import java.util.Scanner;
 
 /**
  *
- * @author montchri
+ * @author oscar and raquel
  */
-public class HelpMenuView {
+public class HelpMenuView extends View{
 
     public HelpMenuView() {
-    }
     
-    private final String MENU = 
-            "_________________        \n" +
+    
+     
+    super(  "_________________        \n" +
             "   HELP MENU     \\_______\n" +
             "                         \n" +
             " G - Game Objective      \n" +
@@ -25,49 +25,13 @@ public class HelpMenuView {
             " D - Difficulty levels   \n" +
             "                         \n" +
             " E - Exit                \n" +
-            "_________________________";
+            "_________________________");
+}
     
-    void displayMenu(){
-        
-        char selection = ' ';
-        do{
-            System.out.println(MENU);
-            
-            String input = this.getInput();
-            selection = input.charAt(0);
-            
-            this.doAction(selection);
-        }while(selection !='E');
-        
-        //System.out.println("*** MainMenuView.displayMenu() function called ***");
-    }
-    
-    private String getInput() {
+    public boolean doAction(Object obj) {
+    char selection = (char)obj;
 
-        boolean valid = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        
-        while(!valid) {        
-            System.out.println("\nSelect a value:");
-            input = keyboard.nextLine();
-            input = input.trim();
-            input = input.toUpperCase();
-            
-            if (input.length() < 1) {
-                System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "               Invalid value - Please, try again.               \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
-            }  
-            break;
-        }        
-        return input;        
-    }
-
-    private void doAction(char selection) {
-        switch(selection){
+    switch(selection){
             case 'G':   
                 this.displayGameObjective();
                 break;
@@ -78,13 +42,14 @@ public class HelpMenuView {
                 this.displayDifficultyLevels();
                 break;         
             case 'E':
-                return;
+                return true;
             default:
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             Invalid selection - Please, try again.             \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
         }        
+        return true;
     }
 
     private void displayGameObjective() {
