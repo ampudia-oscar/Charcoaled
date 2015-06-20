@@ -138,13 +138,11 @@ public class GameMenuView extends View {
                "\n***** enterDoor() function called *****\n");
        
         RoomMenuView roomMenu = new RoomMenuView();
-        roomMenu.displayMenu();
-        
-        
+        roomMenu.displayMenu();        
     }
     private void viewItems() {
-       System.out.println(
-               "\n***** viewItems() function called *****\n");
+        PlayerInventoryView piv = new PlayerInventoryView();        
+        piv.displayMenu();
     }
     private void dropItems() {
        System.out.println(

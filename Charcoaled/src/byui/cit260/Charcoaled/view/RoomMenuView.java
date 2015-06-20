@@ -6,6 +6,7 @@
 package byui.cit260.Charcoaled.view;
 import byu.cit260.Charcoaled.control.ObstacleControl;
 import java.util.Scanner;
+import byui.cit260.Charcoaled.view.PlayerInventoryView;
 /**
  *
  * @author Raquel
@@ -18,10 +19,12 @@ public class RoomMenuView  extends View {
             "                                              \n" +
             " W - Use Axe                                  \n" +
             " A - Use Fire Ext                             \n" +
-            " S - Use Rope            R - Rescue Person    \n" +
+            " S - Use Rope            P  - Rescue Person    \n" +
             " D - Use Water                                \n" +
             " E - Exit                                     \n" +
-           "_______________________________________________");
+            " I - View Player Inventory                    \n" +
+            " R - View Items in Room                       \n" +
+            "_______________________________________________");
     }    
     
     @Override
@@ -40,8 +43,14 @@ public class RoomMenuView  extends View {
             case 'S':  
                 this.useRope();
                 break;                                                            
-            case 'R':  
+            case 'P':  
                 this.rescuePerson();
+                break;
+            case 'I':  
+                this.viewPlayerIventory();
+                break;
+            case 'R':  
+                this.viewRoomItems();
                 break;
            case 'E':
                 return true;
@@ -111,4 +120,14 @@ public class RoomMenuView  extends View {
                                 
         }        
     }    
+
+    private void viewPlayerIventory() {
+        PlayerInventoryView piv = new PlayerInventoryView();        
+        piv.displayMenu();
+    }
+
+    private void viewRoomItems() {
+        RoomItemView riv = new RoomItemView();        
+        riv.displayMenu();
+    }
 }

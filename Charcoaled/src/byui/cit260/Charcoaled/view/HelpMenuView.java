@@ -23,7 +23,7 @@ public class HelpMenuView extends View{
             " G - Game Objective      \n" +
             " H - How to play         \n" +
             " D - Difficulty levels   \n" +
-            "                         \n" +
+            " V - Player's Iventory   \n" +
             " E - Exit                \n" +
             "_________________________");
 }
@@ -40,7 +40,10 @@ public class HelpMenuView extends View{
                 break;
             case 'D':
                 this.displayDifficultyLevels();
-                break;         
+                break;
+            case 'V':
+                this.viewPlayersInventory();
+                break; 
             case 'E':
                 return true;
             default:
@@ -65,5 +68,10 @@ public class HelpMenuView extends View{
     private void displayDifficultyLevels() {
        System.out.println(
                "\n***** displayDifficultyLevels() function called *****\n");
+    }
+
+    private void viewPlayersInventory() {
+       PlayerInventoryView piv = new PlayerInventoryView();        
+       piv.displayMenu();
     }
 }

@@ -5,10 +5,19 @@
  */
 package byu.cit260.Charcoaled.control;
 
+import byui.cit260.Charcoaled.model.Inventory;
+
 /**
  *
  * @author oscar
  */
 public class InventoryControl {
+    
+    public static Inventory createInventory(String playerName) {
+        
+       //System.out.println("\n ** Create player function called **");
+       return null;
+       
+    }  
     
 }
