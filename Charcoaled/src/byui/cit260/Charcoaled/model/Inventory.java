@@ -18,6 +18,41 @@ public class Inventory implements Serializable{
     private String name;
     private int numberOfAxes;
     private int numberOfFireExtinguishers;
+    private int numberOfWaters;
+
+    public int getNumberOfWaters() {
+        return numberOfWaters;
+    }
+
+    public void setNumberOfWaters(int numberOfWaters) {
+        this.numberOfWaters = numberOfWaters;
+    }
+
+    public int getNumberOfRopes() {
+        return numberOfRopes;
+    }
+
+    public void setNumberOfRopes(int numberOfRopes) {
+        this.numberOfRopes = numberOfRopes;
+    }
+    private int numberOfRopes;
+    
+    
+    public int getNumberOfAxes() {
+        return numberOfAxes;
+    }
+
+    public void setNumberOfAxes(int numberOfAxes) {
+        this.numberOfAxes = numberOfAxes;
+    }
+
+    public int getNumberOfFireExtinguishers() {
+        return numberOfFireExtinguishers;
+    }
+
+    public void setNumberOfFireExtinguishers(int numberOfFireExtinguishers) {
+        this.numberOfFireExtinguishers = numberOfFireExtinguishers;
+    }
     private String type;
     private String description;
     private double totalItems;

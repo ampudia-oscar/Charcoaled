@@ -5,6 +5,8 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import byu.cit260.Charcoaled.control.InventoryControl;
+
 /**
  *
  * @author raquel
@@ -40,10 +42,18 @@ public class PlayerInventoryView extends View {
   
 
     private void viewPlayerItems() {
-        int axes = 1;
-        int fires = 2;
-        int ropes = 3;
-        int waters = 4;
+                
+        //int axes = 1;        
+        //int fires = 2;
+        //int ropes = 3;
+        //int waters = 4;
+        
+        InventoryControl ic = new InventoryControl();
+        
+        int axes = ic.getAxes();
+        int fires = ic.getFires();
+        int ropes = ic.getRopes();
+        int waters = ic.getWaters();
         
         System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"

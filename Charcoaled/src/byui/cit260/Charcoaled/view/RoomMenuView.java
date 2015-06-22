@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.Charcoaled.view;
+import byu.cit260.Charcoaled.control.InventoryControl;
 import byu.cit260.Charcoaled.control.ObstacleControl;
 import java.util.Scanner;
 import byui.cit260.Charcoaled.view.PlayerInventoryView;
@@ -64,32 +65,62 @@ public class RoomMenuView  extends View {
     }
 
     private void useAxe() {
-        System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             You have used the Axe!!!             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-        }        
+        
+        InventoryControl ic = new InventoryControl();        
+        if (ic.getAxes() > 0 ) {        
+            usedItemMessage("Axe");
+            ic.removeItemFromIventory("axe");
+        }
+        else {
+            NoItemMessage("Axes");        
+        }
+    }        
     
 
     private void useFireExt() {
-        System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             You have used the Fire Extinguisher!!!             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+        InventoryControl ic = new InventoryControl();        
+        if (ic.getFires() > 0 ) {        
+            usedItemMessage("Fire Extinguisher");
+        }
+        else {
+            NoItemMessage("Fire Extinguisher");        
+        }
     }
 
     private void useWater() {
-        System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             You have used the Bucket of Water!!!             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+        InventoryControl ic = new InventoryControl();        
+        if (ic.getWaters() > 0 ) {   
+            usedItemMessage("water");
+        }
+        else {
+            NoItemMessage("Bucket of Water");        
+        }
     }
 
     private void useRope() {
-        System.out.println(
+        InventoryControl ic = new InventoryControl();        
+        if (ic.getRopes() > 0 ) { 
+        usedItemMessage("rope");
+        }
+        else {
+            NoItemMessage("Ropes");        
+        }        
+    }
+    
+    private void usedItemMessage(String itemType)            
+    {
+                System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             You have used the Rope!!!             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
++ "             You have used the " + itemType + "!!!             \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");    
+    }
+    
+        private void NoItemMessage(String itemType)            
+    {
+                System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "             You don't have any " + itemType + "!!!   left           \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");    
     }
 
     private void rescuePerson() {

@@ -29,6 +29,11 @@ public class Charcoaled {
      * @param args the command line arguments
      */
     private static Player player = null;
+    private static Inventory inventory = null;
+
+    public static Inventory getInventory() {
+        return inventory;
+    }
 
     public static Player getPlayer() {
         return player;
@@ -39,6 +44,14 @@ public class Charcoaled {
     }
     
     public static void main(String[] args) {
+        
+        inventory = new Inventory();
+        inventory.setNumberOfAxes(5);
+        inventory.setNumberOfFireExtinguishers(0);
+        inventory.setNumberOfRopes(0);
+        inventory.setNumberOfWaters(0);
+        inventory.setMaxItems(5);
+        inventory.setTotalItems(0);
         
         StartProgramView spv = new StartProgramView();
         spv.startProgram();
