@@ -7,7 +7,7 @@ package Charcoaled;
 
 import byui.cit260.Charcoaled.model.Actor;
 import byui.cit260.Charcoaled.model.Game;
-import byui.cit260.Charcoaled.model.Inventory;
+import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.Player;
 import byui.cit260.Charcoaled.model.Room;
 import byui.cit260.Charcoaled.model.MapBuilding;
@@ -29,9 +29,18 @@ public class Charcoaled {
      * @param args the command line arguments
      */
     private static Player player = null;
-    private static Inventory inventory = null;
+    private static InventoryItem inventory = null;
+    private static Game currentGame = null;
 
-    public static Inventory getInventory() {
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        Charcoaled.currentGame = currentGame;
+    }
+
+    public static InventoryItem getInventory() {
         return inventory;
     }
 
@@ -45,7 +54,7 @@ public class Charcoaled {
     
     public static void main(String[] args) {
         
-        inventory = new Inventory();
+        inventory = new InventoryItem();
         inventory.setNumberOfAxes(5);
         inventory.setNumberOfFireExtinguishers(0);
         inventory.setNumberOfRopes(0);

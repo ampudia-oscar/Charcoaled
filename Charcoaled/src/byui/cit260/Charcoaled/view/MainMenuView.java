@@ -100,7 +100,7 @@ public class MainMenuView extends View {
     }
 
     private void startNewGame() {
-        //GameControl.createNewGame(Charcoaled.getPlayer());
+        GameControl.createNewGame(Charcoaled.getPlayer());
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.displayMenu();
     }

@@ -7,93 +7,31 @@ package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.awt.Point;
 
 /**
  *
  * @author oscar
  */
-public class Actor implements Serializable{
+public enum Actor implements Serializable {
     
     //class instance variables
-    private String name;
-    private double score;
-    private double row;
-    private double column;
+    JohnDoe("Sargent Fir fighter"),
+    JaneDoe("Caitan fighrer");
 
-    public Actor() {
+    private final String description;
+    private final Point coordinates;
+
+    Actor (String description){
+        this.description = description;
+        coordinates = new Point(1,1);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
-    }
-
-    public double getRow() {
-        return row;
-    }
-
-    public void setRow(double row) {
-        this.row = row;
-    }
-
-    public double getColumn() {
-        return column;
-    }
-
-    public void setColumn(double column) {
-        this.column = column;
-    }
-
-    @Override
-    public String toString() {
-        return "Actor{" + "name=" + name + ", score=" + score + ", row=" + row + ", column=" + column + '}';
+    public String getDescription(){
+        return description;
     }
     
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.score) ^ (Double.doubleToLongBits(this.score) >>> 32));
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.row) ^ (Double.doubleToLongBits(this.row) >>> 32));
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.column) ^ (Double.doubleToLongBits(this.column) >>> 32));
-        return hash;
+    public Point getCoordinates() {
+        return coordinates;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Actor other = (Actor) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.score) != Double.doubleToLongBits(other.score)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.row) != Double.doubleToLongBits(other.row)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.column) != Double.doubleToLongBits(other.column)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
 }

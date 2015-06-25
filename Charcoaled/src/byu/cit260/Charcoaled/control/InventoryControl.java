@@ -5,7 +5,7 @@
  */
 package byu.cit260.Charcoaled.control;
 
-import byui.cit260.Charcoaled.model.Inventory;
+import byui.cit260.Charcoaled.model.InventoryItem;
 
 /**
  *
@@ -13,7 +13,7 @@ import byui.cit260.Charcoaled.model.Inventory;
  */
 public class InventoryControl {    
     
-    private static Inventory inventory = null;
+    private static InventoryItem inventory = null;
     public  InventoryControl (){
         inventory = Charcoaled.Charcoaled.getInventory();    
     }

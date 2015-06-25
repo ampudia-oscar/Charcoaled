@@ -16,6 +16,34 @@ public class Game implements Serializable{
     //class instance variables
     private double totalTime;
     private double remainingTime;
+    private Player player;
+    private InventoryItem[] inventory;
+    private MapBuilding map;
+
+    public InventoryItem[] getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(InventoryItem[] inventory) {
+        this.inventory = inventory;
+    }
+
+    public MapBuilding getMap() {
+        return map;
+    }
+
+    public void setMap(MapBuilding map) {
+        this.map = map;
+    }
+    
+    
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public Game() {
     }

@@ -5,10 +5,17 @@
  */
 package byu.cit260.Charcoaled.control;
 
+import byui.cit260.Charcoaled.model.MapBuilding;
+
 /**
  *
  * @author oscar
  */
 public class MapControl {
+
+    static MapBuilding createMap() {
+        // Pending
+        return null;
+    }
     
 }
