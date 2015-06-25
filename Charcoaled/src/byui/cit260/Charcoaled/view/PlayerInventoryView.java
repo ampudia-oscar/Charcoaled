@@ -5,7 +5,9 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import byu.cit260.Charcoaled.control.GameControl;
 import byu.cit260.Charcoaled.control.InventoryControl;
+import byui.cit260.Charcoaled.model.InventoryItem;
 
 /**
  *
@@ -42,28 +44,12 @@ public class PlayerInventoryView extends View {
   
 
     private void viewPlayerItems() {
-                
-        //int axes = 1;        
-        //int fires = 2;
-        //int ropes = 3;
-        //int waters = 4;
+               
+        InventoryItem[] inventory = GameControl.getInventory();
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         
-        InventoryControl ic = new InventoryControl();
-        
-        int axes = ic.getAxes();
-        int fires = ic.getFires();
-        int ropes = ic.getRopes();
-        int waters = ic.getWaters();
-        
-        System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             You have: " + fires +" Fire extinguishers available             \n"
-+ "                                                                             \n"
-+ "             You have: " + axes +" Axes available                            \n"
-+ "                                                                             \n"
-+ "             You have: " + waters +" Buckets of Waters available             \n"
-+ "                                                                             \n"
-+ "             You have: " + ropes +" Ropes available                          \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+        for (InventoryItem item : inventory) {
+           System.out.println( "             You have:" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  DIFFERENT      \n");
+        }        
     }    
 }

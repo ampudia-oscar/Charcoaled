@@ -17,8 +17,8 @@ public enum Items implements Serializable {
     Rope("Rope dewscription"),
     FireExtinguisher("Fire extinguisher description"),
     Axe("Axe description"),
-    Bucketofwater("etc etc"),
-    Masterkey("etc etc etc");
+    BucketOfWater("etc etc"),
+    MasterKey("etc etc etc");
     
     
     private final String description;

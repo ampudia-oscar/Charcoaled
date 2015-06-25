@@ -53,15 +53,7 @@ public class Charcoaled {
     }
     
     public static void main(String[] args) {
-        
-        inventory = new InventoryItem();
-        inventory.setNumberOfAxes(5);
-        inventory.setNumberOfFireExtinguishers(0);
-        inventory.setNumberOfRopes(0);
-        inventory.setNumberOfWaters(0);
-        inventory.setMaxItems(5);
-        inventory.setTotalItems(0);
-        
+                        
         StartProgramView spv = new StartProgramView();
         spv.startProgram();
          

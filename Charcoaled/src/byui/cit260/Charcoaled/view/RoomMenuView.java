@@ -66,45 +66,20 @@ public class RoomMenuView  extends View {
 
     private void useAxe() {
         
-        InventoryControl ic = new InventoryControl();        
-        if (ic.getAxes() > 0 ) {        
-            usedItemMessage("Axe");
-            ic.removeItemFromIventory("axe");
-        }
-        else {
-            NoItemMessage("Axes");        
-        }
+       
     }        
     
 
     private void useFireExt() {
-        InventoryControl ic = new InventoryControl();        
-        if (ic.getFires() > 0 ) {        
-            usedItemMessage("Fire Extinguisher");
-        }
-        else {
-            NoItemMessage("Fire Extinguisher");        
-        }
+       
     }
 
     private void useWater() {
-        InventoryControl ic = new InventoryControl();        
-        if (ic.getWaters() > 0 ) {   
-            usedItemMessage("water");
-        }
-        else {
-            NoItemMessage("Bucket of Water");        
-        }
+        
     }
 
     private void useRope() {
-        InventoryControl ic = new InventoryControl();        
-        if (ic.getRopes() > 0 ) { 
-        usedItemMessage("rope");
-        }
-        else {
-            NoItemMessage("Ropes");        
-        }        
+            
     }
     
     private void usedItemMessage(String itemType)            

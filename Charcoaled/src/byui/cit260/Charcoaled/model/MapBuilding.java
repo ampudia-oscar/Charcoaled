@@ -6,7 +6,9 @@
 package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -16,8 +18,34 @@ public class MapBuilding implements Serializable{
     
     private int rowCount;
     private int columnCount;
+    private Room[][] rooms;
 
     public MapBuilding() {
+    }
+
+    public MapBuilding(int rowCount, int columnCount) {
+                
+        if (rowCount < 1 || columnCount < 1 ){
+            
+            System.out.println("The number of rows and columbs must be > zero");
+            return;
+        }
+        
+        rooms = new Room[rowCount][columnCount];
+        
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+        this.rooms = new Room[rowCount][columnCount];
+        
+        for (int row = 0; row < rowCount; row++ ) {
+            for (int column = 0; column < columnCount; column++ ) {
+                Room room = new Room();
+                room.setColumn(column);
+                room.setRow(row);
+                room.setVisited(false);
+                //rooms[rowCount][columnCount] = room;                
+            }
+        }        
     }
 
     

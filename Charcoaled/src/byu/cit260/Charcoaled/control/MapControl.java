@@ -14,8 +14,12 @@ import byui.cit260.Charcoaled.model.MapBuilding;
 public class MapControl {
 
     static MapBuilding createMap() {
-        // Pending
-        return null;
+       MapBuilding map = new MapBuilding(5 , 5);
+       return map;
+    }
+
+    static void moveActorToStartingLocation(MapBuilding map) {
+        return;
     }
     
 }
