@@ -29,7 +29,7 @@ public class Charcoaled {
      * @param args the command line arguments
      */
     private static Player player = null;
-    private static InventoryItem inventory = null;
+
     private static Game currentGame = null;
 
     public static Game getCurrentGame() {
@@ -38,11 +38,7 @@ public class Charcoaled {
 
     public static void setCurrentGame(Game currentGame) {
         Charcoaled.currentGame = currentGame;
-    }
-
-    public static InventoryItem getInventory() {
-        return inventory;
-    }
+    }   
 
     public static Player getPlayer() {
         return player;

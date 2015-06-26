@@ -6,9 +6,6 @@
 package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  *
@@ -43,7 +40,7 @@ public class MapBuilding implements Serializable{
                 room.setColumn(column);
                 room.setRow(row);
                 room.setVisited(false);
-                //rooms[rowCount][columnCount] = room;                
+                rooms[row][column] = room;                
             }
         }        
     }

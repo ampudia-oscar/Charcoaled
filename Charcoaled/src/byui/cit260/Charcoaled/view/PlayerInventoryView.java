@@ -45,7 +45,7 @@ public class PlayerInventoryView extends View {
 
     private void viewPlayerItems() {
                
-        InventoryItem[] inventory = GameControl.getInventory();
+        InventoryItem[] inventory = InventoryControl.getInventory();
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         
         for (InventoryItem item : inventory) {

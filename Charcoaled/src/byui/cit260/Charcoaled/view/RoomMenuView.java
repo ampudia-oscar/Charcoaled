@@ -64,9 +64,11 @@ public class RoomMenuView  extends View {
         return true;
     }
 
-    private void useAxe() {
-        
-       
+    private static void useAxe() {        
+       if (InventoryControl.useItem("Axe"))
+           usedItemMessage("Axe");
+       else 
+           NoItemMessage("Axe");
     }        
     
 
@@ -82,7 +84,7 @@ public class RoomMenuView  extends View {
             
     }
     
-    private void usedItemMessage(String itemType)            
+    private static void usedItemMessage(String itemType)            
     {
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
@@ -90,7 +92,7 @@ public class RoomMenuView  extends View {
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");    
     }
     
-        private void NoItemMessage(String itemType)            
+        private static void NoItemMessage(String itemType)            
     {
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
