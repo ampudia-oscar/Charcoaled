@@ -6,13 +6,12 @@
 package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.awt.Point;
 
-/**
- *
+/*
  * @author oscar
  */
+
 public enum Actor implements Serializable {
     
     //class instance variables

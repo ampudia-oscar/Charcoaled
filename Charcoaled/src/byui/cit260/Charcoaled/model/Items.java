@@ -6,7 +6,6 @@
 package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -14,11 +13,11 @@ import java.util.Objects;
  */
 public enum Items implements Serializable {
     
-    Rope("Rope dewscription"),
-    FireExtinguisher("Fire extinguisher description"),
+    Rope("Rope"),
+    Fire("Fire Extinguisher"),
     Axe("Axe description"),
-    BucketOfWater("etc etc"),
-    MasterKey("etc etc etc");
+    Water("Bucket of Water"),
+    MasterKey("Master Key");
     
     
     private final String description;

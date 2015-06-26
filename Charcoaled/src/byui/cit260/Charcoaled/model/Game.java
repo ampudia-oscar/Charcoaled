@@ -5,6 +5,7 @@
  */
 package byui.cit260.Charcoaled.model;
 
+import java.awt.Point;
 import java.io.Serializable;
 
 /**
@@ -19,6 +20,15 @@ public class Game implements Serializable{
     private Player player;
     private InventoryItem[] inventory;
     private MapBuilding map;
+    private Point playerPosition;
+
+    public Point getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public void setPlayerPosition(Point playerPosition) {
+        this.playerPosition = playerPosition;
+    }
 
     public InventoryItem[] getInventory() {
         return inventory;

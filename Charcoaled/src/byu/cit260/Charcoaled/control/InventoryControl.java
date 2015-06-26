@@ -5,7 +5,6 @@
  */
 package byu.cit260.Charcoaled.control;
 
-import Charcoaled.Charcoaled;
 import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.Items;
 
@@ -15,30 +14,65 @@ import byui.cit260.Charcoaled.model.Items;
  */
 public class InventoryControl {    
     
-    private static InventoryItem[] items;
+    //private static InventoryItem[] items;
     
-    public static boolean useItem (String itemType) {
+    public static boolean useItem (int x) {
         
-    boolean usedItem = false;
-    items = getInventory();
     
-    int count = items[Items.Axe.ordinal()].getQuantityInStock();
-    
-    if (count > 0) {
-    
-        items[Items.Axe.ordinal()].setQuantityInStock(count - 1);
+    InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
+    InventoryItem[] items = InventoryControl.getPlayerInventory();
+    int count = item.getQuantityInStock();
+
+    if (count > 0) {    
+        items[x].setQuantityInStock(count - 1);
         return true;
     }
+        return false;
+    }    
     
-        return usedItem;
+    
+    public static InventoryItem[] createRoomInventoryList(int axes, int ropes, int waters, int fires, int keys) {
+        
+        InventoryItem[] inventory = new InventoryItem[4];
+        
+        InventoryItem axe = new InventoryItem();
+        axe.setInventoryType("Axe");
+        axe.setQuantityInStock(axes);
+                
+        InventoryItem rope = new InventoryItem();
+        rope.setInventoryType("Rope");
+        rope.setQuantityInStock(ropes);
+                
+        InventoryItem water = new InventoryItem();
+        water.setInventoryType("Bucket of Water");
+        water.setQuantityInStock(waters);
+                
+        InventoryItem fire = new InventoryItem();
+        fire.setInventoryType("Fire Extinguisher");
+        fire.setQuantityInStock(fires);
+        
+                     
+        InventoryItem key = new InventoryItem();
+        fire.setInventoryType("Master Key");
+        fire.setQuantityInStock(keys);
+               
+                
+        inventory[Items.Rope.ordinal()] = rope;
+        inventory[Items.Fire.ordinal()] = fire;
+        inventory[Items.Water.ordinal()] = water;
+        inventory[Items.Axe.ordinal()] = axe;
+        //inventory[Items.MasterKey.ordinal()] = key;
+        
+        return inventory;            
+    
     }
     
-    static InventoryItem[] createInventoryList() {
+    static InventoryItem[] createPlayerInventory() {
         
         InventoryItem[] inventory = new InventoryItem[5];
         InventoryItem axe = new InventoryItem();
         axe.setInventoryType("Axe");
-        axe.setQuantityInStock(3);
+        axe.setQuantityInStock(5);
         axe.setMaxItemsInStock(5);
         
         InventoryItem rope = new InventoryItem();
@@ -62,20 +96,30 @@ public class InventoryControl {
         key.setMaxItemsInStock(5);
         
         inventory[Items.Rope.ordinal()] = rope;
-        inventory[Items.FireExtinguisher.ordinal()] = fire;
-        inventory[Items.BucketOfWater.ordinal()] = water;
+        inventory[Items.Fire.ordinal()] = fire;
+        inventory[Items.Water.ordinal()] = water;
         inventory[Items.Axe.ordinal()] = axe;
         inventory[Items.MasterKey.ordinal()] = key;
         
         return inventory;        
     }    
     
-    public static InventoryItem[] getInventory() {  
+    public static InventoryItem[] getPlayerInventory() {  
         return GameControl.getCurrentGame().getInventory();        
-//return  Charcoaled.getCurrentGame().getInventory();                
-    }     
+    }  
     
-    public void updateInventory (InventoryItem[] inventory) {        
+     public static InventoryItem[] getRoomInventory() {  
+        return GameControl.getCurrentGame().getInventory();        
+    }  
+    
+     public static InventoryItem getPlayerSingleInventoryItem(int x) {  
+        
+         InventoryItem[] items = InventoryControl.getPlayerInventory();
+         InventoryItem item = items[x];
+         return item;
+    }
+    
+    public void updatePlayerInventory (InventoryItem[] inventory) {        
         GameControl.setGameInventory(inventory);
     }
 }

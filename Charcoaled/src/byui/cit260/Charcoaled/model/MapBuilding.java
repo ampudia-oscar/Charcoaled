@@ -5,6 +5,7 @@
  */
 package byui.cit260.Charcoaled.model;
 
+import byu.cit260.Charcoaled.control.InventoryControl;
 import java.io.Serializable;
 
 /**
@@ -16,6 +17,14 @@ public class MapBuilding implements Serializable{
     private int rowCount;
     private int columnCount;
     private Room[][] rooms;
+
+    public Room[][] getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Room[][] rooms) {
+        this.rooms = rooms;
+    }
 
     public MapBuilding() {
     }
@@ -30,21 +39,31 @@ public class MapBuilding implements Serializable{
         
         rooms = new Room[rowCount][columnCount];
         
+        /// Generate Room with amount of each Item Type. Generate each room with a % chance Room having 1 item.
+        
+        int axes = 1;
+        int ropes = 1;
+        int waters = 1;
+        int fires = 1;
+        
+        InventoryItem[] roomItems = InventoryControl.createRoomInventoryList(axes, ropes, waters, fires, 0);
+        
+        
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.rooms = new Room[rowCount][columnCount];
         
         for (int row = 0; row < rowCount; row++ ) {
             for (int column = 0; column < columnCount; column++ ) {
-                Room room = new Room();
+                Room room = new Room(row, column);
                 room.setColumn(column);
                 room.setRow(row);
                 room.setVisited(false);
+                room.setRoomInventory(roomItems);
                 rooms[row][column] = room;                
             }
         }        
     }
-
     
     public int getRowCount() {
         return rowCount;

@@ -5,8 +5,10 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import byu.cit260.Charcoaled.control.GameControl;
 import java.util.Scanner;
 import byui.cit260.Charcoaled.view.RoomMenuView;
+import java.awt.Point;
 
 /**
  *
@@ -76,14 +78,15 @@ public class GameMenuView extends View {
         return true;
     }
 
-    public int apartment = 3;
-    public int floor = 1;
+    public int apartment = GameControl.getCurrentGame().getPlayerPosition().x;
+    public int floor = GameControl.getCurrentGame().getPlayerPosition().y;
     
     private int moveUp() {
         //System.out.println(
         //        "\n***** moveUp() function called *****\n");
         if (floor < 5){
             floor += 1;
+            
         }
         System.out.println(
                  "You are on floor "+floor+", apartment "+apartment+"."
@@ -98,6 +101,7 @@ public class GameMenuView extends View {
         //        "\n***** moveLeft() function called *****\n");
         if (apartment > 1){
             apartment -= 1;
+            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
         }
         System.out.println(
                  "You are on floor "+floor+", apartment "+apartment+"."
@@ -112,6 +116,7 @@ public class GameMenuView extends View {
        //        "\n***** moveDown() function called *****\n");
         if (floor > 1){
             floor -= 1;
+            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
         }
         System.out.println(
                  "You are on floor "+floor+", apartment "+apartment+"."
@@ -125,6 +130,7 @@ public class GameMenuView extends View {
        //        "\n***** moveRight() function called *****\n");
         if (apartment < 5){
             apartment += 1;
+            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
         }
         System.out.println(
                  "You are on floor "+floor+", apartment "+apartment+"."
@@ -138,6 +144,8 @@ public class GameMenuView extends View {
                "\n***** enterDoor() function called *****\n");
        
         RoomMenuView roomMenu = new RoomMenuView();
+        roomMenu.setX(apartment);
+        roomMenu.setY(floor);
         roomMenu.displayMenu();        
     }
     private void viewItems() {

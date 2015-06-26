@@ -5,12 +5,22 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import byu.cit260.Charcoaled.control.InventoryControl;
+import byui.cit260.Charcoaled.model.InventoryItem;
+import byui.cit260.Charcoaled.model.Room;
+
 /**
  *
  * @author Oscar
  */
 public class RoomItemView extends View {
 
+    private Room room;
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    
      public RoomItemView() { 
         super("__________________                \n" +
             "   Room Item MENU  \\_______________\n" +
@@ -25,12 +35,11 @@ public class RoomItemView extends View {
         char selection = (char)obj;
         switch(selection){
             case 'W':
-                this.viewItems();
+                this.viewRoomItems();
                 break;
             case 'I':  
                 this.viewPlayerIventory();
-                break;                             
-
+                break;
            case 'E':
                 return true;
             default:
@@ -42,16 +51,18 @@ public class RoomItemView extends View {
         return true;
     }
 
-    private void viewItems() {
-                System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             ITEMS AVAILABLE IN ROOM             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+    private void viewRoomItems() {
+                
+         InventoryItem[] inventory = room.getRoomInventory();
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        
+        for (InventoryItem item : inventory) {
+           System.out.println( " There are :" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  in the ROOM    \n");
+        }               
     } 
 
      private void viewPlayerIventory() {
         PlayerInventoryView piv = new PlayerInventoryView();        
         piv.displayMenu();
-    }
-     
+    }     
 }

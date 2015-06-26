@@ -4,15 +4,30 @@
  * and open the template in the editor.
  */
 package byui.cit260.Charcoaled.view;
+import byu.cit260.Charcoaled.control.GameControl;
 import byu.cit260.Charcoaled.control.InventoryControl;
+import byu.cit260.Charcoaled.control.MapControl;
 import byu.cit260.Charcoaled.control.ObstacleControl;
-import java.util.Scanner;
-import byui.cit260.Charcoaled.view.PlayerInventoryView;
+import byui.cit260.Charcoaled.model.InventoryItem;
+import byui.cit260.Charcoaled.model.Items;
+import byui.cit260.Charcoaled.model.Room;
+
 /**
  *
  * @author Raquel
  */
 public class RoomMenuView  extends View {
+    
+    private int x;
+    private int y;
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
     
     public RoomMenuView() { 
         super("________________                              \n" +
@@ -65,23 +80,40 @@ public class RoomMenuView  extends View {
     }
 
     private static void useAxe() {        
-       if (InventoryControl.useItem("Axe"))
+        
+        int x =  Items.Axe.ordinal();
+        if (InventoryControl.useItem(x))
            usedItemMessage("Axe");
        else 
            NoItemMessage("Axe");
-    }        
-    
+    }            
 
     private void useFireExt() {
+        
+        int x =  Items.Fire.ordinal();
        
+        if (InventoryControl.useItem(x))
+            usedItemMessage("Fire Extinguisher");
+        else 
+            NoItemMessage("Fire Extinguisher");
     }
 
     private void useWater() {
-        
+        int x =  Items.Axe.ordinal();
+         
+        if (InventoryControl.useItem(x))
+            usedItemMessage("Bucket of Water");
+        else 
+            NoItemMessage("Bucket of Water");
     }
 
     private void useRope() {
-            
+  
+        int x =  Items.Axe.ordinal();
+        if (InventoryControl.useItem(x))
+            usedItemMessage("Rope");
+        else 
+            NoItemMessage("Rope");
     }
     
     private static void usedItemMessage(String itemType)            
@@ -135,7 +167,9 @@ public class RoomMenuView  extends View {
     }
 
     private void viewRoomItems() {
-        RoomItemView riv = new RoomItemView();        
+        Room room = MapControl.getCurrentRoom(x, y);
+        RoomItemView riv = new RoomItemView();
+        riv.setRoom(room);
         riv.displayMenu();
     }
 }
