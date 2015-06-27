@@ -19,7 +19,8 @@ public class PlayerInventoryView extends View {
       super("__________________________                    \n" +
             "   Player's Iventory Menu\\___________________\n" +
             "                                              \n" +
-            " W - View Player Inventory                    \n" +  
+            " W - View Player Inventory                    \n" +
+            " K - View Total Items in Player Invent        \n" +
             " E - Exit                                     \n" +
            "_______________________________________________");
     }    
@@ -30,7 +31,10 @@ public class PlayerInventoryView extends View {
         switch(selection){
             case 'W':
                 this.viewPlayerItems();
-                break;                                                         
+                break; 
+                case 'K':
+                this.viewQuantityOfPlayerItems();
+                break;
            case 'E':
                 return true;
             default:
@@ -41,15 +45,22 @@ public class PlayerInventoryView extends View {
         }  
         return true;
     }
-  
-
+    
     private void viewPlayerItems() {
                
-        InventoryItem[] inventory = InventoryControl.getPlayerInventory();
+        InventoryItem[] inventory = InventoryControl.getPlayerInventory(true);
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         
         for (InventoryItem item : inventory) {
            System.out.println( "             You have:" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available. \n");
         }        
     }    
+
+    private void viewQuantityOfPlayerItems() {        
+        InventoryItem[] inventory = InventoryControl.getPlayerInventory(false);
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        int x = InventoryControl.getQuantityOfItems(inventory);      
+             
+        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ Total # of Items in Player Inventory --> " + x + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+    }
 }

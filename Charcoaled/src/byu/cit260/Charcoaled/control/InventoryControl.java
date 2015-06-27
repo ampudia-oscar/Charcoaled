@@ -20,7 +20,7 @@ public class InventoryControl {
     public static boolean useItem (int x) {
    
         InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
-        InventoryItem[] items = InventoryControl.getPlayerInventory();
+        InventoryItem[] items = InventoryControl.getPlayerInventory(false);
         int count = item.getQuantityInStock();
 
         if (count > 0) {
@@ -104,10 +104,23 @@ public class InventoryControl {
         return inventory;        
     }    
     
-    public static InventoryItem[] getPlayerInventory() {  
+    public static InventoryItem[] getPlayerInventory(boolean sort) {  
 
-        InventoryItem[] inventory = GameControl.getCurrentGame().getInventory();        
-        return getInsertionSortedInventory(inventory);
+        InventoryItem[] inventory = GameControl.getCurrentGame().getInventory();
+        
+        if (sort) {
+            return getInsertionSortedInventory(inventory);
+        } else {
+            return inventory;
+        }
+    }  
+    
+      public static int getQuantityOfItems(InventoryItem[] inventory) {  
+          int x = 0;
+          for (InventoryItem item : inventory) {
+              x += item.getQuantityInStock();
+          }
+          return x;
     }  
     
      public static InventoryItem[] getRoomInventory(Room room) {  
@@ -158,7 +171,7 @@ public class InventoryControl {
     
      public static InventoryItem getPlayerSingleInventoryItem(int x) {  
         
-         InventoryItem[] items = InventoryControl.getPlayerInventory();
+         InventoryItem[] items = InventoryControl.getPlayerInventory(false);
          InventoryItem item = items[x];
          return item;
     }
