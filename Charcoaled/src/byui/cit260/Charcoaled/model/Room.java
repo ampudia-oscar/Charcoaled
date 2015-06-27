@@ -15,8 +15,16 @@ public class Room implements Serializable{
     private double row;
     private double column;
     private boolean visited;
-    private double amountRemaining;
     private InventoryItem[] roomInventory;
+    private Person[] personsToRescue;
+
+    public Person[] getPersonsToRescue() {            
+        return personsToRescue;        
+    }
+
+    public void setPersonsToRescue(Person[] personsToRescue) {
+        this.personsToRescue = personsToRescue;
+    }
 
     public InventoryItem[] getRoomInventory() {
         return roomInventory;
@@ -33,11 +41,6 @@ public class Room implements Serializable{
         
         this.row = row;
         this.column = column;
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" + "row=" + row + ", column=" + column + ", visited=" + visited + ", amountRemaining=" + amountRemaining + '}';
     }
 
     public double getRow() {
@@ -64,11 +67,5 @@ public class Room implements Serializable{
         this.visited = visited;
     }
 
-    public double getAmountRemaining() {
-        return amountRemaining;
-    }
-
-    public void setAmountRemaining(double amountRemaining) {
-        this.amountRemaining = amountRemaining;
-    }    
+ 
 }

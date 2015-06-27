@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package byui.cit260.Charcoaled.view;
-import byu.cit260.Charcoaled.control.GameControl;
 import byu.cit260.Charcoaled.control.InventoryControl;
 import byu.cit260.Charcoaled.control.MapControl;
 import byu.cit260.Charcoaled.control.ObstacleControl;
-import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.Items;
+import byui.cit260.Charcoaled.model.Person;
 import byui.cit260.Charcoaled.model.Room;
 
 /**
@@ -30,18 +29,30 @@ public class RoomMenuView  extends View {
     }
     
     public RoomMenuView() { 
-        super("________________                              \n" +
+        super(
+            "________________                             \n" +
             "   Room MENU     \\___________________________\n" +
             "                                              \n" +
             " W - Use Axe                                  \n" +
             " A - Use Fire Ext                             \n" +
-            " S - Use Rope            P  - Rescue Person    \n" +
+            " S - Use Rope            P  - Rescue Person   \n" +
             " D - Use Water                                \n" +
             " E - Exit                                     \n" +
             " I - View Player Inventory                    \n" +
             " R - View Items in Room                       \n" +
-            "_______________________________________________");
+            "_______________________________________________"  
+           );
     }    
+    
+    public void displayNumberOfPeopleThatNeedsRescue(){        
+        
+        Room room = MapControl.getCurrentRoom(x, y);
+        Person[] persons = room.getPersonsToRescue();
+        if (persons != null)        
+            System.out.println("Number of People that needs Rescue:" + persons.length);
+        else 
+           System.out.println("There are no People to rescue in this room");
+    }
     
     @Override
     public boolean doAction(Object obj) {        
@@ -151,8 +162,7 @@ public class RoomMenuView  extends View {
 + "             You have Rescued the Person !!!             \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
         }
-        else {
-                
+        else {                
                      System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             You have Failed to Rescue the Person !!!             \n"
@@ -171,5 +181,10 @@ public class RoomMenuView  extends View {
         RoomItemView riv = new RoomItemView();
         riv.setRoom(room);
         riv.displayMenu();
+    }
+
+    void setRoomVisited(int apartment, int floor) {
+        Room room = MapControl.getCurrentRoom(x, y);
+        MapControl.setRoomVisited(room);
     }
 }

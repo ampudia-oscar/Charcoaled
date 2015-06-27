@@ -22,7 +22,7 @@ public class GameControl {
         System.out.println(
                 "\n***** createNewGame() stub function called *****\n");     
         Game game = new Game();
-        game.setPlayerPosition(new Point(1,1));
+        game.setPlayerPosition(new Point(0,0));
         Charcoaled.setCurrentGame(game);
         game.setPlayer(player);
         InventoryItem[] inventoryList = InventoryControl.createPlayerInventory();

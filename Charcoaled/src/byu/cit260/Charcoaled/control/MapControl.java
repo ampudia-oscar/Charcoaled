@@ -25,7 +25,18 @@ public class MapControl {
        Room[][] rooms = map.getRooms();
        Room room = rooms[x][y];
        return room;
-    }    
+    }
+    
+    public static Room[][] getAllRooms() {
+        
+        return GameControl.getMap().getRooms();        
+    }
+    
+    public static void setRoomVisited (Room room)
+    {
+        room.setVisited(true);        
+    }
+    
 
     static void moveActorToStartingLocation(MapBuilding map) {
         return;

@@ -8,8 +8,7 @@ package byui.cit260.Charcoaled.model;
 import byu.cit260.Charcoaled.control.InventoryControl;
 import java.io.Serializable;
 
-/**
- *
+/*
  * @author Raquel
  */
 public class MapBuilding implements Serializable{ 
@@ -28,27 +27,73 @@ public class MapBuilding implements Serializable{
 
     public MapBuilding() {
     }
+    
+    private int getRandomItem() {
+    
+        int x = (int) (Math.random() * 100);
+    
+        if (x < 30)        {
+            return 1;        
+        }        
+        return 0;
+    }
+    
+    private int getRandomPerson(){
+        int x = (int) (Math.random() * 100);
+    
+        if (x < 10)        {
+            return 5;        
+        }    
+        if (x < 20)        {
+            return 4;        
+        }  
+        if (x < 30)        {
+            return 3;        
+        }  
+        if (x < 40)        {
+            return 2;        
+        }  
+        if (x < 50)        {
+            return 1;        
+        }  
+        return 0;        
+    }
+    
+    private InventoryItem[] generateRoomItems(){
+         /// Generate Room with amount of each Item Type. Generate each room with a % chance Room having 1 item.
+        int axes = getRandomItem();
+        int ropes = getRandomItem();
+        int waters = getRandomItem();
+        int fires = getRandomItem();        
+        InventoryItem[] roomItems = InventoryControl.createRoomInventory(axes, ropes, waters, fires, 0);
+        return roomItems;
+    }
+    
+    private Person[] personsToRescue(){
+        
+        int x = getRandomPerson();
+        
+        if (x < 1)
+            return null;
+        
+        Person[] person = new Person[x];
+        
+         for (Person _person : person) { 
+             _person = new Person();
+             _person.setNeedsRescue(true);
+         }         
+         return person;        
+    }
 
     public MapBuilding(int rowCount, int columnCount) {
-                
+        
         if (rowCount < 1 || columnCount < 1 ){
             
             System.out.println("The number of rows and columbs must be > zero");
             return;
         }
         
-        rooms = new Room[rowCount][columnCount];
-        
-        /// Generate Room with amount of each Item Type. Generate each room with a % chance Room having 1 item.
-        
-        int axes = 1;
-        int ropes = 1;
-        int waters = 1;
-        int fires = 1;
-        
-        InventoryItem[] roomItems = InventoryControl.createRoomInventoryList(axes, ropes, waters, fires, 0);
-        
-        
+        rooms = new Room[rowCount][columnCount];                
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.rooms = new Room[rowCount][columnCount];
@@ -59,7 +104,8 @@ public class MapBuilding implements Serializable{
                 room.setColumn(column);
                 room.setRow(row);
                 room.setVisited(false);
-                room.setRoomInventory(roomItems);
+                room.setRoomInventory(generateRoomItems());
+                room.setPersonsToRescue(personsToRescue());
                 rooms[row][column] = room;                
             }
         }        
@@ -88,31 +134,4 @@ public class MapBuilding implements Serializable{
         hash = 37 * hash + this.columnCount;
         return hash;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final MapBuilding other = (MapBuilding) obj;
-        if (this.rowCount != other.rowCount) {
-            return false;
-        }
-        if (this.columnCount != other.columnCount) {
-            return false;
-        }
-        return true;
-    }
-
-    
-    
-    @Override
-    public String toString() {
-        return "MapBuilding{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + '}';
-    }
-    
-    
 }

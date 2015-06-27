@@ -15,6 +15,8 @@ import java.util.Objects;
 public class InventoryItem implements Serializable{
     
     private String inventoryType;
+    private int quantityInStock;
+    private int maxItemsInStock;
 
     public String getInventoryType() {
         return inventoryType;
@@ -38,8 +40,5 @@ public class InventoryItem implements Serializable{
 
     public void setMaxItemsInStock(int maxItemsInStock) {
         this.maxItemsInStock = maxItemsInStock;
-    }
-    private int quantityInStock;
-    private int maxItemsInStock;
-    
+    }    
 }

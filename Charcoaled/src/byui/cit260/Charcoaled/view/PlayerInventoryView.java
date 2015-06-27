@@ -49,7 +49,7 @@ public class PlayerInventoryView extends View {
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         
         for (InventoryItem item : inventory) {
-           System.out.println( "             You have:" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  DIFFERENT      \n");
+           System.out.println( "             You have:" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available. \n");
         }        
     }    
 }

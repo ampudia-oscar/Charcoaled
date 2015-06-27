@@ -53,7 +53,7 @@ public class RoomItemView extends View {
 
     private void viewRoomItems() {
                 
-         InventoryItem[] inventory = room.getRoomInventory();
+        InventoryItem[] inventory = InventoryControl.getRoomInventory(room);
         System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         
         for (InventoryItem item : inventory) {

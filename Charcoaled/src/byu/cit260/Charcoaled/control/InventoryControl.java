@@ -7,6 +7,7 @@ package byu.cit260.Charcoaled.control;
 
 import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.Items;
+import byui.cit260.Charcoaled.model.Room;
 
 /**
  *
@@ -17,21 +18,20 @@ public class InventoryControl {
     //private static InventoryItem[] items;
     
     public static boolean useItem (int x) {
-        
-    
-    InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
-    InventoryItem[] items = InventoryControl.getPlayerInventory();
-    int count = item.getQuantityInStock();
+   
+        InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
+        InventoryItem[] items = InventoryControl.getPlayerInventory();
+        int count = item.getQuantityInStock();
 
-    if (count > 0) {    
-        items[x].setQuantityInStock(count - 1);
-        return true;
-    }
+        if (count > 0) {
+            items[x].setQuantityInStock(count - 1);
+            return true;
+        }
         return false;
     }    
     
     
-    public static InventoryItem[] createRoomInventoryList(int axes, int ropes, int waters, int fires, int keys) {
+    public static InventoryItem[] createRoomInventory(int axes, int ropes, int waters, int fires, int keys) {
         
         InventoryItem[] inventory = new InventoryItem[4];
         
@@ -105,12 +105,56 @@ public class InventoryControl {
     }    
     
     public static InventoryItem[] getPlayerInventory() {  
-        return GameControl.getCurrentGame().getInventory();        
+
+        InventoryItem[] inventory = GameControl.getCurrentGame().getInventory();        
+        return getInsertionSortedInventory(inventory);
     }  
     
-     public static InventoryItem[] getRoomInventory() {  
-        return GameControl.getCurrentGame().getInventory();        
-    }  
+     public static InventoryItem[] getRoomInventory(Room room) {  
+         InventoryItem[] inventory = room.getRoomInventory();        
+         return getBubbleSortedInventory(inventory);
+    }
+         
+     public static InventoryItem[] getInsertionSortedInventory (InventoryItem[] inventory) {
+         
+         for (int i = 0; i < inventory.length - 1; ++i)
+         {
+      int minIndex = i;
+      for (int j = i + 1; j < inventory.length; ++j)
+      {        
+         String inventoryType = inventory[j].getInventoryType();
+         String inventoryType2 = inventory[minIndex].getInventoryType();
+         //if (arr[j].compareTo(arr[minIndex]) < 0)
+        if (inventoryType.compareTo(inventoryType2) < 0)
+        {
+          minIndex = j;
+        }
+      }
+      // int changed to String
+      InventoryItem temp = inventory[i];
+      inventory[i] = inventory[minIndex];
+      inventory[minIndex] = temp;
+    }
+         
+         
+         return inventory; 
+     }
+     
+     public static InventoryItem[] getBubbleSortedInventory (InventoryItem[] inventory) {
+         
+         InventoryItem tempItem = null;
+         
+         for (int i = 0; i < inventory.length-1;i++) {
+             for (int j = 0; j < inventory.length-1-i; j++ ) {
+                 if (inventory[j].getInventoryType().compareToIgnoreCase(inventory[j+1].getInventoryType())> 0) {
+                     tempItem = inventory[j];
+                     inventory [j] = inventory[j+1];
+                     inventory[ j + 1] = tempItem;
+                 }
+             }         
+         }
+         return inventory; 
+     }
     
      public static InventoryItem getPlayerSingleInventoryItem(int x) {  
         
