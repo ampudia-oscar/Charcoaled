@@ -71,22 +71,22 @@ public class InventoryControl {
         
         InventoryItem[] inventory = new InventoryItem[5];
         InventoryItem axe = new InventoryItem();
-        axe.setInventoryType("Axe");
+        axe.setInventoryType("Axes");
         axe.setQuantityInStock(5);
         axe.setMaxItemsInStock(5);
         
         InventoryItem rope = new InventoryItem();
-        rope.setInventoryType("Rope");
+        rope.setInventoryType("Ropes");
         rope.setQuantityInStock(0);
         rope.setMaxItemsInStock(5);
         
         InventoryItem water = new InventoryItem();
-        water.setInventoryType("Bucket of Water");
+        water.setInventoryType("Buckets of Water");
         water.setQuantityInStock(0);
         water.setMaxItemsInStock(5);
         
         InventoryItem fire = new InventoryItem();
-        fire.setInventoryType("Fire Extinguisher");
+        fire.setInventoryType("Fire Extinguishers");
         fire.setQuantityInStock(0);
         fire.setMaxItemsInStock(5);
         

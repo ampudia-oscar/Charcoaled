@@ -16,13 +16,14 @@ import byui.cit260.Charcoaled.model.InventoryItem;
 public class PlayerInventoryView extends View {
     
     public PlayerInventoryView() { 
-      super("__________________________                    \n" +
-            "   Player's Iventory Menu\\___________________\n" +
-            "                                              \n" +
-            " W - View Player Inventory                    \n" +
-            " K - View Total Items in Player Invent        \n" +
-            " E - Exit                                     \n" +
-           "_______________________________________________");
+      super("______________________                      \n"+
+            "   Inventory Menu     \\____________________\n"+
+            "                                            \n"+
+            " W - View Player Inventory                  \n"+
+            " K - View Total Items in Player Inventory   \n"+
+            "                                            \n"+  
+            " E - Exit                                   \n"+
+            "____________________________________________");
     }    
     
     @Override
@@ -40,8 +41,9 @@ public class PlayerInventoryView extends View {
             default:
                 System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             Invalid selection - Please, try again.             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
++ "             Invalid selection - Please, try again.                 \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                );
         }  
         return true;
     }
@@ -49,18 +51,30 @@ public class PlayerInventoryView extends View {
     private void viewPlayerItems() {
                
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(true);
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        System.out.println(
+            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        );
         
         for (InventoryItem item : inventory) {
-           System.out.println( "             You have:" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available. \n");
-        }        
+           System.out.println(
+                "\t" + item.getQuantityInStock() + " " + item.getInventoryType() + " available. \n"
+           );
+        }
+        System.out.println(
+            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        );
     }    
 
     private void viewQuantityOfPlayerItems() {        
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(false);
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        System.out.println(
+            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        );
         int x = InventoryControl.getQuantityOfItems(inventory);      
              
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ Total # of Items in Player Inventory --> " + x + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        System.out.println(
+            "         Total # of Items in Player Inventory --> " + x + "         \n" +
+            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        );
     }
 }

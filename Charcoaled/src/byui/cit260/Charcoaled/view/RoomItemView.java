@@ -22,7 +22,8 @@ public class RoomItemView extends View {
     }
     
      public RoomItemView() { 
-        super("__________________                \n" +
+        super(
+            "_________________                   \n" +
             "   Room Item MENU  \\_______________\n" +
             "                                    \n" +
             " W - View Available Items in room   \n" +
@@ -54,11 +55,18 @@ public class RoomItemView extends View {
     private void viewRoomItems() {
                 
         InventoryItem[] inventory = InventoryControl.getRoomInventory(room);
-        System.out.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        );
         
         for (InventoryItem item : inventory) {
-           System.out.println( " There are :" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  in the ROOM    \n");
-        }               
+           System.out.println(
+                " There are :" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  in the ROOM    \n"
+           );
+        }     
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        );
     } 
 
      private void viewPlayerIventory() {
