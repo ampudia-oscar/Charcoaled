@@ -45,9 +45,20 @@ public class ObstacleControl {
             return -1;
         }
         
+        if ((a+c)<b){
+            return -1;
+        }
+        if ((a+b)<c){
+            return -1;
+        }
+        if ((b+c)<a){
+            return -1;
+        }
+        
         double s = (a+b+c)/2;
         double Ab = Math.sqrt(s*(s-a)*(s-b)*(s-c));
         double Area = 2*Ab+(height*(a+b+c));
+        Area = Math.round(Area);
         return Area;
     }
     

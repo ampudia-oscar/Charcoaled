@@ -52,9 +52,17 @@ public class RoomMenuView  extends View {
         Room room = MapControl.getCurrentRoom(x, y);
         Person[] persons = room.getPersonsToRescue();
         if (persons != null)        
-            System.out.println("Number of People that needs Rescue:" + persons.length);
+            System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
+                    "Number of People that needs Rescue: " + persons.length+".    \n"+
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+            );
         else 
-           System.out.println("There are no People to rescue in this room");
+           System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
+                "           There are no People to rescue in this room           \n"+
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+           );
     }
     
     @Override
@@ -147,14 +155,40 @@ public class RoomMenuView  extends View {
     }
 
     private void rescuePerson() {
+        // calcTrianglePrismArea
+        Room room = MapControl.getCurrentRoom(x, y);
+        Person[] persons = room.getPersonsToRescue();
+        if (persons == null){        
+           System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
+                "            There are no People to rescue in this room          \n"+
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+           );
+           return;
+        }
+    
+        double a = Math.round(Math.random()*10);
+        double b = Math.round(Math.random()*10);
+        double c = Math.round(Math.random()*10);
+        double height = Math.round(Math.random()*10);
         
-        double hours = 45;
+        if ((a+c)<b){
+            a += b;
+        }
+        if ((a+b)<c){
+            a += c;
+        }
+        if ((b+c)<a){
+            b += a;
+        }
+        
         ObstacleControl instance = new ObstacleControl();        
-        double result = instance.calcHoursToSeconds(hours);
+        double result = instance.calcTrianglePrismArea(a, b, c, height);
         
         System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "  Solve the following Calculation: Convert 45 hours to Seconds  \n"
++ "  Solve the following Calculation:\n"
++ "  The Triangle Prism Area for a="+a+", b="+b+", c="+c+", height="+height+".  \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
                 
         double userAnswer = Double.parseDouble(this.getInput());
@@ -165,13 +199,44 @@ public class RoomMenuView  extends View {
 + "                You have Rescued the Person !!!                 \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
+        
+        else {                
+            System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "                   The answer is "+result+".                   \n"
++ "             You have Failed to Rescue the Person !!!           \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+            );                  
+                                
+        }
+        
+        
+        /* calcHoursToSeconds    
+        double hours = Math.round(Math.random()*100);
+        ObstacleControl instance = new ObstacleControl();        
+        double result = instance.calcHoursToSeconds(hours);
+        
+        System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "  Solve the following Calculation: Convert "+hours+" hours to Seconds  \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                
+        double userAnswer = Double.parseDouble(this.getInput());
+        
+        if (result == userAnswer) {                
+        System.out.println(
+  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
++ "                You have Rescued the Person !!!                 \n"
++ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        }
+        
         else {                
                      System.out.println(
   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
 + "             You have Failed to Rescue the Person !!!           \n"
 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");                  
                                 
-        }        
+        }*/        
     }    
 
     private void viewPlayerIventory() {
