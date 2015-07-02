@@ -51,7 +51,16 @@ public class Charcoaled {
     public static void main(String[] args) {
                         
         StartProgramView spv = new StartProgramView();
+        
+        try {
         spv.startProgram();
+        }
+        catch (Throwable te)
+        {
+            System.out.println(te.getMessage());
+            //te.printStackTrace();
+            spv.startProgram();
+        }
          
         
      /*   

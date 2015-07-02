@@ -10,6 +10,8 @@ import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.GameControl;
 import byui.cit260.Charcoaled.view.GameMenuView;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,10 +42,10 @@ public class MainMenuView extends View {
             case 'G':
                 this.startExistingGame();
                 break;
-            case 'N':
-                this.startNewGame();
-                break;
-            case 'H':   
+            case 'N': 
+                this.startNewGame();            
+            break;
+            case 'H':
                 this.displayHelpMenu();
                 break;
             case 'S':
@@ -113,7 +115,5 @@ public class MainMenuView extends View {
 
     private void saveGame() {
         GameControl.saveGame(Charcoaled.getPlayer());
-    }
-    
-    
+    }    
 }

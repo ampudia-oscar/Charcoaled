@@ -22,14 +22,16 @@ public class GameControl {
         //System.out.println(
         //        "\n***** createNewGame() stub function called *****\n");     
         Game game = new Game();
-        game.setPlayerPosition(new Point(0,0));
+        game.setPlayerPosition(new Point(0, 0));
         Charcoaled.setCurrentGame(game);
         game.setPlayer(player);
         InventoryItem[] inventoryList = InventoryControl.createPlayerInventory();
-        GameControl.setGameInventory(inventoryList);        
-        MapBuilding map = MapControl.createMap();
-        game.setMap(map);
-        MapControl.moveActorToStartingLocation(map);        
+        GameControl.setGameInventory(inventoryList);
+      
+            MapBuilding map = MapControl.createMap();
+            game.setMap(map);
+            MapControl.moveActorToStartingLocation(map);
+      
     }
 
     public static void startExistingGame(Player player) {
@@ -53,7 +55,7 @@ public class GameControl {
         game.setInventory(inventory);           
     }        
     
-    public static MapBuilding getMap (){
+    public static MapBuilding getMap() {
         Game game = Charcoaled.getCurrentGame();
         MapBuilding map = game.getMap();
         return map;

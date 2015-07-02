@@ -5,14 +5,16 @@
  */
 package byu.cit260.Charcoaled.control;
 
+import byui.cit260.Charcoaled.exceptions.ObstacleControlException;
+
 /**
  *
  * @author oscar
  */
 public class ObstacleControl {
-    public double calcPyramidVol(double length, double width, double height){
+    public double calcPyramidVol(double length, double width, double height) {
         if (length < 1 || length > 25) {
-        return -1;
+        return -1;            
         }
         
         if (width < 1 || width > 25) {
@@ -40,9 +42,12 @@ public class ObstacleControl {
         return volume;
     }
     
-    public double calcTrianglePrismArea(double a, double b, double c, double height){
+    public double calcTrianglePrismArea(double a, double b, double c, double height) throws ObstacleControlException {
         if (a < 1 || b < 1 || c < 1 || height < 1){
-            return -1;
+            throw new ObstacleControlException ("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  One of the Sides of the Prism is less than 1 :\n"                
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+            //return -1;
         }
         
         if ((a+c)<b){

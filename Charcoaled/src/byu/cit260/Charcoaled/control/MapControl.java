@@ -14,11 +14,12 @@ import byui.cit260.Charcoaled.model.Room;
  */
 public class MapControl {
 
-    static MapBuilding createMap() {
-       MapBuilding map = new MapBuilding(5 , 5);
-       return map;
+    static MapBuilding createMap()  {
+      
+        MapBuilding map = new MapBuilding(5, 5);
+        return map;
     }
-    
+
     public static Room getCurrentRoom(int x, int y)
     {
        MapBuilding map = GameControl.getMap();
@@ -36,7 +37,7 @@ public class MapControl {
     {
         room.setVisited(true);        
     }
-    
+       
 
     static void moveActorToStartingLocation(MapBuilding map) {
         return;
