@@ -8,6 +8,7 @@ package byui.cit260.Charcoaled.view;
 
 import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.GameControl;
+import byui.cit260.Charcoaled.exceptions.GameControlException;
 import byui.cit260.Charcoaled.view.GameMenuView;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -103,9 +104,15 @@ public class MainMenuView extends View {
     }
 
     private void startNewGame() {
-        GameControl.createNewGame(Charcoaled.getPlayer());
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        try {
+            GameControl.createNewGame(Charcoaled.getPlayer());
+            GameMenuView gameMenu = new GameMenuView();
+            gameMenu.setXY();
+            gameMenu.displayMenu();
+
+        } catch (GameControlException me) {
+            System.out.println(me.getMessage());
+        }
     }
 
     private void displayHelpMenu() {

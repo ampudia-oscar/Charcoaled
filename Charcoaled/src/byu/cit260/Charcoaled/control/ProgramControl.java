@@ -6,6 +6,7 @@
 package byu.cit260.Charcoaled.control;
 
 import Charcoaled.Charcoaled;
+import byui.cit260.Charcoaled.exceptions.ProgramControlException;
 import byui.cit260.Charcoaled.model.Player;
 
 /**
@@ -14,18 +15,19 @@ import byui.cit260.Charcoaled.model.Player;
  */
 public class ProgramControl {
 
-    public static Player createPlayer(String playerName) {
+    public static Player createPlayer(String playerName) throws ProgramControlException {
+
         if (playerName == null){
-            return null;
+           throw new ProgramControlException("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "  Player was NULL :\n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
         
         Player player = new Player();
-        player.setName(playerName);
-        
+        player.setName(playerName);        
         Charcoaled.setPlayer(player);
         return player;
-        
-       //System.out.println("\n ** Create player function called **");
+               //System.out.println("\n ** Create player function called **");
        //return null;
     }   
 }

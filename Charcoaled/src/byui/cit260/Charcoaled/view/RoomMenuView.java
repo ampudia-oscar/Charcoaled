@@ -12,8 +12,6 @@ import byui.cit260.Charcoaled.exceptions.ObstacleControlException;
 import byui.cit260.Charcoaled.model.Items;
 import byui.cit260.Charcoaled.model.Person;
 import byui.cit260.Charcoaled.model.Room;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -87,13 +85,7 @@ public class RoomMenuView extends View {
                 this.useRope();
                 break;
             case 'P':
-        {
-            try {
                 this.rescuePerson();
-            } catch (ObstacleControlException ex) {
-                Logger.getLogger(RoomMenuView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
                 break;
             case 'I':
                 this.viewPlayerIventory();
@@ -167,7 +159,7 @@ public class RoomMenuView extends View {
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 
-    private void rescuePerson() throws ObstacleControlException {
+    private void rescuePerson() {
         // calcTrianglePrismArea
         Room room = MapControl.getCurrentRoom(x, y);
         Person[] persons = room.getPersonsToRescue();
@@ -180,21 +172,78 @@ public class RoomMenuView extends View {
             return;
         }
 
-        double a = Math.round(Math.random() * 10);
-        double b = Math.round(Math.random() * 10);
-        double c = Math.round(Math.random() * 10);
-        double height = Math.round(Math.random() * 10);
+        int x = (int) (Math.random() * 100);
+        if (x > 0 && x < 20) {
+            solvePrism();
+        }
+        if (x > 20 & x < 40) {
+            solvePyramidVol();           
+        }
+        if (x > 40 & x < 60) {
+            solveHoursToSeconds();
+        }
+        if (x > 60 & x < 80) {
+            solveTrapeziumVol();            
+        }
+        if (x > 80 & x < 100) {
+            solveKiteArea();            
+        }
+    }
 
-        if ((a + c) < b) {
-            a += b;
+    private void solveHoursToSeconds() {
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value (1 - 50) to Convert hours to Seconds! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int hours = getIntNumber();
+        ObstacleControl instance = new ObstacleControl();
+        int result = 0;
+        try {
+            result = instance.calcHoursToSeconds(hours);
+        } catch (ObstacleControlException me) {
+            System.out.println(me.getMessage());
+            return;
         }
-        if ((a + b) < c) {
-            a += c;
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  Solve the following Calculation: Convert " + hours + " hours to Seconds  \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int userAnswer = this.getIntNumber();
+
+        if (result == userAnswer) {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                You have Rescued the Person !!!                 \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        } else {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                   The answer is " + result + ".                   \n"
+                    + "             You have Failed to Rescue the Person !!!           \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
-        if ((b + c) < a) {
-            b += a;
-        }
-        double result = 0.0;
+    }
+
+    private void solvePrism() {
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for A (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        double a = this.getDoubleNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for B (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+         double b = this.getDoubleNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for C (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+         double c = this.getDoubleNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+         double height = this.getDoubleNumber();
+
+        double result = 0;
         //a = 0;
 
         ObstacleControl instance = new ObstacleControl();
@@ -211,10 +260,10 @@ public class RoomMenuView extends View {
                 + "  The Triangle Prism Area for a=" + a + ", b=" + b + ", c=" + c + ", height=" + height + ".  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
-        double userAnswer = 0.0;
+        double userAnswer = 0;
 
         try {
-            userAnswer = getDoubleNumber();
+            userAnswer = this.getDoubleNumber();
 
             if (result == userAnswer) {
                 System.out.println(
@@ -232,33 +281,6 @@ public class RoomMenuView extends View {
         } catch (NumberFormatException ex) {
             System.out.println("\n You must enter a valid number. Try again or enter Q to quit.");
         }
-
-        /* calcHoursToSeconds    
-         double hours = Math.round(Math.random()*100);
-         ObstacleControl instance = new ObstacleControl();        
-         double result = instance.calcHoursToSeconds(hours);
-        
-         System.out.println(
-         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-         + "  Solve the following Calculation: Convert "+hours+" hours to Seconds  \n"
-         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-                
-         double userAnswer = Double.parseDouble(this.getInput());
-        
-         if (result == userAnswer) {                
-         System.out.println(
-         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-         + "                You have Rescued the Person !!!                 \n"
-         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-         }
-        
-         else {                
-         System.out.println(
-         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-         + "             You have Failed to Rescue the Person !!!           \n"
-         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");                  
-                                
-         }*/
     }
 
     private void viewPlayerIventory() {
@@ -274,23 +296,187 @@ public class RoomMenuView extends View {
     }
 
     void setRoomVisited(int apartment, int floor) {
-        Room room = MapControl.getCurrentRoom( x, y);
+        Room room = MapControl.getCurrentRoom(x, y);
         MapControl.setRoomVisited(room);
     }
 
     private double getDoubleNumber() {
-        Double number = null;        
+        Double number = null;
 
         while (number == null) {
-        
+
             String value = this.getInput();
             value = value.trim().toUpperCase();
 
             if (value.equals("Q")) {
                 break;
             }
-            number = Double.parseDouble(value);        
+            number = Double.parseDouble(value);
         }
         return number;
+    }
+
+    private int getIntNumber() {
+        int number = 0;
+
+        while (number <= 0) {
+
+            String value = this.getInput();
+            value = value.trim().toUpperCase();
+
+            if (value.equals("Q")) {
+                break;
+            }
+            number = Integer.parseInt(value);
+        }
+        return number;
+    }
+
+    private void solvePyramidVol() {
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Lenght (1 - 25) to Solve the Volume of a Pyramid! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int lenght = getIntNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Width (1 - 25) to Solve the Volume of a Pyramid! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int width = getIntNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - 25) to Solve the Volume of a Pyramid! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int heigth = getIntNumber();
+
+        ObstacleControl instance = new ObstacleControl();
+        double result = 0;
+
+        try {
+            result = instance.calcPyramidVol(lenght, width, heigth);
+        } catch (ObstacleControlException me) {
+            System.out.println(me.getMessage());
+            return;
+        }
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  Solve the following Calculation: Calculate the volume of a Pyramid \n"
+                + "Enter answer as whole Integer and always round your number UP!! \n"
+                + "Length = " + lenght
+                + "\n  Width = " + width
+                + "\n  Height = " + heigth
+                + "\n∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int userAnswer = Integer.parseInt(this.getInput());
+
+        if (result == userAnswer) {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                You have Rescued the Person !!!                 \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        } else {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "             You have Failed to Rescue the Person the answer WAS " + result + " !!!     \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        }
+    }
+
+    private void solveTrapeziumVol() {
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Lenght (1 - 25) to Solve the Volume of a Trapezium! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int lenght = getIntNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - 25) to Solve the Volume of a Trapezium! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int height = getIntNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Base (1 - 25) to Solve the Volume of a Trapezium! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int Base = getIntNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for base (1 - 24) to Solve the Volume of a Trapezium! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int base = getIntNumber();
+
+        ObstacleControl instance = new ObstacleControl();
+        double result = 0;
+
+        try {
+            result = instance.calcTrapeziumVol(lenght, height, Base, base);
+        } catch (ObstacleControlException me) {
+            System.out.println(me.getMessage());
+            return;
+        }
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  Solve the following Calculation: Calculate the volume of a Trapezium \n"
+                + "Enter answer as whole Integer and always round your number UP!! \n"
+                + "Length = " + lenght
+                + "\n  Width = " + height
+                + "\n  Height = " + Base
+                + "\n  Height = " + base
+                + "\n∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int userAnswer = Integer.parseInt(this.getInput());
+
+        if (result == userAnswer) {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                You have Rescued the Person !!!                 \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        } else {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "             You have Failed to Rescue the Person the answer WAS " + result + " !!!     \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        }
+    }
+
+    private void solveKiteArea() {
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Side (1 - 30) to Calculate the Area of a Kite! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        int side = getIntNumber();
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Base (1 - 20) to Calculate the Area of a Kite! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        int base = getIntNumber();
+
+        ObstacleControl instance = new ObstacleControl();
+        int result = 0;
+        try {
+            result = instance.calcKiteArea(side, base);
+        } catch (ObstacleControlException me) {
+            System.out.println(me.getMessage());
+            return;
+        }
+
+        System.out.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  Solve the following Calculation: Calculate the Area of a Kite \n"
+                + "Enter answer as whole Integer and always round your number UP!! \n"
+                + "Base = " + base
+                + "\n  Side = " + side
+                + "\n∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
+        int userAnswer = this.getIntNumber();
+
+        if (result == userAnswer) {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                You have Rescued the Person !!!                 \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        } else {
+            System.out.println(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                   The answer is " + result + ".                   \n"
+                    + "             You have Failed to Rescue the Person !!!           \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        }
     }
 }

@@ -5,6 +5,8 @@
  */
 package byu.cit260.Charcoaled.control;
 
+import Charcoaled.Charcoaled;
+import byui.cit260.Charcoaled.model.Game;
 import byui.cit260.Charcoaled.model.MapBuilding;
 import byui.cit260.Charcoaled.model.Room;
 
@@ -22,7 +24,9 @@ public class MapControl {
 
     public static Room getCurrentRoom(int x, int y)
     {
-       MapBuilding map = GameControl.getMap();
+        Game game = Charcoaled.getCurrentGame();        
+        MapBuilding map = game.getMap();
+       //MapBuilding map = GameControl.getMap();
        Room[][] rooms = map.getRooms();
        Room room = rooms[x][y];
        return room;
@@ -30,7 +34,10 @@ public class MapControl {
     
     public static Room[][] getAllRooms() {
         
-        return GameControl.getMap().getRooms();        
+        //return GameControl.getMap().getRooms();        
+        Game game = Charcoaled.getCurrentGame();        
+        MapBuilding map = game.getMap();
+        return map.getRooms();
     }
     
     public static void setRoomVisited (Room room)

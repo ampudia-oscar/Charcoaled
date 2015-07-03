@@ -5,6 +5,7 @@
  */
 package byu.cit260.Charcoaled.control;
 
+import byui.cit260.Charcoaled.exceptions.ObstacleControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,45 +19,15 @@ public class ObstacleControlTest2 {
     }
 
     @Test
-    public void calcHoursToSeconds() {
-        System.out.println("calcHoursToSeconds");
-        
-        // Test Case #1
-        double hours = 45;
+    public void ca() throws ObstacleControlException {
+        //Test Case 1
+        int a = 11;
+        int b = 21;
+        int c = 16;
+        int height = 23;
         ObstacleControl instance = new ObstacleControl();
-        double expResult = 162000;
-        double result = instance.calcHoursToSeconds(hours);
-        assertEquals(expResult, result, 0.0);
-        
-        // Test Case #2
-        hours = -17;
-        expResult = -1;
-         result = instance.calcHoursToSeconds(hours);
-        assertEquals(expResult, result, 0.0);
-        
-         // Test Case #3
-        hours = -35;
-        expResult = -1;
-         result = instance.calcHoursToSeconds(hours);
-        assertEquals(expResult, result, 0.0);
-        
-         // Test Case #4
-        hours = 0;
-        expResult = -1;
-         result = instance.calcHoursToSeconds(hours);
-        assertEquals(expResult, result, 0.0);
-        
-        // Test Case #5
-        hours = 1;
-        expResult = 3600;
-         result = instance.calcHoursToSeconds(hours);
-        assertEquals(expResult, result, 0.0);
-        
-         // Test Case #6
-        hours = 47;
-        expResult = 169200;
-         result = instance.calcHoursToSeconds(hours);
-        assertEquals(expResult, result, 0.0);
-        }
-    
+        double expResult = 96.65;
+        double result = instance.calcTrianglePrismArea(a, b, c, height);
+        assertEquals(expResult, result, 0.01);
+        }    
 }

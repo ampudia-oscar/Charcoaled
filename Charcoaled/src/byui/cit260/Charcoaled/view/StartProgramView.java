@@ -6,6 +6,7 @@
 package byui.cit260.Charcoaled.view;
 
 import byu.cit260.Charcoaled.control.ProgramControl;
+import byui.cit260.Charcoaled.exceptions.ProgramControlException;
 import byui.cit260.Charcoaled.model.Player;
 import java.util.Scanner;
 
@@ -24,11 +25,15 @@ public class StartProgramView {
         String playerName = this.getPlayerName();
         
     //Create a new player
-        
-        Player player = ProgramControl.createPlayer(playerName);
-    //DISPLAY a customized welcome message
+        Player player = null;
+        try {
+            player = ProgramControl.createPlayer(playerName);
+        } catch (ProgramControlException ex) {
+            System.out.println(ex.getMessage());
+        }
+        //DISPLAY a customized welcome message
         this.displayWelcomeMessage(player);
-    //DISPLAY the main menu 
+        //DISPLAY the main menu 
         MainMenuView mainMenu = new MainMenuView();
         mainMenu.displayMenu();
     }

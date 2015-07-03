@@ -10,6 +10,7 @@ import byu.cit260.Charcoaled.control.MapControl;
 import byui.cit260.Charcoaled.model.Room;
 import java.util.Scanner;
 import byui.cit260.Charcoaled.view.RoomMenuView;
+import byui.cit260.Charcoaled.exceptions.GameControlException;
 import java.awt.Point;
 
 /**
@@ -18,8 +19,9 @@ import java.awt.Point;
  */
 public class GameMenuView extends View {
 
-    public int floor = GameControl.getCurrentGame().getPlayerPosition().x;
-    public int apartment = GameControl.getCurrentGame().getPlayerPosition().y;
+    
+    public int floor; 
+    public int apartment;   
 
     public GameMenuView() {
         super("_________________                          \n"
@@ -85,8 +87,12 @@ public class GameMenuView extends View {
         //System.out.println(
         //        "\n***** moveUp() function called *****\n");
         if (floor > 0) {
-            floor -= 1;    
-            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            floor -= 1;
+            try {
+                GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            } catch (GameControlException me) {
+                System.out.println(me.getMessage());
+            }
         }
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
@@ -106,7 +112,11 @@ public class GameMenuView extends View {
         //        "\n***** moveLeft() function called *****\n");
         if (apartment > 0) {
             apartment -= 1;
-            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            try {
+                GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            } catch (GameControlException me) {
+                System.out.println(me.getMessage());
+            }
         }
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
@@ -126,7 +136,11 @@ public class GameMenuView extends View {
         //        "\n***** moveDown() function called *****\n");
         if (floor < 4) {
             floor += 1;
-            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            try {
+                GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            } catch (GameControlException me) {
+                System.out.println(me.getMessage());
+            }
         }
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
@@ -146,7 +160,11 @@ public class GameMenuView extends View {
         //        "\n***** moveRight() function called *****\n");
         if (apartment < 4) {
             apartment += 1;
-            GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            try {
+                GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
+            } catch (GameControlException me) {
+                System.out.println(me.getMessage());
+            }
         }
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
@@ -273,5 +291,15 @@ public class GameMenuView extends View {
                 + "\n  ~ ^^~'   /=======\\ ,``~^ ~^~"
                 + "\n                              "
         );
+    }
+
+    public void setXY() {
+        try {
+            floor = GameControl.getCurrentGame().getPlayerPosition().x;
+            apartment = GameControl.getCurrentGame().getPlayerPosition().y;
+        } catch (GameControlException me) {
+            System.out.println(me.getMessage());
+            return;
+        }
     }
 }
