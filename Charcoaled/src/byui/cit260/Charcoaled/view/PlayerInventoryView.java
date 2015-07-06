@@ -14,67 +14,67 @@ import byui.cit260.Charcoaled.model.InventoryItem;
  * @author raquel
  */
 public class PlayerInventoryView extends View {
-    
-    public PlayerInventoryView() { 
-      super("______________________                      \n"+
-            "   Inventory Menu     \\____________________\n"+
-            "                                            \n"+
-            " W - View Player Inventory                  \n"+
-            " K - View Total Items in Player Inventory   \n"+
-            "                                            \n"+  
-            " E - Exit                                   \n"+
-            "____________________________________________");
-    }    
-    
+
+    public PlayerInventoryView() {
+        super("______________________                      \n"
+                + "   Inventory Menu     \\____________________\n"
+                + "                                            \n"
+                + " W - View Player Inventory                  \n"
+                + " K - View Total Items in Player Inventory   \n"
+                + "                                            \n"
+                + " E - Exit                                   \n"
+                + "____________________________________________");
+    }
+
     @Override
-    public boolean doAction(Object obj) {        
-        char selection = (char)obj;
-        switch(selection){
+    public boolean doAction(Object obj) {
+        char selection = (char) obj;
+        switch (selection) {
             case 'W':
                 this.viewPlayerItems();
-                break; 
-                case 'K':
+                break;
+            case 'K':
                 this.viewQuantityOfPlayerItems();
                 break;
-           case 'E':
+            case 'E':
                 return true;
             default:
                 System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             Invalid selection - Please, try again.                 \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                        "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                        + "             Invalid selection - Please, try again.                 \n"
+                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 );
-        }  
+        }
         return true;
     }
-    
+
     private void viewPlayerItems() {
-               
+
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(true);
         System.out.println(
-            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
-        
+
         for (InventoryItem item : inventory) {
-           System.out.println(
-                "\t" + item.getQuantityInStock() + " " + item.getInventoryType() + " available. \n"
-           );
+            System.out.println(
+                    "\t" + item.getQuantityInStock() + " " + item.getInventoryType() + " available. \n"
+            );
         }
         System.out.println(
-            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
-    }    
+    }
 
-    private void viewQuantityOfPlayerItems() {        
+    private void viewQuantityOfPlayerItems() {
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(false);
         System.out.println(
-            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
-        int x = InventoryControl.getQuantityOfItems(inventory);      
-             
+        int x = InventoryControl.getQuantityOfItems(inventory);
+
         System.out.println(
-            "         Total # of Items in Player Inventory --> " + x + "         \n" +
-            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                "         Total # of Items in Player Inventory --> " + x + "         \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
     }
 }

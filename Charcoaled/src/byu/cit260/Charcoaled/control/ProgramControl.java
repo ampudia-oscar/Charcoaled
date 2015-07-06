@@ -17,17 +17,18 @@ public class ProgramControl {
 
     public static Player createPlayer(String playerName) throws ProgramControlException {
 
-        if (playerName == null){
-           throw new ProgramControlException("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        if (playerName == null) {
+            throw new ProgramControlException(
+                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "  Player was NULL :\n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
-        
+
         Player player = new Player();
-        player.setName(playerName);        
+        player.setName(playerName);
         Charcoaled.setPlayer(player);
         return player;
                //System.out.println("\n ** Create player function called **");
-       //return null;
-    }   
+        //return null;
+    }
 }

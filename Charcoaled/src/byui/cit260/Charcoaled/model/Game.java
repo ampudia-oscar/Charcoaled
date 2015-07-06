@@ -12,8 +12,8 @@ import java.io.Serializable;
  *
  * @author oscar
  */
-public class Game implements Serializable{
-    
+public class Game implements Serializable {
+
     //class instance variables
     private double totalTime;
     private double remainingTime;
@@ -45,8 +45,7 @@ public class Game implements Serializable{
     public void setMap(MapBuilding map) {
         this.map = map;
     }
-    
-    
+
     public Player getPlayer() {
         return player;
     }
@@ -104,7 +103,5 @@ public class Game implements Serializable{
         }
         return true;
     }
-    
-    
-    
+
 }

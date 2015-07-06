@@ -11,9 +11,8 @@ import java.awt.Point;
 /*
  * @author oscar
  */
-
 public enum Actor implements Serializable {
-    
+
     //class instance variables
     JohnDoe("Sargent Fir fighter"),
     JaneDoe("Caitan fighrer");
@@ -21,15 +20,15 @@ public enum Actor implements Serializable {
     private final String description;
     private final Point coordinates;
 
-    Actor (String description){
+    Actor(String description) {
         this.description = description;
-        coordinates = new Point(1,1);
+        coordinates = new Point(1, 1);
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
-    
+
     public Point getCoordinates() {
         return coordinates;
     }

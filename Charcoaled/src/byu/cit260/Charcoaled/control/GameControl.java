@@ -9,17 +9,17 @@ import byui.cit260.Charcoaled.model.Player;
 import byui.cit260.Charcoaled.model.Game;
 import Charcoaled.Charcoaled;
 import byui.cit260.Charcoaled.exceptions.GameControlException;
+import byui.cit260.Charcoaled.exceptions.MapControlException;
 import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.MapBuilding;
 import java.awt.Point;
 
- /*
+/*
  * @author oscar
  */
 public class GameControl {
-    
 
-    public static void createNewGame(Player player) throws GameControlException {
+    public static void createNewGame(Player player) throws GameControlException, MapControlException {
         //System.out.println(
         //        "\n***** createNewGame() stub function called *****\n");     
         Game game = new Game();
@@ -29,6 +29,7 @@ public class GameControl {
         InventoryItem[] inventoryList = InventoryControl.createPlayerInventory();
         GameControl.setGameInventory(inventoryList);
         MapBuilding map = MapControl.createMap();
+        //map = null;
         game.setMap(map);
         MapControl.moveActorToStartingLocation(map);
 
@@ -42,39 +43,44 @@ public class GameControl {
     public static void saveGame(Player player) {
         System.out.println(
                 "\n***** saveGame() stub function called *****\n");
-    }    
-    
-    public static Game getCurrentGame() throws GameControlException
-    {
-        Game game = Charcoaled.getCurrentGame();       
-        
-        if (game == null)
-            throw new GameControlException("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+    }
+
+    public static Game getCurrentGame() throws GameControlException {
+        Game game = Charcoaled.getCurrentGame();
+
+        if (game == null) {
+            throw new GameControlException(
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "  Player was NULL :\n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        
+        }
+
         return game;
     }
 
     public static void setGameInventory(InventoryItem[] inventory) throws GameControlException {
         Game game = GameControl.getCurrentGame();
-        
-        if (game == null)
-            throw new GameControlException("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+
+        if (game == null) {
+            throw new GameControlException(
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "  Player was NULL :\n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        
-        game.setInventory(inventory);           
-    }        
-    
+        }
+
+        game.setInventory(inventory);
+    }
+
     public static MapBuilding getMap() throws GameControlException {
         Game game = Charcoaled.getCurrentGame();
-        
-        if (game == null)
-            throw new GameControlException("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+
+        if (game == null) {
+            throw new GameControlException(
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "  Player was NULL :\n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        
+        }
+
         MapBuilding map = game.getMap();
         return map;
     }

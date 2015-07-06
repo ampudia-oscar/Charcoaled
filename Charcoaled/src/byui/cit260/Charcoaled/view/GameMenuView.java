@@ -11,7 +11,10 @@ import byui.cit260.Charcoaled.model.Room;
 import java.util.Scanner;
 import byui.cit260.Charcoaled.view.RoomMenuView;
 import byui.cit260.Charcoaled.exceptions.GameControlException;
+import byui.cit260.Charcoaled.exceptions.MapControlException;
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,22 +22,21 @@ import java.awt.Point;
  */
 public class GameMenuView extends View {
 
-    
-    public int floor; 
-    public int apartment;   
+    public int floor;
+    public int apartment;
 
     public GameMenuView() {
         super("_________________                          \n"
-            + "   GAME MENU     \\________________________\n"
-            + "                                           \n"
-            + " W - Move up        M – Map                \n"
-            + " A - Move left      V - View Items         \n"
-            + " S - Move down      R - Drop/Remove Items  \n"
-            + " D - Move right     P - Pause              \n"
-            + " G - Enter Door     X - Save Game          \n"
-            + "                                           \n"
-            + " E - Exit                                  \n"
-            + "___________________________________________");
+                + "   GAME MENU     \\________________________\n"
+                + "                                           \n"
+                + " W - Move up        M – Map                \n"
+                + " A - Move left      V - View Items         \n"
+                + " S - Move down      R - Drop/Remove Items  \n"
+                + " D - Move right     P - Pause              \n"
+                + " G - Enter Door     X - Save Game          \n"
+                + "                                           \n"
+                + " E - Exit                                  \n"
+                + "___________________________________________");
     }
 
     @Override
@@ -57,9 +59,14 @@ public class GameMenuView extends View {
             case 'G':
                 this.enterDoor();
                 break;
-            case 'M':
-                this.displayMap2();
-                break;
+            case 'M': {
+                try {
+                    this.displayMap2();
+                } catch (MapControlException ex) {
+                    Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            break;
             case 'V':
                 this.viewItems();
                 break;
@@ -77,8 +84,8 @@ public class GameMenuView extends View {
             default:
                 System.out.println(
                         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                      + "             Invalid selection - Please, try again.             \n"
-                      + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                        + "             Invalid selection - Please, try again.             \n"
+                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
         return true;
     }
@@ -95,14 +102,13 @@ public class GameMenuView extends View {
             }
         }
         System.out.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
-                "  You are on floor " + floor + ", apartment " + apartment + ".  \n"+        
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                
-                /*"You are on floor " + floor + ", apartment " + apartment + "."
-                + "\n ___ "
-                + "\n|" + floor + "|" + apartment + "|"
-                + "\nIIIII"*/
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        /*"You are on floor " + floor + ", apartment " + apartment + "."
+         + "\n ___ "
+         + "\n|" + floor + "|" + apartment + "|"
+         + "\nIIIII"*/
         );
         return floor;
     }
@@ -119,20 +125,19 @@ public class GameMenuView extends View {
             }
         }
         System.out.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
-                "  You are on floor " + floor + ", apartment " + apartment + ".  \n"+        
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                
-                /*"You are on floor " + floor + ", apartment " + apartment + "."
-                + "\n ___ "
-                + "\n|" + floor + "|" + apartment + "|"
-                + "\nIIIII"*/
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        /*"You are on floor " + floor + ", apartment " + apartment + "."
+         + "\n ___ "
+         + "\n|" + floor + "|" + apartment + "|"
+         + "\nIIIII"*/
         );
         return apartment;
     }
 
     private int moveUp() {
-       //System.out.println(
+        //System.out.println(
         //        "\n***** moveDown() function called *****\n");
         if (floor < 4) {
             floor += 1;
@@ -143,20 +148,19 @@ public class GameMenuView extends View {
             }
         }
         System.out.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
-                "  You are on floor " + floor + ", apartment " + apartment + ".  \n"+        
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                
-                /*"You are on floor " + floor + ", apartment " + apartment + "."
-                + "\n ___ "
-                + "\n|" + floor + "|" + apartment + "|"
-                + "\nIIIII"*/
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        /*"You are on floor " + floor + ", apartment " + apartment + "."
+         + "\n ___ "
+         + "\n|" + floor + "|" + apartment + "|"
+         + "\nIIIII"*/
         );
         return floor;
     }
 
     private int moveRight() {
-       //System.out.println(
+        //System.out.println(
         //        "\n***** moveRight() function called *****\n");
         if (apartment < 4) {
             apartment += 1;
@@ -167,14 +171,13 @@ public class GameMenuView extends View {
             }
         }
         System.out.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"+
-                "  You are on floor " + floor + ", apartment " + apartment + ".  \n"+        
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                
-                /*"You are on floor " + floor + ", apartment " + apartment + "."
-                + "\n ___ "
-                + "\n|" + floor + "|" + apartment + "|"
-                + "\nIIIII"*/
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+        /*"You are on floor " + floor + ", apartment " + apartment + "."
+         + "\n ___ "
+         + "\n|" + floor + "|" + apartment + "|"
+         + "\nIIIII"*/
         );
         return apartment;
     }
@@ -213,7 +216,7 @@ public class GameMenuView extends View {
 
     private void displayMap() {
         System.out.println(
-                  "\n"
+                "\n"
                 + "\n                   (  .    )                       "
                 + "\n               )          (           )            "
                 + "\n                     .  '  .  '  .  ' .            "
@@ -244,53 +247,58 @@ public class GameMenuView extends View {
                 + "\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 
-    private void displayMap2() {
+    private void displayMap2() throws MapControlException {
 
-        System.out.println(
-                  "\n"
-                + "\n      (  .    )                "
-                + "\n       )     (           )     "
-                + "\n          .'  .  '  .  ' .     "
-                + "\n    (    , )  (.  ) (  ',    ) "
-                + "\n     .' ) ( . ) , ( ,   )  ( . "
-                + "\n  ). ,( .  (  )( ,') .' ( ,  ) "
-                + "\n (_,). ), )  _)_,') (, ) '.),. "
-                + "\n ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "
-                + "\n _._._._._._._._._._._._._._._ "
-                + "\n|=============================| "
-        );
-
-        Room[][] rooms = MapControl.getAllRooms();
-        int row = GameControl.getMap().getRowCount();
-        int column = GameControl.getMap().getColumnCount();
-
-
-        for (int x = row ; x > 0; x--) {
+        try {
             System.out.println(
-                    "\n  ___   ___   ___   ___   ___  "
+                    "\n"
+                    + "\n      (  .    )                "
+                    + "\n       )     (           )     "
+                    + "\n          .'  .  '  .  ' .     "
+                    + "\n    (    , )  (.  ) (  ',    ) "
+                    + "\n     .' ) ( . ) , ( ,   )  ( . "
+                    + "\n  ). ,( .  (  )( ,') .' ( ,  ) "
+                    + "\n (_,). ), )  _)_,') (, ) '.),. "
+                    + "\n ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "
+                    + "\n _._._._._._._._._._._._._._._ "
+                    + "\n|=============================| "
             );
-            for (int y = 0; y < column; y++) {
-                int x2 = x - 1;
-                Room room = rooms[y][x -1];
-                if (room.isVisited()) {
-                    System.out.print(
-                        " | ✓ |"
-                    );
-                } else {
-                    System.out.print(
-                        " |???|"
-                    );
+
+            Room[][] rooms = MapControl.getAllRooms();
+            int row = 0;
+            row = GameControl.getMap().getRowCount();
+            int column = 0;
+            column = GameControl.getMap().getColumnCount();
+
+            for (int x = row; x > 0; x--) {
+                System.out.println(
+                        "\n  ___   ___   ___   ___   ___  "
+                );
+                for (int y = 0; y < column; y++) {
+                    int x2 = x - 1;
+                    Room room = rooms[y][x - 1];
+                    if (room.isVisited()) {
+                        System.out.print(
+                                " | ✓ |"
+                        );
+                    } else {
+                        System.out.print(
+                                " |???|"
+                        );
+                    }
                 }
+                System.out.println(
+                        "\n IIIII IIIII IIIII IIIII IIIII"
+                );
             }
             System.out.println(
-                "\n IIIII IIIII IIIII IIIII IIIII"
+                    "\n  . . . .|  /=====\\  |. . . . "
+                    + "\n  ~ ^^~'   /=======\\ ,``~^ ~^~"
+                    + "\n                              "
             );
+        } catch (GameControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(
-                  "\n  . . . .|  /=====\\  |. . . . "
-                + "\n  ~ ^^~'   /=======\\ ,``~^ ~^~"
-                + "\n                              "
-        );
     }
 
     public void setXY() {

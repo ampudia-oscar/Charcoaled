@@ -9,8 +9,9 @@ import java.io.Serializable;
 /*
  * @author oscar and raquel
  */
-public class Room implements Serializable{
-    
+
+public class Room implements Serializable {
+
     //class instance variables
     private double row;
     private double column;
@@ -18,8 +19,8 @@ public class Room implements Serializable{
     private InventoryItem[] roomInventory;
     private Person[] personsToRescue;
 
-    public Person[] getPersonsToRescue() {            
-        return personsToRescue;        
+    public Person[] getPersonsToRescue() {
+        return personsToRescue;
     }
 
     public void setPersonsToRescue(Person[] personsToRescue) {
@@ -36,9 +37,9 @@ public class Room implements Serializable{
 
     public Room() {
     }
-    
+
     public Room(int row, int column) {
-        
+
         this.row = row;
         this.column = column;
     }
@@ -67,5 +68,4 @@ public class Room implements Serializable{
         this.visited = visited;
     }
 
- 
 }

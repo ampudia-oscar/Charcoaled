@@ -10,8 +10,10 @@ package byui.cit260.Charcoaled.view;
  * @author Oscar and Raquel
  */
 public interface ViewInterface {
-    
+
     public void displayMenu();
+
     public String getInput();
-    public boolean doAction(Object obj);    
+
+    public boolean doAction(Object obj);
 }

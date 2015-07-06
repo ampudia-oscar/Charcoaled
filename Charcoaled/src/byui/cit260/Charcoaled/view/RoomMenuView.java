@@ -177,16 +177,16 @@ public class RoomMenuView extends View {
             solvePrism();
         }
         if (x > 20 & x < 40) {
-            solvePyramidVol();           
+            solvePyramidVol();
         }
         if (x > 40 & x < 60) {
             solveHoursToSeconds();
         }
         if (x > 60 & x < 80) {
-            solveTrapeziumVol();            
+            solveTrapeziumVol();
         }
         if (x > 80 & x < 100) {
-            solveKiteArea();            
+            solveKiteArea();
         }
     }
 
@@ -233,15 +233,15 @@ public class RoomMenuView extends View {
 
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for B (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-         double b = this.getDoubleNumber();
+        double b = this.getDoubleNumber();
 
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for C (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-         double c = this.getDoubleNumber();
+        double c = this.getDoubleNumber();
 
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-         double height = this.getDoubleNumber();
+        double height = this.getDoubleNumber();
 
         double result = 0;
         //a = 0;

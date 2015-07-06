@@ -6,6 +6,7 @@
 package byu.cit260.Charcoaled.control;
 
 import Charcoaled.Charcoaled;
+import byui.cit260.Charcoaled.exceptions.InventoryControlException;
 import byui.cit260.Charcoaled.model.Game;
 import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.Items;
@@ -175,6 +176,6 @@ public class InventoryControl {
     public void updatePlayerInventory(InventoryItem[] inventory) {
         //GameControl.setGameInventory(inventory);
         Game game = Charcoaled.getCurrentGame();
-        game.setInventory(inventory); 
+        game.setInventory(inventory);
     }
 }

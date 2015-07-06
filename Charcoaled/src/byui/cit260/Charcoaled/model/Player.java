@@ -11,18 +11,16 @@ import java.io.Serializable;
  *
  * @author oscar
  */
-public class Player implements Serializable{
-    
+public class Player implements Serializable {
+
     //class instances variables
     private String name;
     private double bestTime;
     private String gender;
 
-    
     public Player() {
-    }    
-    
-    
+    }
+
     public String getName() {
         return name;
     }

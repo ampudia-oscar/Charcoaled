@@ -12,8 +12,8 @@ import java.util.Objects;
  *
  * @author raquel
  */
-public class Obstacles implements Serializable{
-    
+public class Obstacles implements Serializable {
+
     private String name;
     private String type;
 
@@ -63,6 +63,5 @@ public class Obstacles implements Serializable{
         }
         return Objects.equals(this.type, other.type);
     }
-    
-    
+
 }

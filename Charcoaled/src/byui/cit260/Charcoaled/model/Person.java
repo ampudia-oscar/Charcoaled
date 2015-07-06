@@ -12,20 +12,18 @@ import java.io.Serializable;
  * @author raquel
  */
 public class Person implements Serializable {
-    
+
     private boolean hasFinalPassKey;
     private String passKey;
     private boolean needsRescue;
 
     public Person() {
     }
-    
 
     @Override
     public String toString() {
         return "Person{" + "hasFinalPassKey=" + hasFinalPassKey + ", passKey=" + passKey + ", needsRescue=" + needsRescue + '}';
     }
-    
 
     public boolean isHasFinalPassKey() {
         return hasFinalPassKey;

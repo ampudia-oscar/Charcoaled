@@ -20,57 +20,57 @@ public class RoomItemView extends View {
     public void setRoom(Room room) {
         this.room = room;
     }
-    
-     public RoomItemView() { 
+
+    public RoomItemView() {
         super(
-            "_________________                   \n" +
-            "   Room Item MENU  \\_______________\n" +
-            "                                    \n" +
-            " W - View Available Items in room   \n" +
-            " I - View Player Inventory          \n" +
-            "____________________________________");
-    }   
+                "_________________                   \n"
+                + "   Room Item MENU  \\_______________\n"
+                + "                                    \n"
+                + " W - View Available Items in room   \n"
+                + " I - View Player Inventory          \n"
+                + "____________________________________");
+    }
 
     @Override
-    public boolean doAction(Object obj) {        
-        char selection = (char)obj;
-        switch(selection){
+    public boolean doAction(Object obj) {
+        char selection = (char) obj;
+        switch (selection) {
             case 'W':
                 this.viewRoomItems();
                 break;
-            case 'I':  
+            case 'I':
                 this.viewPlayerIventory();
                 break;
-           case 'E':
+            case 'E':
                 return true;
             default:
                 System.out.println(
-  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-+ "             Invalid selection - Please, try again.             \n"
-+ "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-        }  
+                        "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                        + "             Invalid selection - Please, try again.             \n"
+                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+        }
         return true;
     }
 
     private void viewRoomItems() {
-                
+
         InventoryItem[] inventory = InventoryControl.getRoomInventory(room);
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
-        
+
         for (InventoryItem item : inventory) {
-           System.out.println(
-                " There are :" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  in the ROOM    \n"
-           );
-        }     
+            System.out.println(
+                    " There are :" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  in the ROOM    \n"
+            );
+        }
         System.out.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
-    } 
+    }
 
-     private void viewPlayerIventory() {
-        PlayerInventoryView piv = new PlayerInventoryView();        
+    private void viewPlayerIventory() {
+        PlayerInventoryView piv = new PlayerInventoryView();
         piv.displayMenu();
-    }     
+    }
 }

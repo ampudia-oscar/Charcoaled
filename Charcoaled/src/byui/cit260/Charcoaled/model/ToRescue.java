@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author raquel
  */
 public class ToRescue implements Serializable {
-    
+
     private String name;
     private String gender;
     private boolean needsRescue;
@@ -58,7 +58,7 @@ public class ToRescue implements Serializable {
         if (!Objects.equals(this.type, other.type)) {
             return false;
         }
-      
+
         return true;
     }
 
@@ -97,6 +97,5 @@ public class ToRescue implements Serializable {
     public void setneedsRescue(boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

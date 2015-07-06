@@ -12,22 +12,21 @@ import java.io.Serializable;
  * @author raquel
  */
 public enum Items implements Serializable {
-    
+
     Rope("Rope"),
     Fire("Fire Extinguisher"),
     Axe("Axe description"),
     Water("Bucket of Water"),
     MasterKey("Master Key");
-    
-    
+
     private final String description;
 
-    Items (String description){
-        this.description = description; 
+    Items(String description) {
+        this.description = description;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
-    
+
 }

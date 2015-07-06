@@ -12,8 +12,8 @@ import java.util.Objects;
  *
  * @author oscar
  */
-public class InventoryItem implements Serializable{
-    
+public class InventoryItem implements Serializable {
+
     private String inventoryType;
     private int quantityInStock;
     private int maxItemsInStock;
@@ -40,5 +40,5 @@ public class InventoryItem implements Serializable{
 
     public void setMaxItemsInStock(int maxItemsInStock) {
         this.maxItemsInStock = maxItemsInStock;
-    }    
+    }
 }

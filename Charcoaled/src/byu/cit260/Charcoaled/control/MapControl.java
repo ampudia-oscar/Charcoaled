@@ -6,6 +6,7 @@
 package byu.cit260.Charcoaled.control;
 
 import Charcoaled.Charcoaled;
+import byui.cit260.Charcoaled.exceptions.MapControlException;
 import byui.cit260.Charcoaled.model.Game;
 import byui.cit260.Charcoaled.model.MapBuilding;
 import byui.cit260.Charcoaled.model.Room;
@@ -16,37 +17,37 @@ import byui.cit260.Charcoaled.model.Room;
  */
 public class MapControl {
 
-    static MapBuilding createMap()  {
-      
+    static MapBuilding createMap() throws MapControlException {
+
         MapBuilding map = new MapBuilding(5, 5);
+        //MapBuilding map = null;
+        if (map == null) {
+            throw new MapControlException("Creation of Map failed!");
+        }
         return map;
     }
 
-    public static Room getCurrentRoom(int x, int y)
-    {
-        Game game = Charcoaled.getCurrentGame();        
+    public static Room getCurrentRoom(int x, int y) {
+        Game game = Charcoaled.getCurrentGame();
         MapBuilding map = game.getMap();
-       //MapBuilding map = GameControl.getMap();
-       Room[][] rooms = map.getRooms();
-       Room room = rooms[x][y];
-       return room;
+        //MapBuilding map = GameControl.getMap();
+        Room[][] rooms = map.getRooms();
+        Room room = rooms[x][y];
+        return room;
     }
-    
+
     public static Room[][] getAllRooms() {
-        
+
         //return GameControl.getMap().getRooms();        
-        Game game = Charcoaled.getCurrentGame();        
+        Game game = Charcoaled.getCurrentGame();
         MapBuilding map = game.getMap();
         return map.getRooms();
     }
-    
-    public static void setRoomVisited (Room room)
-    {
-        room.setVisited(true);        
+
+    public static void setRoomVisited(Room room) {
+        room.setVisited(true);
     }
-       
 
     static void moveActorToStartingLocation(MapBuilding map) {
-        return;
-    }    
+    }
 }
