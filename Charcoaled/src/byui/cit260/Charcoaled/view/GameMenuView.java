@@ -24,7 +24,7 @@ public class GameMenuView extends View {
 
     public int floor;
     public int apartment;
-    private static final PrintWriter raquelLogFile = Charcoaled.getLogFile();
+    private static final PrintWriter raquelLogFile = Charcoaled.getRaquelLogFile();
 
     public GameMenuView() {
         super(    "__________________                         \n"
@@ -244,12 +244,18 @@ public class GameMenuView extends View {
     
     private void writeRoomInformationToFile (Room room, int row, int column)            
     {
+        row++;
+        column++;
+        
         raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Room information: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");        
         Person[] persons = room.getPersonsToRescue();
         
+        if (persons == null)
+            return;
+        
         for (int x = 0; x < persons.length; x++){
-            String needsRescue = "test";// java.lang.Boolean.toString(persons[x].isNeedsRescue());
-            raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Person #: " + x + "Needs Rescue? : " + needsRescue + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");            
+            String needsRescue = java.lang.Boolean.toString(persons[x].isNeedsRescue());
+            raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Person #: " + x + "  Needs Rescue? : " + needsRescue + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");            
         }
         
         raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ END ROOM: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n\n\n"); 
