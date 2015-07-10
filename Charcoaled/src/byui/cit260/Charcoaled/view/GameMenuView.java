@@ -300,7 +300,7 @@ public class GameMenuView extends View {
             floor = GameControl.getCurrentGame().getPlayerPosition().x;
             apartment = GameControl.getCurrentGame().getPlayerPosition().y;
         } catch (GameControlException e) {
-            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage()); 
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
         }
     }
 }

@@ -9,6 +9,7 @@ import Charcoaled.Charcoaled;
 import byui.cit260.Charcoaled.exceptions.MapControlException;
 import byui.cit260.Charcoaled.model.Game;
 import byui.cit260.Charcoaled.model.MapBuilding;
+import byui.cit260.Charcoaled.model.Person;
 import byui.cit260.Charcoaled.model.Room;
 
 /**
@@ -19,7 +20,7 @@ public class MapControl {
 
     static MapBuilding createMap() throws MapControlException {
 
-        MapBuilding map = new MapBuilding(5, 5);
+        MapBuilding map = new MapBuilding(5, 5, 2);
         //MapBuilding map = null;
         if (map == null) {
             throw new MapControlException("Creation of Map failed!");
@@ -34,6 +35,16 @@ public class MapControl {
         Room[][] rooms = map.getRooms();
         Room room = rooms[x][y];
         return room;
+    }
+    
+    public static String setPersonAsRescued(Room room, int x) {
+        
+        Person[] persons = room.getPersonsToRescue();
+        Person person = persons[x];
+        person.setNeedsRescue(false);
+        if (person.isHasFinalPassKey())
+            return person.getPassKey();
+        return "This person does not have a Pass Key, Sorry";
     }
 
     public static Room[][] getAllRooms() {

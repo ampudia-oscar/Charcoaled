@@ -18,6 +18,7 @@ public class MapBuilding implements Serializable {
     private int rowCount;
     private int columnCount;
     private Room[][] rooms;
+    private int[] finalKeys;
     protected final PrintWriter console = Charcoaled.getOutFile();
 
     public Room[][] getRooms() {
@@ -43,23 +44,22 @@ public class MapBuilding implements Serializable {
 
     private int getRandomPerson() {
         int x = (int) (Math.random() * 100);
-
-        if (x < 10) {
-            return 5;
-        }
-        if (x < 20) {
-            return 4;
-        }
-        if (x < 30) {
-            return 3;
-        }
-        if (x < 40) {
-            return 2;
-        }
-        if (x < 50) {
+        if (x > 0 && x < 40) {
             return 1;
         }
-        return 0;
+        if (x > 40 & x < 60) {
+            return 2;
+        }
+        if (x > 60 & x < 70) {
+            return 3;
+        }
+        if (x > 70 & x < 85) {
+            return 4;
+        }
+        if (x > 85 & x < 100) {
+            return 5;
+        }        
+       return 0;
     }
 
     private InventoryItem[] generateRoomItems() {
@@ -82,18 +82,25 @@ public class MapBuilding implements Serializable {
 
         Person[] person = new Person[x];
 
+        /*
         for (Person _person : person) {
             _person = new Person();
             _person.setNeedsRescue(true);
         }
+        */
+        
+        
+        for (int y = 0; y < x; y++) {
+            person[y] = new Person();
+            person[y].setNeedsRescue(true);
+        }
+        
         return person;
     }
 
-    public MapBuilding(int rowCount, int columnCount) {
-
+    public MapBuilding(int rowCount, int columnCount, int finalKeyCount) {
         
         if (rowCount < 1 || columnCount < 1) {
-
             this.console.println("The number of rows and columbs must be > zero");
             return;
         }

@@ -67,5 +67,4 @@ public class Room implements Serializable {
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
-
 }
