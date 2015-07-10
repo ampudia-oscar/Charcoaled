@@ -5,16 +5,16 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.GameControl;
 import byu.cit260.Charcoaled.control.MapControl;
 import byui.cit260.Charcoaled.model.Room;
-import java.util.Scanner;
-import byui.cit260.Charcoaled.view.RoomMenuView;
 import byui.cit260.Charcoaled.exceptions.GameControlException;
 import byui.cit260.Charcoaled.exceptions.MapControlException;
+import byui.cit260.Charcoaled.model.Person;
 import java.awt.Point;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
+
 
 /**
  *
@@ -24,9 +24,10 @@ public class GameMenuView extends View {
 
     public int floor;
     public int apartment;
+    private static final PrintWriter raquelLogFile = Charcoaled.getLogFile();
 
     public GameMenuView() {
-        super("_________________                          \n"
+        super(    "__________________                         \n"
                 + "   GAME MENU     \\________________________\n"
                 + "                                           \n"
                 + " W - Move up        M – Map                \n"
@@ -240,6 +241,20 @@ public class GameMenuView extends View {
                 + "\n .                     ,   '                       "
                 + "\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
+    
+    private void writeRoomInformationToFile (Room room, int row, int column)            
+    {
+        raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Room information: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");        
+        Person[] persons = room.getPersonsToRescue();
+        
+        for (int x = 0; x < persons.length; x++){
+            String needsRescue = "test";// java.lang.Boolean.toString(persons[x].isNeedsRescue());
+            raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Person #: " + x + "Needs Rescue? : " + needsRescue + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");            
+        }
+        
+        raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ END ROOM: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n\n\n"); 
+        
+    }
 
     private void displayMap2() throws MapControlException {
 
@@ -270,7 +285,8 @@ public class GameMenuView extends View {
                 );
                 for (int y = 0; y < column; y++) {
                     int x2 = x - 1;
-                    Room room = rooms[y][x - 1];
+                    Room room = rooms[y][x2];
+                    writeRoomInformationToFile(room, y, x2);
                     if (room.isVisited()) {
                         this.console.print(
                                 " | ✓ |"
