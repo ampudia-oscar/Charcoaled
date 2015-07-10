@@ -16,6 +16,12 @@ import byui.cit260.Charcoaled.model.ToRescue;
 import byui.cit260.Charcoaled.model.Obstacles;
 import byui.cit260.Charcoaled.model.Items;
 import byui.cit260.Charcoaled.view.StartProgramView;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -29,8 +35,34 @@ public class Charcoaled {
      * @param args the command line arguments
      */
     private static Player player = null;
-
     private static Game currentGame = null;
+    private static PrintWriter outFile = null;
+    private static BufferedReader inFile = null;
+    private static PrintWriter logFile = null;
+
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        Charcoaled.logFile = logFile;
+    }
+
+    public static PrintWriter getOutFile() {
+        return outFile;
+    }
+
+    public static void setOutFile(PrintWriter outFile) {
+        Charcoaled.outFile = outFile;
+    }
+
+    public static BufferedReader getInFile() {
+        return inFile;
+    }
+
+    public static void setInFile(BufferedReader inFile) {
+        Charcoaled.inFile = inFile;
+    }
 
     public static Game getCurrentGame() {
         return currentGame;
@@ -49,20 +81,37 @@ public class Charcoaled {
     }
     
     public static void main(String[] args) {
-                        
-        StartProgramView spv = new StartProgramView();
-        
+                       
+              StartProgramView spv = null;
         try {
-        spv.startProgram();
-        }
-        catch (Throwable te)
-        {
-            System.out.println(te.getMessage());
-            //te.printStackTrace();
+            Charcoaled.inFile = new BufferedReader(new InputStreamReader(System.in));
+            Charcoaled.outFile = new PrintWriter(System.out, true);
+            String filePath = "log.txt";
+            Charcoaled.logFile = new PrintWriter(filePath);
+            spv = new StartProgramView();
             spv.startProgram();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            spv.startProgram();
+        } finally {
+            try {
+                if (Charcoaled.inFile != null) {
+                    Charcoaled.inFile.close();
+                }
+                if (Charcoaled.outFile != null) {
+                    Charcoaled.outFile.close();
+                }
+                if (Charcoaled.logFile != null) {
+                    Charcoaled.logFile.close();
+                }
+            } catch (IOException ex) {
+                System.out.println("Error closing files");
+                return;
+            }
         }
-         
-        
+
+
      /*   
         //MapBuilding.java
         MapBuilding map = new MapBuilding();

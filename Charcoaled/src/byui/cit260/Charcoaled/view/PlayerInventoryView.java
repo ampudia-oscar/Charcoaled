@@ -39,7 +39,7 @@ public class PlayerInventoryView extends View {
             case 'E':
                 return true;
             default:
-                System.out.println(
+                this.console.println(
                         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "             Invalid selection - Please, try again.                 \n"
                         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
@@ -51,28 +51,28 @@ public class PlayerInventoryView extends View {
     private void viewPlayerItems() {
 
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(true);
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
 
         for (InventoryItem item : inventory) {
-            System.out.println(
+            this.console.println(
                     "\t" + item.getQuantityInStock() + " " + item.getInventoryType() + " available. \n"
             );
         }
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
     }
 
     private void viewQuantityOfPlayerItems() {
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(false);
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
         int x = InventoryControl.getQuantityOfItems(inventory);
 
-        System.out.println(
+        this.console.println(
                 "         Total # of Items in Player Inventory --> " + x + "         \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );

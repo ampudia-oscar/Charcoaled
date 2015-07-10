@@ -5,6 +5,9 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import Charcoaled.Charcoaled;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -14,6 +17,8 @@ import java.util.Scanner;
 public abstract class View implements ViewInterface {
 
     private String promptMessage;
+    protected final BufferedReader keyboard = Charcoaled.getInFile();
+    protected final PrintWriter console = Charcoaled.getOutFile();
 
     public View(String promptMessage) {
         this.promptMessage = promptMessage;
@@ -31,7 +36,8 @@ public abstract class View implements ViewInterface {
     public void displayMenu() {
         char selection = ' ';
         do {
-            System.out.println(this.promptMessage);
+            
+            this.console.println(this.promptMessage);
             String input = this.getInput();
             input = input.toUpperCase();
             selection = input.charAt(0);
@@ -45,21 +51,25 @@ public abstract class View implements ViewInterface {
 
         boolean valid = false;
         String input = null;
-        Scanner keyboard = new Scanner(System.in);
 
-        while (!valid) {
-            System.out.println("\nSelect a value");
-            input = keyboard.nextLine();
-            input = input.trim();
+        try {
+            while (!valid) {
+                this.console.println("\nSelect a value");
+                //input = keyboard.nextLine();
+                input = this.keyboard.readLine();
+                input = input.trim();
 
-            if (input.length() < 1) {
-                System.out.println(
-                        "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                        + "               Invalid value - Please, try again.               \n"
-                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
+                if (input.length() < 1) {
+                    this.console.println(
+                            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                            + "               Invalid value - Please, try again.               \n"
+                            + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+                    continue;
+                }
+                break;
             }
-            break;
+        } catch (Exception e) {            
+            ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());            
         }
         return input;
     }

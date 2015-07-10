@@ -5,9 +5,12 @@
  */
 package byui.cit260.Charcoaled.view;
 
+import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.ProgramControl;
 import byui.cit260.Charcoaled.exceptions.ProgramControlException;
 import byui.cit260.Charcoaled.model.Player;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -15,6 +18,9 @@ import java.util.Scanner;
  * @author Oscar and Raquel
  */
 public class StartProgramView {
+
+    protected final BufferedReader keyboard = Charcoaled.getInFile();
+    protected final PrintWriter console = Charcoaled.getOutFile();
 
     public void startProgram() {
 
@@ -27,8 +33,8 @@ public class StartProgramView {
         Player player = null;
         try {
             player = ProgramControl.createPlayer(playerName);
-        } catch (ProgramControlException ex) {
-            System.out.println(ex.getMessage());
+        } catch (ProgramControlException e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
         }
         //DISPLAY a customized welcome message
         this.displayWelcomeMessage(player);
@@ -39,7 +45,7 @@ public class StartProgramView {
 
     private void displayBanner() {
 
-        System.out.println(
+        this.console.println(
                 "\n"
                 + "\n<<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>>"
                 + "\n ||    ____ _                               _          _   ||"
@@ -85,30 +91,34 @@ public class StartProgramView {
 
         boolean valid = false;
         String playerName = null;
-        Scanner keyboard = new Scanner(System.in);
+        //Scanner keyboard = new Scanner(System.in);
 
-        while (!valid) {
-            System.out.println("Enter the player's name below:");
-            playerName = keyboard.nextLine();
-            playerName = playerName.trim();
+        try {
+            while (!valid) {
+                this.console.println("Enter the player's name below:");
+                //input = keyboard.nextLine();
+                playerName = this.keyboard.readLine();
+                playerName = playerName.trim();
 
-            if (playerName.length() < 2) {
-                System.out.println(
-                        "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                        + "           Invalid name - The name must not be blank            \n"
-                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
-                continue;
+                if (playerName.length() < 2) {
+                    this.console.println(
+                            "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                            + "           Invalid name - The name must not be blank            \n"
+                            + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+                    continue;
+                }
+                break;
             }
-            break;
+        } catch (Exception e) {            
+            ErrorView.display(this.getClass().getName(), "ERROR: error reading input: " + e.getMessage());
         }
         return playerName;
     }
 
     public void displayWelcomeMessage(Player player) {
-        System.out.println(
+        this.console.println(
                 "\n∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "     Welcome to the game " + player.getName() + ". We hope you have a lot of fun!\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
-
 }

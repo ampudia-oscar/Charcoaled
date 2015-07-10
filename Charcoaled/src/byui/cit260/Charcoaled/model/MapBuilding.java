@@ -5,7 +5,9 @@
  */
 package byui.cit260.Charcoaled.model;
 
+import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.InventoryControl;
+import java.io.PrintWriter;
 import java.io.Serializable;
 
 /*
@@ -16,6 +18,7 @@ public class MapBuilding implements Serializable {
     private int rowCount;
     private int columnCount;
     private Room[][] rooms;
+    protected final PrintWriter console = Charcoaled.getOutFile();
 
     public Room[][] getRooms() {
         return rooms;
@@ -88,9 +91,10 @@ public class MapBuilding implements Serializable {
 
     public MapBuilding(int rowCount, int columnCount) {
 
+        
         if (rowCount < 1 || columnCount < 1) {
 
-            System.out.println("The number of rows and columbs must be > zero");
+            this.console.println("The number of rows and columbs must be > zero");
             return;
         }
 

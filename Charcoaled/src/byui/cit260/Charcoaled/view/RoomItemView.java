@@ -44,7 +44,7 @@ public class RoomItemView extends View {
             case 'E':
                 return true;
             default:
-                System.out.println(
+                this.console.println(
                         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "             Invalid selection - Please, try again.             \n"
                         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
@@ -55,16 +55,16 @@ public class RoomItemView extends View {
     private void viewRoomItems() {
 
         InventoryItem[] inventory = InventoryControl.getRoomInventory(room);
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
 
         for (InventoryItem item : inventory) {
-            System.out.println(
+            this.console.println(
                     " There are :" + item.getQuantityInStock() + "    " + item.getInventoryType() + " available  in the ROOM    \n"
             );
         }
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
     }

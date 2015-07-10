@@ -45,7 +45,7 @@ public class HelpMenuView extends View {
             case 'E':
                 return true;
             default:
-                System.out.println(
+                this.console.println(
                         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "             Invalid selection - Please, try again.             \n"
                         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
@@ -54,17 +54,17 @@ public class HelpMenuView extends View {
     }
 
     private void displayGameObjective() {
-        System.out.println(
+        this.console.println(
                 "\n***** displayGameObjective() function called *****\n");
     }
 
     private void displayHowToPlay() {
-        System.out.println(
+        this.console.println(
                 "\n***** displayHowToPlay() function called *****\n");
     }
 
     private void displayDifficultyLevels() {
-        System.out.println(
+        this.console.println(
                 "\n***** displayDifficultyLevels() function called *****\n");
     }
 

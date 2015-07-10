@@ -53,7 +53,7 @@ public class MainMenuView extends View {
                 this.saveGame();
                 break;
             case 'E':
-                System.out.println(
+                this.console.println(
                         "\n"
                         + "\n                   (  .    )                        "
                         + "\n               )          (           )           "
@@ -91,7 +91,7 @@ public class MainMenuView extends View {
                         + "\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
                 return true;
             default:
-                System.out.println(
+                this.console.println(
                         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "             Invalid selection - Please, try again.             \n"
                         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
@@ -110,10 +110,10 @@ public class MainMenuView extends View {
             gameMenu.setXY();
             gameMenu.displayMenu();
 
-        } catch (GameControlException me) {
-            System.out.println(me.getMessage());
-        } catch (MapControlException ex) {
-            Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GameControlException e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
+        } catch (MapControlException e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());;
         }
     }
 

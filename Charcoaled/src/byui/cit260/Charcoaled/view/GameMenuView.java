@@ -62,8 +62,8 @@ public class GameMenuView extends View {
             case 'M': {
                 try {
                     this.displayMap2();
-                } catch (MapControlException ex) {
-                    Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MapControlException e) {
+                    ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
                 }
             }
             break;
@@ -82,7 +82,7 @@ public class GameMenuView extends View {
             case 'E':
                 return true;
             default:
-                System.out.println(
+                this.console.println(
                         "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "             Invalid selection - Please, try again.             \n"
                         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
@@ -91,17 +91,16 @@ public class GameMenuView extends View {
     }
 
     private int moveDown() {
-        //System.out.println(
-        //        "\n***** moveUp() function called *****\n");
+
         if (floor > 0) {
             floor -= 1;
             try {
                 GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
-            } catch (GameControlException me) {
-                System.out.println(me.getMessage());
+            } catch (GameControlException e) {
+                ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
             }
         }
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
@@ -114,17 +113,16 @@ public class GameMenuView extends View {
     }
 
     private int moveLeft() {
-        //System.out.println(
-        //        "\n***** moveLeft() function called *****\n");
+
         if (apartment > 0) {
             apartment -= 1;
             try {
                 GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
-            } catch (GameControlException me) {
-                System.out.println(me.getMessage());
+            } catch (GameControlException e) {
+                ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
             }
         }
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
@@ -137,17 +135,16 @@ public class GameMenuView extends View {
     }
 
     private int moveUp() {
-        //System.out.println(
-        //        "\n***** moveDown() function called *****\n");
+
         if (floor < 4) {
             floor += 1;
             try {
                 GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
-            } catch (GameControlException me) {
-                System.out.println(me.getMessage());
+            } catch (GameControlException e) {
+                ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
             }
         }
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
@@ -160,17 +157,16 @@ public class GameMenuView extends View {
     }
 
     private int moveRight() {
-        //System.out.println(
-        //        "\n***** moveRight() function called *****\n");
+
         if (apartment < 4) {
             apartment += 1;
             try {
                 GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
-            } catch (GameControlException me) {
-                System.out.println(me.getMessage());
+            } catch (GameControlException e) {
+                ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
             }
         }
-        System.out.println(
+        this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
@@ -183,8 +179,6 @@ public class GameMenuView extends View {
     }
 
     private void enterDoor() {
-        //System.out.println(
-        //        "\n***** enterDoor() function called *****\n");
 
         RoomMenuView roomMenu = new RoomMenuView();
         roomMenu.setX(apartment);
@@ -200,22 +194,22 @@ public class GameMenuView extends View {
     }
 
     private void dropItems() {
-        System.out.println(
+        this.console.println(
                 "\n***** dropItems() function called *****\n");
     }
 
     private void pauseGame() {
-        System.out.println(
+        this.console.println(
                 "\n***** pauseGame() function called *****\n");
     }
 
     private void saveGame() {
-        System.out.println(
+        this.console.println(
                 "\n***** saveGame() function called *****\n");
     }
 
     private void displayMap() {
-        System.out.println(
+        this.console.println(
                 "\n"
                 + "\n                   (  .    )                       "
                 + "\n               )          (           )            "
@@ -250,7 +244,7 @@ public class GameMenuView extends View {
     private void displayMap2() throws MapControlException {
 
         try {
-            System.out.println(
+            this.console.println(
                     "\n"
                     + "\n      (  .    )                "
                     + "\n       )     (           )     "
@@ -271,33 +265,33 @@ public class GameMenuView extends View {
             column = GameControl.getMap().getColumnCount();
 
             for (int x = row; x > 0; x--) {
-                System.out.println(
+                this.console.println(
                         "\n  ___   ___   ___   ___   ___  "
                 );
                 for (int y = 0; y < column; y++) {
                     int x2 = x - 1;
                     Room room = rooms[y][x - 1];
                     if (room.isVisited()) {
-                        System.out.print(
+                        this.console.print(
                                 " | ✓ |"
                         );
                     } else {
-                        System.out.print(
+                        this.console.print(
                                 " |???|"
                         );
                     }
                 }
-                System.out.println(
+                this.console.println(
                         "\n IIIII IIIII IIIII IIIII IIIII"
                 );
             }
-            System.out.println(
+            this.console.println(
                     "\n  . . . .|  /=====\\  |. . . . "
                     + "\n  ~ ^^~'   /=======\\ ,``~^ ~^~"
                     + "\n                              "
             );
-        } catch (GameControlException ex) {
-            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GameControlException e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
         }
     }
 
@@ -305,9 +299,8 @@ public class GameMenuView extends View {
         try {
             floor = GameControl.getCurrentGame().getPlayerPosition().x;
             apartment = GameControl.getCurrentGame().getPlayerPosition().y;
-        } catch (GameControlException me) {
-            System.out.println(me.getMessage());
-            return;
+        } catch (GameControlException e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage()); 
         }
     }
 }
