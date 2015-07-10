@@ -247,6 +247,8 @@ public class GameMenuView extends View {
         row++;
         column++;
         
+        try {
+        
         raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Room information: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");        
         Person[] persons = room.getPersonsToRescue();
         
@@ -258,8 +260,11 @@ public class GameMenuView extends View {
             raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Person #: " + x + "  Needs Rescue? : " + needsRescue + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");            
         }
         
-        raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ END ROOM: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n\n\n"); 
+        raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ END ROOM: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n\n\n"); }
         
+        catch (Exception e) {
+             ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
+        }        
     }
 
     private void displayMap2() throws MapControlException {

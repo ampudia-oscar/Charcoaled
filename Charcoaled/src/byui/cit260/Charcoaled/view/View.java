@@ -8,7 +8,6 @@ package byui.cit260.Charcoaled.view;
 import Charcoaled.Charcoaled;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-import java.util.Scanner;
 
 /**
  *
