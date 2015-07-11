@@ -8,7 +8,6 @@ package byui.cit260.Charcoaled.model;
 import java.io.Serializable;
 
 /**
- *
  * @author raquel
  */
 public enum Items implements Serializable {
@@ -28,5 +27,4 @@ public enum Items implements Serializable {
     public String getDescription() {
         return description;
     }
-
 }

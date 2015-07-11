@@ -242,7 +242,7 @@ public class GameMenuView extends View {
                 + "\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
     
-    private void writeRoomInformationToFile (Room room, int row, int column)            
+    private void writePersonRoomInformationToFile (Room room, int row, int column)            
     {
         row++;
         column++;
@@ -297,7 +297,8 @@ public class GameMenuView extends View {
                 for (int y = 0; y < column; y++) {
                     int x2 = x - 1;
                     Room room = rooms[y][x2];
-                    writeRoomInformationToFile(room, y, x2);
+                    writePersonRoomInformationToFile(room, y, x2);
+                    //addFunctionHere to display items in room
                     if (room.isVisited()) {
                         this.console.print(
                                 " | ✓ |"

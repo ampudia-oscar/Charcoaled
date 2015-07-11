@@ -6,6 +6,7 @@
 package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -16,6 +17,36 @@ public class Person implements Serializable {
     private boolean hasFinalPassKey;
     private String passKey;
     private boolean needsRescue;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (this.hasFinalPassKey ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.passKey);
+        hash = 79 * hash + (this.needsRescue ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Person other = (Person) obj;
+        if (this.hasFinalPassKey != other.hasFinalPassKey) {
+            return false;
+        }
+        if (!Objects.equals(this.passKey, other.passKey)) {
+            return false;
+        }
+        if (this.needsRescue != other.needsRescue) {
+            return false;
+        }
+        return true;
+    }
 
     public Person() {
     }

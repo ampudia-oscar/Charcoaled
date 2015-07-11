@@ -9,6 +9,7 @@ import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.InventoryControl;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.Arrays;
 
 /*
  * @author Raquel
@@ -16,10 +17,49 @@ import java.io.Serializable;
 public class MapBuilding implements Serializable {
 
     private int rowCount;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.rowCount;
+        hash = 89 * hash + this.columnCount;
+        hash = 89 * hash + Arrays.deepHashCode(this.rooms);
+        hash = 89 * hash + Arrays.hashCode(this.finalKeys);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "MapBuilding{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", rooms=" + rooms + ", finalKeys=" + finalKeys + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MapBuilding other = (MapBuilding) obj;
+        if (this.rowCount != other.rowCount) {
+            return false;
+        }
+        if (this.columnCount != other.columnCount) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.rooms, other.rooms)) {
+            return false;
+        }
+        if (!Arrays.equals(this.finalKeys, other.finalKeys)) {
+            return false;
+        }
+        return true;
+    }
     private int columnCount;
     private Room[][] rooms;
     private int[] finalKeys;
-    protected final PrintWriter console = Charcoaled.getOutFile();
+    //protected final PrintWriter console = Charcoaled.getOutFile();
 
     public Room[][] getRooms() {
         return rooms;
@@ -101,7 +141,7 @@ public class MapBuilding implements Serializable {
     public MapBuilding(int rowCount, int columnCount, int finalKeyCount) {
         
         if (rowCount < 1 || columnCount < 1) {
-            this.console.println("The number of rows and columbs must be > zero");
+            //this.console.println("The number of rows and columbs must be > zero");
             return;
         }
 
@@ -137,13 +177,5 @@ public class MapBuilding implements Serializable {
 
     public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + this.rowCount;
-        hash = 37 * hash + this.columnCount;
-        return hash;
-    }
+    }    
 }

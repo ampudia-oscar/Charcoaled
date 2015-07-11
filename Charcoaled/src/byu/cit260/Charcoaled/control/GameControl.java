@@ -13,7 +13,12 @@ import byui.cit260.Charcoaled.exceptions.MapControlException;
 import byui.cit260.Charcoaled.model.InventoryItem;
 import byui.cit260.Charcoaled.model.MapBuilding;
 import java.awt.Point;
-import java.io.PrintWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /*
  * @author oscar
@@ -35,13 +40,29 @@ public class GameControl {
 
     }
 
-    public static void startExistingGame(Player player) {
-        System.out.println( "\n***** startExistingGame() stub function called *****\n");
+    public static void getSavedGame(String filePath) throws GameControlException {
         
+        Game game = null;
+
+        try (FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            game = (Game) input.readObject();
+        } catch (FileNotFoundException e) {
+            throw new GameControlException(e.getMessage());
+        } catch (IOException | ClassNotFoundException e) {
+            throw new GameControlException(e.getMessage());
+        }
+        Charcoaled.setCurrentGame(game);
     }
 
-    public static void saveGame(Player player) {
-        System.out.println( "\n***** saveGame() stub function called *****\n");
+    public static void saveGame(Game game, String filePath) throws GameControlException {
+        
+        try (FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            output.writeObject(game);
+        } catch (IOException e) {
+            throw new GameControlException(e.getMessage());
+        }
     }
 
     public static Game getCurrentGame() throws GameControlException {

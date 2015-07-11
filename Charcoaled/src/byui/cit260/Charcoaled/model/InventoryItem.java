@@ -7,7 +7,6 @@ package byui.cit260.Charcoaled.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-
 /**
  *
  * @author oscar
@@ -17,6 +16,41 @@ public class InventoryItem implements Serializable {
     private String inventoryType;
     private int quantityInStock;
     private int maxItemsInStock;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.inventoryType);
+        hash = 97 * hash + this.quantityInStock;
+        hash = 97 * hash + this.maxItemsInStock;
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "InventoryItem{" + "inventoryType=" + inventoryType + ", quantityInStock=" + quantityInStock + ", maxItemsInStock=" + maxItemsInStock + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InventoryItem other = (InventoryItem) obj;
+        if (!Objects.equals(this.inventoryType, other.inventoryType)) {
+            return false;
+        }
+        if (this.quantityInStock != other.quantityInStock) {
+            return false;
+        }
+        if (this.maxItemsInStock != other.maxItemsInStock) {
+            return false;
+        }
+        return true;
+    }
 
     public String getInventoryType() {
         return inventoryType;

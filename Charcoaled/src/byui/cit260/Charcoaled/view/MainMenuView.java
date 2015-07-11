@@ -9,10 +9,7 @@ import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.GameControl;
 import byui.cit260.Charcoaled.exceptions.GameControlException;
 import byui.cit260.Charcoaled.exceptions.MapControlException;
-import byui.cit260.Charcoaled.view.GameMenuView;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -41,7 +38,7 @@ public class MainMenuView extends View {
 
         switch (selection) {
             case 'G':
-                this.startExistingGame();
+                this.startSavedGame();
                 break;
             case 'N':
                 this.startNewGame();
@@ -99,8 +96,21 @@ public class MainMenuView extends View {
         return true;
     }
 
-    private void startExistingGame() {
-        GameControl.startExistingGame(Charcoaled.getPlayer());
+    private void startSavedGame() {
+        this.console.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "             Please enter the file path of saved game.             \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+        String filePath = this.getInput();
+        try {
+            GameControl.getSavedGame(filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.setXY();
+        gameMenu.displayMenu();
     }
 
     private void startNewGame() {
@@ -122,7 +132,16 @@ public class MainMenuView extends View {
         hmv.displayMenu();
     }
 
-    private void saveGame() {
-        GameControl.saveGame(Charcoaled.getPlayer());
+    private void saveGame() {        
+        this.console.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "             Please enter the file path for file where to save the game.             \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n");
+        String filePath = this.getInput();
+        try {
+            GameControl.saveGame(Charcoaled.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
 }

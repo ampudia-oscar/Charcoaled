@@ -7,6 +7,8 @@ package byui.cit260.Charcoaled.model;
 
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  *
@@ -18,8 +20,55 @@ public class Game implements Serializable {
     private double totalTime;
     private double remainingTime;
     private Player player;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + (int) (Double.doubleToLongBits(this.totalTime) ^ (Double.doubleToLongBits(this.totalTime) >>> 32));
+        hash = 19 * hash + (int) (Double.doubleToLongBits(this.remainingTime) ^ (Double.doubleToLongBits(this.remainingTime) >>> 32));
+        hash = 19 * hash + Objects.hashCode(this.player);
+        hash = 19 * hash + Arrays.deepHashCode(this.inventory);
+        hash = 19 * hash + Objects.hashCode(this.map);
+        hash = 19 * hash + Objects.hashCode(this.playerPosition);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Game other = (Game) obj;
+        if (Double.doubleToLongBits(this.totalTime) != Double.doubleToLongBits(other.totalTime)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.remainingTime) != Double.doubleToLongBits(other.remainingTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.player, other.player)) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.inventory, other.inventory)) {
+            return false;
+        }
+        if (!Objects.equals(this.map, other.map)) {
+            return false;
+        }
+        if (!Objects.equals(this.playerPosition, other.playerPosition)) {
+            return false;
+        }
+        return true;
+    }
     private InventoryItem[] inventory;
     private MapBuilding map;
+
+    @Override
+    public String toString() {
+        return "Game{" + "totalTime=" + totalTime + ", remainingTime=" + remainingTime + ", player=" + player + ", inventory=" + inventory + ", map=" + map + ", playerPosition=" + playerPosition + '}';
+    }
     private Point playerPosition;
 
     public Point getPlayerPosition() {
@@ -72,36 +121,4 @@ public class Game implements Serializable {
     public void setRemainingTime(double remainingTime) {
         this.remainingTime = remainingTime;
     }
-
-    @Override
-    public String toString() {
-        return "Game{" + "totalTime=" + totalTime + ", remainingTime=" + remainingTime + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.totalTime) ^ (Double.doubleToLongBits(this.totalTime) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.remainingTime) ^ (Double.doubleToLongBits(this.remainingTime) >>> 32));
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Game other = (Game) obj;
-        if (Double.doubleToLongBits(this.totalTime) != Double.doubleToLongBits(other.totalTime)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.remainingTime) != Double.doubleToLongBits(other.remainingTime)) {
-            return false;
-        }
-        return true;
-    }
-
 }
