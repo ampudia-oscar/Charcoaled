@@ -48,7 +48,7 @@ public class PlayerInventoryView extends View {
         return true;
     }
 
-    private void viewPlayerItems() {
+    public void viewPlayerItems() {
 
         InventoryItem[] inventory = InventoryControl.getPlayerInventory(true);
         this.console.println(

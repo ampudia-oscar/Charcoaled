@@ -31,6 +31,21 @@ public class InventoryControl {
         }
         return false;
     }
+    
+    public static boolean addItemToInventory(int itemType) {
+
+        InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(itemType);
+        InventoryItem[] items = InventoryControl.getPlayerInventory(false);
+
+        int count = item.getQuantityInStock();
+
+        if (count < item.getMaxItemsInStock()) {
+            items[itemType].setQuantityInStock(count + 1);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static InventoryItem[] createRoomInventory(int axes, int ropes, int waters, int fires, int keys) {
 
@@ -53,8 +68,8 @@ public class InventoryControl {
         fire.setQuantityInStock(fires);
 
         InventoryItem key = new InventoryItem();
-        fire.setInventoryType("Master Key");
-        fire.setQuantityInStock(keys);
+        key.setInventoryType("Master Key");
+        key.setQuantityInStock(keys);
 
         inventory[Items.Rope.ordinal()] = rope;
         inventory[Items.Fire.ordinal()] = fire;
@@ -71,22 +86,22 @@ public class InventoryControl {
         InventoryItem[] inventory = new InventoryItem[5];
         InventoryItem axe = new InventoryItem();
         axe.setInventoryType("Axes");
-        axe.setQuantityInStock(5);
+        axe.setQuantityInStock(1);
         axe.setMaxItemsInStock(5);
 
         InventoryItem rope = new InventoryItem();
         rope.setInventoryType("Ropes");
-        rope.setQuantityInStock(0);
+        rope.setQuantityInStock(1);
         rope.setMaxItemsInStock(5);
 
         InventoryItem water = new InventoryItem();
         water.setInventoryType("Buckets of Water");
-        water.setQuantityInStock(0);
+        water.setQuantityInStock(1);
         water.setMaxItemsInStock(5);
 
         InventoryItem fire = new InventoryItem();
         fire.setInventoryType("Fire Extinguishers");
-        fire.setQuantityInStock(0);
+        fire.setQuantityInStock(1);
         fire.setMaxItemsInStock(5);
 
         InventoryItem key = new InventoryItem();
@@ -105,7 +120,6 @@ public class InventoryControl {
 
     public static InventoryItem[] getPlayerInventory(boolean sort) {
 
-        //InventoryItem[] inventory = GameControl.getCurrentGame().getInventory();
         Game game = Charcoaled.getCurrentGame();
 
         InventoryItem[] inventory = game.getInventory();
@@ -127,6 +141,11 @@ public class InventoryControl {
     public static InventoryItem[] getRoomInventory(Room room) {
         InventoryItem[] inventory = room.getRoomInventory();
         return getBubbleSortedInventory(inventory);
+    }
+    
+     public static InventoryItem[] getUnsortedRoomInventory(Room room) {
+        InventoryItem[] inventory = room.getRoomInventory();
+        return inventory;
     }
 
     public static InventoryItem[] getInsertionSortedInventory(InventoryItem[] inventory) {
