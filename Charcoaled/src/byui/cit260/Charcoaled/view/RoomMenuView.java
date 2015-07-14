@@ -134,15 +134,15 @@ public class RoomMenuView extends View {
         this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Picked up the items! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         PlayerInventoryView piv = new PlayerInventoryView();
-        piv.viewPlayerItems();
+        piv.viewPlayerItems(false);
     }
 
     private void pickItemType(int itemType) {
         InventoryItem[] roomInventory = InventoryControl.getUnsortedRoomInventory(MapControl.getCurrentRoom(x, y));
         InventoryItem roomItem = roomInventory[itemType];
-        int roomAxesQuantity = roomItem.getQuantityInStock();
+        int itemQuantity = roomItem.getQuantityInStock();
 
-        for (int x = 0; x < roomAxesQuantity; x++) {
+        for (int k = 0; k < itemQuantity; k++) {
 
             if (addItemToInventory(itemType)) {
                 int count = roomItem.getQuantityInStock();

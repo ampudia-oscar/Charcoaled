@@ -21,8 +21,9 @@ public class InventoryControl {
     //private static InventoryItem[] items;
     public static boolean useItem(int x) {
 
-        InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
+        //InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
         InventoryItem[] items = InventoryControl.getPlayerInventory(false);
+        InventoryItem item = items[x];
         int count = item.getQuantityInStock();
 
         if (count > 0) {
@@ -34,8 +35,10 @@ public class InventoryControl {
     
     public static boolean addItemToInventory(int itemType) {
 
-        InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(itemType);
+        
+        //InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
         InventoryItem[] items = InventoryControl.getPlayerInventory(false);
+        InventoryItem item = items[itemType];
 
         int count = item.getQuantityInStock();
 
@@ -49,7 +52,7 @@ public class InventoryControl {
 
     public static InventoryItem[] createRoomInventory(int axes, int ropes, int waters, int fires, int keys) {
 
-        InventoryItem[] inventory = new InventoryItem[4];
+        InventoryItem[] inventory = new InventoryItem[5];
 
         InventoryItem axe = new InventoryItem();
         axe.setInventoryType("Axe");
@@ -75,7 +78,7 @@ public class InventoryControl {
         inventory[Items.Fire.ordinal()] = fire;
         inventory[Items.Water.ordinal()] = water;
         inventory[Items.Axe.ordinal()] = axe;
-        //inventory[Items.MasterKey.ordinal()] = key;
+        inventory[Items.MasterKey.ordinal()] = key;
 
         return inventory;
 

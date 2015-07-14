@@ -76,7 +76,7 @@ public class MapBuilding implements Serializable {
         int x = (int) (Math.random() * 100);
 
         if (x < 20) {
-            return 1;
+            return 10;
         }
         return 0;
     }

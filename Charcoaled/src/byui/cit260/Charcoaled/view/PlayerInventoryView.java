@@ -31,7 +31,7 @@ public class PlayerInventoryView extends View {
         char selection = (char) obj;
         switch (selection) {
             case 'W':
-                this.viewPlayerItems();
+                this.viewPlayerItems(true);
                 break;
             case 'K':
                 this.viewQuantityOfPlayerItems();
@@ -48,9 +48,18 @@ public class PlayerInventoryView extends View {
         return true;
     }
 
-    public void viewPlayerItems() {
+    public void viewPlayerItems(boolean sort) {
 
-        InventoryItem[] inventory = InventoryControl.getPlayerInventory(true);
+        InventoryItem[] inventory;
+        if (sort) {
+             inventory = InventoryControl.getPlayerInventory(true);
+        }
+        else
+        {
+            inventory = InventoryControl.getPlayerInventory(false);
+        }
+                
+        
         this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
