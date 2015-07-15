@@ -12,11 +12,13 @@ import java.io.Serializable;
  */
 public enum Items implements Serializable {
 
-    Rope("Rope"),
-    Fire("Fire Extinguisher"),
+    
     Axe("Axe description"),
+    Fire("Fire Extinguisher"),
+    //MasterKey("Master Key"),
     Water("Bucket of Water"),
-    MasterKey("Master Key");
+    Rope("Rope");
+    
 
     private final String description;
 

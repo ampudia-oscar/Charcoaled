@@ -5,9 +5,7 @@
  */
 package byui.cit260.Charcoaled.model;
 
-import Charcoaled.Charcoaled;
 import byu.cit260.Charcoaled.control.InventoryControl;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -17,49 +15,9 @@ import java.util.Arrays;
 public class MapBuilding implements Serializable {
 
     private int rowCount;
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.rowCount;
-        hash = 89 * hash + this.columnCount;
-        hash = 89 * hash + Arrays.deepHashCode(this.rooms);
-        hash = 89 * hash + Arrays.hashCode(this.finalKeys);
-        return hash;
-    }
-
-    @Override
-    public String toString() {
-        return "MapBuilding{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", rooms=" + rooms + ", finalKeys=" + finalKeys + '}';
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final MapBuilding other = (MapBuilding) obj;
-        if (this.rowCount != other.rowCount) {
-            return false;
-        }
-        if (this.columnCount != other.columnCount) {
-            return false;
-        }
-        if (!Arrays.deepEquals(this.rooms, other.rooms)) {
-            return false;
-        }
-        if (!Arrays.equals(this.finalKeys, other.finalKeys)) {
-            return false;
-        }
-        return true;
-    }
     private int columnCount;
     private Room[][] rooms;
-    private int[] finalKeys;
-    
+            
     public Room[][] getRooms() {
         return rooms;
     }
@@ -118,18 +76,34 @@ public class MapBuilding implements Serializable {
         if (x < 1) {
             return null;
         }
+        
+        // Create a final key
+        boolean setKey = false;
+        int finalkeyprobability = (int) (Math.random() * 100);        
+        if (finalkeyprobability > 0 && finalkeyprobability < 10) {
+            setKey = true;
+        }
 
         Person[] person = new Person[x];
         
         for (int y = 0; y < x; y++) {
+            
             person[y] = new Person();
             person[y].setNeedsRescue(true);
+            boolean finalKeyCreated = Charcoaled.Charcoaled.getCurrentGame().isFinalKeyCreated();
+            
+            if (setKey && !finalKeyCreated)
+            {
+                 String finalKey = Charcoaled.Charcoaled.getCurrentGame().getGameFinalKey();
+                 Charcoaled.Charcoaled.getCurrentGame().setFinalKeyCreated(true);
+                 person[y].setPassKey(finalKey);
+            }            
         }
         
         return person;
     }
 
-    public MapBuilding(int rowCount, int columnCount, int finalKeyCount) {
+    public MapBuilding(int rowCount, int columnCount) {
         
         if (rowCount < 1 || columnCount < 1) {
             return;
@@ -167,5 +141,40 @@ public class MapBuilding implements Serializable {
 
     public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
+    }    
+
+    @Override
+    public String toString() {
+        return "MapBuilding{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", rooms=" + rooms + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + this.rowCount;
+        hash = 83 * hash + this.columnCount;
+        hash = 83 * hash + Arrays.deepHashCode(this.rooms);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MapBuilding other = (MapBuilding) obj;
+        if (this.rowCount != other.rowCount) {
+            return false;
+        }
+        if (this.columnCount != other.columnCount) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.rooms, other.rooms)) {
+            return false;
+        }
+        return true;
     }    
 }

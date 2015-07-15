@@ -28,6 +28,9 @@ public class GameControl {
     public static void createNewGame(Player player) throws GameControlException, MapControlException {
            
         Game game = new Game();
+        int finalKey = (int) (Math.random() * 1000000000);
+        String finalKeyString = Integer.toString(finalKey);
+        game.setGameFinalKey(finalKeyString);
         game.setPlayerPosition(new Point(0, 0));
         Charcoaled.setCurrentGame(game);
         game.setPlayer(player);
@@ -38,6 +41,13 @@ public class GameControl {
         game.setMap(map);
         MapControl.moveActorToStartingLocation(map);
 
+    }
+    
+    public static String gamefinalKey () throws GameControlException {        
+        
+        Game game = getCurrentGame();
+        String finalKey = game.getGameFinalKey();
+        return finalKey;        
     }
 
     public static void getSavedGame(String filePath) throws GameControlException {

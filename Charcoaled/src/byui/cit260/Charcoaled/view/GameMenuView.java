@@ -81,7 +81,7 @@ public class GameMenuView extends View {
                 this.saveGame();
                 break;
                 case 'H':
-                this.saveGame();
+                this.finalRoom();
                 break;
             case 'E':
                 return true;
@@ -173,7 +173,7 @@ public class GameMenuView extends View {
         this.console.println(
                 "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
-                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         /*"You are on floor " + floor + ", apartment " + apartment + "."
          + "\n ___ "
          + "\n|" + floor + "|" + apartment + "|"
@@ -330,6 +330,30 @@ public class GameMenuView extends View {
         try {
             floor = GameControl.getCurrentGame().getPlayerPosition().x;
             apartment = GameControl.getCurrentGame().getPlayerPosition().y;
+        } catch (GameControlException e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
+        }
+    }
+
+    private void finalRoom() {
+        try {
+            String gameFinalKey = GameControl.gamefinalKey();
+            String userFinalKey = getInput();                    
+            
+            if (gameFinalKey.equals(userFinalKey))
+            {
+                this.console.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  You have FINISHED THE GAME !!!!!!\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+            }
+            else {
+                this.console.println(
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  That was not the correct answer !!!!!!\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+            }
+            
         } catch (GameControlException e) {
             ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
         }

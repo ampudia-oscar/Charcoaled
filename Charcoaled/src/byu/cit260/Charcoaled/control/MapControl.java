@@ -20,7 +20,7 @@ public class MapControl {
 
     static MapBuilding createMap() throws MapControlException {
 
-        MapBuilding map = new MapBuilding(5, 5, 2);
+        MapBuilding map = new MapBuilding(5, 5);
         //MapBuilding map = null;
         if (map == null) {
             throw new MapControlException("Creation of Map failed!");

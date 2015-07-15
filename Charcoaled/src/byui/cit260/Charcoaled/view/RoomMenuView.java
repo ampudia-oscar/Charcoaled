@@ -138,7 +138,7 @@ public class RoomMenuView extends View {
     }
 
     private void pickItemType(int itemType) {
-        InventoryItem[] roomInventory = InventoryControl.getUnsortedRoomInventory(MapControl.getCurrentRoom(x, y));
+        InventoryItem[] roomInventory = InventoryControl.getRoomInventory(MapControl.getCurrentRoom(x, y));
         InventoryItem roomItem = roomInventory[itemType];
         int itemQuantity = roomItem.getQuantityInStock();
 
