@@ -5,7 +5,6 @@
  */
 package byui.cit260.Charcoaled.view;
 
-import java.util.Scanner;
 
 /**
  *
@@ -26,6 +25,7 @@ public class HelpMenuView extends View {
                 + "_________________________");
     }
 
+    @Override
     public boolean doAction(Object obj) {
         char selection = (char) obj;
 

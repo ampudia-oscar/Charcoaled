@@ -47,12 +47,16 @@ public class MapControl {
         return "You have rescued the person! This person does not have a Pass Key, Sorry";
     }
 
-    public static Room[][] getAllRooms() {
+    public static Room[][] getAllRooms() throws MapControlException  {
 
         //return GameControl.getMap().getRooms();        
-        Game game = Charcoaled.getCurrentGame();
-        MapBuilding map = game.getMap();
-        return map.getRooms();
+        try {
+            Game game = Charcoaled.getCurrentGame();
+            MapBuilding map = game.getMap();
+            return map.getRooms();
+        } catch (Exception e) {
+            throw new MapControlException(e.getMessage());
+        }
     }
 
     public static void setRoomVisited(Room room) {

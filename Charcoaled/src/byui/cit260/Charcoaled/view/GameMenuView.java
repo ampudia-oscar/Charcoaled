@@ -35,7 +35,7 @@ public class GameMenuView extends View {
                 + " S - Move down      R - Drop/Remove Items  \n"
                 + " D - Move right     P - Pause              \n"
                 + " G - Enter Door     X - Save Game          \n"
-                + "                                           \n"
+                + " H - Enter Final Room                      \n"
                 + " E - Exit                                  \n"
                 + "___________________________________________");
     }
@@ -78,6 +78,9 @@ public class GameMenuView extends View {
                 this.pauseGame();
                 break;
             case 'X':
+                this.saveGame();
+                break;
+                case 'H':
                 this.saveGame();
                 break;
             case 'E':

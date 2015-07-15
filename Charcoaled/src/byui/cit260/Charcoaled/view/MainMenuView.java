@@ -106,6 +106,8 @@ public class MainMenuView extends View {
             GameControl.getSavedGame(filePath);
         } catch (Exception ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
+return;            
+//Display Start Program View
         }
         
         GameMenuView gameMenu = new GameMenuView();
