@@ -20,8 +20,7 @@ public class InventoryControl {
 
     //private static InventoryItem[] items;
     public static boolean useItem(int x) {
-
-        //InventoryItem item = InventoryControl.getPlayerSingleInventoryItem(x);
+        
         InventoryItem[] items = InventoryControl.getPlayerInventory(false);
         InventoryItem item = items[x];
         int count = item.getQuantityInStock();
@@ -70,14 +69,14 @@ public class InventoryControl {
         fire.setInventoryType("Fire Extinguisher");
         fire.setQuantityInStock(fires);
 
-        InventoryItem key = new InventoryItem();
-        key.setInventoryType("Master Key");
-        key.setQuantityInStock(keys);
+        //InventoryItem key = new InventoryItem();
+        //key.setInventoryType("Master Key");
+        //key.setQuantityInStock(keys);
 
-        //inventory[Items.Rope.ordinal()] = rope;
-        //inventory[Items.Fire.ordinal()] = fire;
-        //inventory[Items.Water.ordinal()] = water;
-        //inventory[Items.Axe.ordinal()] = axe;
+        inventory[Items.Rope.ordinal()] = rope;
+        inventory[Items.Fire.ordinal()] = fire;
+        inventory[Items.Water.ordinal()] = water;
+        inventory[Items.Axe.ordinal()] = axe;
         //inventory[Items.MasterKey.ordinal()] = key;
         return inventory;
     }

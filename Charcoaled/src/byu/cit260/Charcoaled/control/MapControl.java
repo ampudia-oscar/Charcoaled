@@ -6,6 +6,7 @@
 package byu.cit260.Charcoaled.control;
 
 import Charcoaled.Charcoaled;
+import byui.cit260.Charcoaled.exceptions.GameControlException;
 import byui.cit260.Charcoaled.exceptions.MapControlException;
 import byui.cit260.Charcoaled.model.Game;
 import byui.cit260.Charcoaled.model.MapBuilding;
@@ -18,9 +19,17 @@ import byui.cit260.Charcoaled.model.Room;
  */
 public class MapControl {
 
-    static MapBuilding createMap() throws MapControlException {
+    public static int getRowCount() throws GameControlException {        
+        return GameControl.getMap().getRowCount();
+    }
+    
+    public static int getColumnCount() throws GameControlException {        
+        return GameControl.getMap().getColumnCount();
+    }
+    
+    static MapBuilding createMap(int x, int y) throws MapControlException {
 
-        MapBuilding map = new MapBuilding(5, 5);
+        MapBuilding map = new MapBuilding(x, y);
         //MapBuilding map = null;
         if (map == null) {
             throw new MapControlException("Creation of Map failed!");
@@ -43,7 +52,7 @@ public class MapControl {
         Person person = persons[x];
         person.setNeedsRescue(false);
         if (person.isHasFinalPassKey())
-            return "You have rescued the person! This person has a passkey and it IS: " + person.getPassKey();
+            return "You have rescued the person! This person has the FINAL password and it IS: " + person.getPassKey();
         return "You have rescued the person! This person does not have a Pass Key, Sorry";
     }
 
@@ -64,5 +73,35 @@ public class MapControl {
     }
 
     static void moveActorToStartingLocation(MapBuilding map) {
+    }
+
+    public static boolean allPersonRescued() throws MapControlException, GameControlException {
+        
+        Room[][] allRooms = MapControl.getAllRooms();
+        int row = 0;
+        row = GameControl.getMap().getRowCount();
+        int column = 0;
+        column = GameControl.getMap().getColumnCount();
+
+        for (int x = 0; x < row; x++) {
+            for (int y = 0; y < column; y++) {
+                Room room = allRooms[x][y];
+
+                Person[] persons = room.getPersonsToRescue();
+
+                if (persons == null) {
+                    continue;
+                }
+
+                for (Person person : persons) {
+                    boolean needsRescue = person.isNeedsRescue();
+                    if (needsRescue) {
+                        return false;
+                    }
+                }
+
+            }
+        }
+        return true;
     }
 }

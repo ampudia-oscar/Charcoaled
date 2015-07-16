@@ -33,8 +33,8 @@ public class MapBuilding implements Serializable {
 
         int x = (int) (Math.random() * 100);
 
-        if (x < 20) {
-            return 10;
+        if (x < 10) {
+            return 1;
         }
         return 0;
     }
@@ -80,7 +80,7 @@ public class MapBuilding implements Serializable {
         // Create a final key
         boolean setKey = false;
         int finalkeyprobability = (int) (Math.random() * 100);        
-        if (finalkeyprobability > 0 && finalkeyprobability < 10) {
+        if (finalkeyprobability > 0 && finalkeyprobability < 15) {
             setKey = true;
         }
 
@@ -97,6 +97,7 @@ public class MapBuilding implements Serializable {
                  String finalKey = Charcoaled.Charcoaled.getCurrentGame().getGameFinalKey();
                  Charcoaled.Charcoaled.getCurrentGame().setFinalKeyCreated(true);
                  person[y].setPassKey(finalKey);
+                 person[y].setHasFinalPassKey(true);
             }            
         }
         
