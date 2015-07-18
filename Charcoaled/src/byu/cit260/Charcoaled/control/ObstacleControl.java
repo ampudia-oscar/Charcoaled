@@ -66,28 +66,20 @@ public class ObstacleControl {
     public int calcTrianglePrismArea(double a, double b, double c, double height) throws ObstacleControlException {
         if (a < 1 || b < 1 || c < 1 || height < 1) {
             throw new ObstacleControlException(
-                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "  One of the Sides of the Prism is less than 1 :\n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                     "One of the Sides of the Prism is less than 1\n");
         }
 
         if ((a + c) < b) {
             throw new ObstacleControlException(
-                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "The sum of A + C is less than B :\n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                    "The sum of A + C is less than B\n");
         }
         if ((a + b) < c) {
             throw new ObstacleControlException(
-                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "The sum of A + B is less than C :\n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                    "The sum of A + B is less than C\n");
         }
         if ((b + c) < a) {
             throw new ObstacleControlException(
-                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ EXCEPTION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "The sum of B + C is less than A :\n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞[ END EXCEPTION!] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                     "The sum of B + C is less than A\n");
         }
 
         double s = (a + b + c) / 2;

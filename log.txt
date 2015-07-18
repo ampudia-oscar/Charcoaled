@@ -1,0 +1,5 @@
+byui.cit260.Charcoaled.view.RoomMenuView - ERROR: You must enter a valid number. Try again or enter Q to quit.  For input string: "E"
+byui.cit260.Charcoaled.view.RoomMenuView - ERROR: You must enter a valid number. Try again or enter Q to quit.  For input string: "P"
+byui.cit260.Charcoaled.view.RoomMenuView - The sum of A + C is less than B
+
+byui.cit260.Charcoaled.view.RoomMenuView - ERROR: You must enter a valid number. Try again or enter Q to quit.  For input string: "P"

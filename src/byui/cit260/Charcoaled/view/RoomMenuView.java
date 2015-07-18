@@ -57,7 +57,7 @@ public class RoomMenuView extends View {
         Person[] persons = room.getPersonsToRescue();
         if (persons != null) {
             this.console.println(
-                    "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "Total persons in the room: " + persons.length
             );
 
@@ -71,14 +71,15 @@ public class RoomMenuView extends View {
 
             this.console.println(
                       "Number of people that need to be Rescued: " + needRescue + "\n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
             );
 
         } else {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tThere are no People to rescue in this room           \n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "           There are no People to rescue in this room           \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+            );
         }
     }
 
@@ -118,7 +119,7 @@ public class RoomMenuView extends View {
             default:
                 this.console.println(
                           "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                        + "\tInvalid selection - Please, try again.             \n"
+                        + "\nInvalid selection - Please, try again.             \n"
                         + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
         return true;
@@ -137,7 +138,7 @@ public class RoomMenuView extends View {
     }
 
     private void pickItemType(int itemType) {
-        InventoryItem[] roomInventory = InventoryControl.getRoomInventory(MapControl.getCurrentRoom(x, y));
+        InventoryItem[] roomInventory = InventoryControl.getUnsortedRoomInventory(MapControl.getCurrentRoom(x, y));
         InventoryItem roomItem = roomInventory[itemType];
         int itemQuantity = roomItem.getQuantityInStock();
 
@@ -223,14 +224,14 @@ public class RoomMenuView extends View {
     private void usedItemMessage(String itemType) {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "\tYou have used the " + itemType + "!                \n"
+                + "             You have used the " + itemType + "!                \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 
     private void noItemMessage(String itemType) {
         this.console.println(
-                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "\tYou don't have any " + itemType + " left!          \n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "             You don't have any " + itemType + " left!          \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 
@@ -238,8 +239,7 @@ public class RoomMenuView extends View {
 
         String masterKey = MapControl.setPersonAsRescued(room, positionPersonToRescue);
         this.console.println(
-                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "\t" + masterKey + "\n"
+                  "\t" + masterKey + "\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
     }
@@ -249,8 +249,8 @@ public class RoomMenuView extends View {
         Person[] persons = room.getPersonsToRescue();
         if (persons == null) {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tThere are no People to rescue in this room          \n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ PERSON RESCUED ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "            There are no People to rescue in this room          \n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
             return -1;
         }
@@ -268,9 +268,10 @@ public class RoomMenuView extends View {
 
         if (!(personNeedRescue)) {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tThere are no People to rescue in this room          \n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "            There are no People to rescue in this room          \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+            );
             return -1;
         }
 
@@ -287,36 +288,36 @@ public class RoomMenuView extends View {
 
         int k = (int) (Math.random() * 100);
 
-        if (k > 0 && k < 20) {
+        if (k > 0 && k < 100) {
             boolean correctAnswer = solvePrism();
             if (correctAnswer) {
                 rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
             }
         }
-        if (k > 20 & k < 40) {
-            boolean correctAnswer = solvePyramidVol();
-            if (correctAnswer) {
-                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-            }
-        }
-        if (k > 40 & k < 60) {
-            boolean correctAnswer = solveHoursToSeconds();
-            if (correctAnswer) {
-                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-            }
-        }
-        if (k > 60 & k < 80) {
-            boolean correctAnswer = solveTrapeziumVol();
-            if (correctAnswer) {
-                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-            }
-        }
-        if (k > 80 & k < 100) {
-            boolean correctAnswer = solveKiteArea();
-            if (correctAnswer) {
-                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-            }
-        }
+//        if (k > 20 & k < 40) {
+//            boolean correctAnswer = solvePyramidVol();
+//            if (correctAnswer) {
+//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+//            }
+//        }
+//        if (k > 40 & k < 60) {
+//            boolean correctAnswer = solveHoursToSeconds();
+//            if (correctAnswer) {
+//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+//            }
+//        }
+//        if (k > 60 & k < 80) {
+//            boolean correctAnswer = solveTrapeziumVol();
+//            if (correctAnswer) {
+//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+//            }
+//        }
+//        if (k > 80 & k < 100) {
+//            boolean correctAnswer = solveKiteArea();
+//            if (correctAnswer) {
+//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+//            }
+//        }
     }
 
     private boolean solveHoursToSeconds() {
@@ -334,22 +335,22 @@ public class RoomMenuView extends View {
         }
 
         this.console.println(
-                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + " Solve the following Calculation: Convert " + hours + " hours to Seconds  \n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "  Solve the following Calculation: Convert " + hours + " hours to Seconds  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
         int userAnswer = this.getIntNumber();
 
         if (result == userAnswer) {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tYou have Rescued the Person!!!\n");
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "You have Rescued the Person!!!\n");
             return true;
         } else {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tThe answer is " + result + ".                   \n"
-                    + "\tYou have Failed to Rescue the Person !!!           \n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                   The answer is " + result + ".                \n"
+                    + "             You have Failed to Rescue the Person !!!           \n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
             return false;
         }
@@ -357,37 +358,50 @@ public class RoomMenuView extends View {
 
     private boolean solvePrism() {
 
-        this.console.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for A (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        double a = this.getDoubleNumber();
-
-        this.console.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for B (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        double b = this.getDoubleNumber();
-
-        this.console.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for C (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        double c = this.getDoubleNumber();
-
-        this.console.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-        double height = this.getDoubleNumber();
+//        this.console.println(
+//                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for A (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+//        double a = this.getDoubleNumber();
+//
+//        this.console.println(
+//                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for B (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+//        double b = this.getDoubleNumber();
+//
+//        this.console.println(
+//                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for C (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+//        double c = this.getDoubleNumber();
+//
+//        this.console.println(
+//                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+//        double height = this.getDoubleNumber();
+        double a = Math.round(Math.random()*15)+1;
+        double b = Math.round(Math.random()*15)+1;
+        double c = Math.round(Math.random()*15)+1;
+        double height = Math.round(Math.random()*15+1);
 
         double result = 0;
-        //a = 0;
+        
+        if ((a + c) < b) {
+            a = a + b;
+        }
+        if ((a + b) < c) {
+            a = a + c;
+        }
+        if ((b + c) < a) {
+            b = b + a;
+        }
 
         ObstacleControl instance = new ObstacleControl();
         try {
             result = instance.calcTrianglePrismArea(a, b, c, height);
         } catch (ObstacleControlException e) {
-            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), e.getMessage());
             return false;
         }
 
         this.console.println(
-                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + " Solve the following Calculation:\n"
-                + " The Triangle Prism Area for a=" + a + ", b=" + b + ", c=" + c + ", height=" + height + ".  \n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "\tSolve the following Calculation:\n"
+                + "\tThe Triangle Prism Area for a=" + a + ", b=" + b + ", c=" + c + ", height=" + height + "  \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
         double userAnswer = 0;
@@ -397,15 +411,16 @@ public class RoomMenuView extends View {
 
             if (result == userAnswer) {
                 this.console.println(
-                          "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                          "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "\tYou have Rescued the Person!!!\n");
                 return true;
             } else {
                 this.console.println(
-                          "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                          "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "\tThe answer is " + intResult + ".                   \n"
                         + "\tYou have Failed to Rescue the Person !!!           \n"
-                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                );
                 return false;
             }
         } catch (NumberFormatException e) {
@@ -497,25 +512,25 @@ public class RoomMenuView extends View {
         int intResult = (int) result;
 
         this.console.println(
-                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "Solve the following Calculation: Calculate the volume of a Pyramid \n"
                 + "Enter answer as whole Integer and always round your number UP!! \n"
                 + "\tLength = " + lenght + "\n"
                 + "\tWidth = " + width + "\n"
                 + "\tHeight = " + heigth + "\n"
-                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
         int userAnswer = Integer.parseInt(this.getInput());
 
         if (intResult == userAnswer) {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "\tYou have Rescued the Person!!!\n");
             return true;
         } else {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tYou have Failed to Rescue the Person the answer WAS " + intResult + " !!!  \n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "\tYou have Failed to Rescue the Person the answer WAS " + intResult + "!\n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
             return false;
         }
@@ -555,7 +570,7 @@ public class RoomMenuView extends View {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "Solve the following Calculation: Calculate the volume of a Trapezium \n"
-                + "Enter answer as whole Integer and always round your number UP!! \n"
+                + "Enter answer as whole Integer and always round your number UP!!      \n"
                 + "\tLength = " + lenght + "\n"
                 + "\tWidth = " + height + "\n"
                 + "\tHeight = " + Base + "\n"
@@ -566,7 +581,7 @@ public class RoomMenuView extends View {
 
         if (intResult == userAnswer) {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "\tYou have Rescued the Person!!!\n");
             return true;
         } else {
@@ -597,8 +612,8 @@ public class RoomMenuView extends View {
         }
         int intResult = (int) result;
         this.console.println(
-                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "Solve the following Calculation: Calculate the Area of a Kite \n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "Solve the following Calculation: Calculate the Area of a Kite   \n"
                 + "Enter answer as whole Integer and always round your number UP!! \n"
                 + "\tBase = " + base + "\n"
                 + "\tSide = " + side + "\n"
@@ -608,14 +623,14 @@ public class RoomMenuView extends View {
 
         if (intResult == userAnswer) {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tYou have Rescued the Person!!!\n");
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "\nYou have Rescued the Person!!!\n");
             return true;
         } else {
             this.console.println(
-                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                    + "\tThe answer is " + intResult + ".                   \n"
-                    + "\tYou have Failed to Rescue the Person !!!           \n"
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "                   The answer is " + intResult + ".             \n"
+                    + "             You have Failed to Rescue the Person !!!           \n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
             return false;
         }

@@ -34,7 +34,7 @@ public class StartProgramView {
         try {
             player = ProgramControl.createPlayer(playerName);
         } catch (ProgramControlException e) {
-            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), e.getMessage());
         }
         //DISPLAY a customized welcome message
         this.displayWelcomeMessage(player);
@@ -62,7 +62,7 @@ public class StartProgramView {
                 + "\n"
                 + "\n"
                 + "You play as a fireman/fire-woman. A large apartment complex\n"
-                + "is on fire and you are required to save the people or pets in\n"
+                + "is on fire and you are required to save the people in\n"
                 + "the building before it burns down. There will be several rooms\n"
                 + "on each floor, and you have to use detective work to figure\n"
                 + "out what rooms the people are in.\n"
@@ -104,21 +104,21 @@ public class StartProgramView {
                     this.console.println(
                               "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                             + "\nInvalid name - The name must not be blank            \n"
-                            + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                            + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
                     continue;
                 }
                 break;
             }
         } catch (Exception e) {            
-            ErrorView.display(this.getClass().getName(), "ERROR: error reading input: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
         }
         return playerName;
     }
 
     public void displayWelcomeMessage(Player player) {
         this.console.println(
-                "\n∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "     Welcome to the game " + player.getName() + ". We hope you have a lot of fun!\n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "\nWelcome to the game " + player.getName() + ". We hope you have a lot of fun!\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 }

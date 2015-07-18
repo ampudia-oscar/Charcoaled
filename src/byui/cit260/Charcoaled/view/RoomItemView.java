@@ -23,7 +23,7 @@ public class RoomItemView extends View {
 
     public RoomItemView() {
         super(
-                "_________________                   \n"
+                  "___________________                 \n"
                 + "   Room Item MENU  \\_______________\n"
                 + "                                    \n"
                 + " W - View Available Items in room   \n"
@@ -65,7 +65,7 @@ public class RoomItemView extends View {
             );
         }
         this.console.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
     }
 
