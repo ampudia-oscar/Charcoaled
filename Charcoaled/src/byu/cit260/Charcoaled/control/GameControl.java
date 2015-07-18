@@ -28,8 +28,8 @@ public class GameControl {
     public static void createNewGame(Player player) throws GameControlException, MapControlException {
            
         Game game = new Game();
-        //int finalKey = (int) (Math.random() * 1000000000);
-        int finalKey = 100;
+        int finalKey = (int) (Math.random() * 1000000000);
+        //int finalKey = 100;
         String finalKeyString = Integer.toString(finalKey);
         game.setGameFinalKey(finalKeyString);
         game.setPlayerPosition(new Point(0, 0));
