@@ -33,7 +33,7 @@ public class GameMenuView extends View {
                 + " W - Move up        M – Map                \n"
                 + " A - Move left      V - View Items         \n"
                 + " S - Move down      R - Drop/Remove Items  \n"
-                + " D - Move right     P - Pause              \n"
+                + " D - Move right                            \n"
                 + " G - Enter Door     X - Save Game          \n"
                 + "                                           \n"
                 + " E - Exit                                  \n"

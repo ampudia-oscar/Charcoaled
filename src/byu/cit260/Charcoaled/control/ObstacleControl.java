@@ -30,7 +30,7 @@ public class ObstacleControl {
         }
 
         double volume2 = length * width * height / 3;
-        volume2 = Math.ceil(volume2);
+        volume2 = Math.round(volume2);
         int volume = (int) volume2;
 
         return volume;
@@ -48,7 +48,7 @@ public class ObstacleControl {
         }
 
         double volume2 = length * height * ((Base + base) / 2);
-        volume2 = Math.ceil(volume2);
+        volume2 = Math.round(volume2);
         int volume = (int) volume2;
         return volume;
     }
@@ -75,7 +75,7 @@ public class ObstacleControl {
         double s = (a + b + c) / 2;
         double Ab = Math.sqrt(s * (s - a) * (s - b) * (s - c));
         double Area2 = 2 * Ab + (height * (a + b + c));
-        Area2 = Math.ceil(Area2);
+        Area2 = Math.round(Area2);
         int Area = (int) Area2;
         return Area;
     }
@@ -90,7 +90,7 @@ public class ObstacleControl {
                       "The base is more than 20 OR the side is more than 30\n");
         }
         double area2 = (base * side) / 2;
-        area2 = Math.ceil(area2);
+        area2 = Math.round(area2);
         int area = (int) area2;
         return area;
     }

@@ -43,8 +43,8 @@ public class MapControl {
         Person person = persons[x];
         person.setNeedsRescue(false);
         if (person.isHasFinalPassKey())
-            return "You have rescued the person! This person has a passkey and it IS: " + person.getPassKey();
-        return "You have rescued the person! This person does not have a Pass Key, Sorry";
+            return "This person has a passkey and it is: " + person.getPassKey();
+        return "This person does not have a Pass Key.";
     }
 
     public static Room[][] getAllRooms() {
