@@ -80,7 +80,7 @@ public class MainMenuView extends View {
                         + "\n   `~ `  ^^~   ^^~'`  '     ` ,``~^^   ~^^     ~   "
                         + "\n .                     ,   '                       "
                         + "\n                                                   "
-                        + "\n             Save the people and pets              "
+                        + "\n                  Save the people                  "
                         + "\n       in the building before it burns down.       "
                         + "\n                                                   "
                         + "\n                  COME BACK SOON!                  "

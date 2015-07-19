@@ -343,31 +343,31 @@ public class RoomMenuView extends View {
 
         int k = (int) (Math.random() * 100);
 
-//        if (k > 0 && k < 20) {
-//            boolean correctAnswer = solvePrism();
-//            if (correctAnswer) {
-//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-//            }
-//        }
-//        if (k > 20 & k < 40) {
-//            boolean correctAnswer = solvePyramidVol();
-//            if (correctAnswer) {
-//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-//            }
-//        }
-//        if (k > 40 & k < 60) {
-//            boolean correctAnswer = solveHoursToSeconds();
-//            if (correctAnswer) {
-//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-//            }
-//        }
-//        if (k > 60 & k < 80) {
-//            boolean correctAnswer = solveTrapeziumVol();
-//            if (correctAnswer) {
-//                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
-//            }
-//        }
-        if (k > 0 & k < 100) {
+        if (k > 0 && k < 20) {
+            boolean correctAnswer = solvePrism();
+            if (correctAnswer) {
+                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+            }
+        }
+        if (k > 20 & k < 40) {
+            boolean correctAnswer = solvePyramidVol();
+            if (correctAnswer) {
+                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+            }
+        }
+        if (k > 40 & k < 60) {
+            boolean correctAnswer = solveHoursToSeconds();
+            if (correctAnswer) {
+                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+            }
+        }
+        if (k > 60 & k < 80) {
+            boolean correctAnswer = solveTrapeziumVol();
+            if (correctAnswer) {
+                rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
+            }
+        }
+        if (k > 80 & k < 100) {
             boolean correctAnswer = solveKiteArea();
             if (correctAnswer) {
                 rescuePerson(MapControl.getCurrentRoom(x, y), positionPersonToRescue);
@@ -381,7 +381,7 @@ public class RoomMenuView extends View {
 //
 //        int hours = getIntNumber();
         
-        int hours = (int) Math.random()*50;
+        int hours = (int) (Math.random()*50)+1;
         int result = 0;
         
         ObstacleControl instance = new ObstacleControl();
@@ -433,10 +433,10 @@ public class RoomMenuView extends View {
 //        this.console.println(
 //                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Enter a value for Height (1 - XX) to Solve the Area of a Prism! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 //        double height = this.getDoubleNumber();
-        double a = Math.round(Math.random()*15)+1;
-        double b = Math.round(Math.random()*15)+1;
-        double c = Math.round(Math.random()*15)+1;
-        double height = Math.round(Math.random()*15+1);
+        int a = (int) Math.round(Math.random()*15)+1;
+        int b = (int) Math.round(Math.random()*15)+1;
+        int c = (int) Math.round(Math.random()*15)+1;
+        int height = (int) Math.round(Math.random()*15+1);
 
         double result = 0;
         
@@ -461,7 +461,11 @@ public class RoomMenuView extends View {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ CALCULATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + " Solve the following:\n"
-                + " The Triangle Prism Area for a=" + a + ", b=" + b + ", c=" + c + ", height=" + height + "  \n"
+                + " The Triangle Prism Area for\n"
+                + "\ta = " + a + "\n"
+                + "\tb = " + b + "\n"
+                + "\tc = " + c + "\n"
+                + "\theight = " + height + "\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
         double userAnswer = 0;
@@ -600,8 +604,8 @@ public class RoomMenuView extends View {
                 + " Enter answer as whole Integer and always round your number UP!!      \n"
                 + "\tLength = " + length + "\n"
                 + "\tWidth = " + height + "\n"
-                + "\tHeight = " + Base + "\n"
-                + "\tHeight = " + base + "\n"
+                + "\tBase = " + Base + "\n"
+                + "\tbase = " + base + "\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
 
         int userAnswer = Integer.parseInt(this.getInput());

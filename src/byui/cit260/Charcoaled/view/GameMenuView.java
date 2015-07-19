@@ -204,9 +204,17 @@ public class GameMenuView extends View {
                 "\n***** pauseGame() function called *****\n");
     }
 
-    private void saveGame() {
+    private void saveGame() {        
         this.console.println(
-                "\n***** saveGame() function called *****\n");
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "\tPlease enter the file path for file where to save the game.       \n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        String filePath = this.getInput();
+        try {
+            GameControl.saveGame(Charcoaled.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
 
     private void displayMap() {

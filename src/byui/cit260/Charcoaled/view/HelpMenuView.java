@@ -18,12 +18,12 @@ public class HelpMenuView extends View {
         super(
                   "_________________         \n"
                 + "   HELP MENU     \\_______\n"
-                + "                         \n"
-                + " G - Game Objective      \n"
-                + " H - How to play         \n"
-                + " V - Player's Iventory   \n"
-                + " E - Exit                \n"
-                + "_________________________");
+                + "                          \n"
+                + " G - Game Objective       \n"
+                + " H - How to play          \n"
+                + "                          \n"
+                + " E - Exit                 \n"
+                + "__________________________");
     }
 
     public boolean doAction(Object obj) {
@@ -35,9 +35,6 @@ public class HelpMenuView extends View {
                 break;
             case 'H':
                 this.displayHowToPlay();
-                break;
-            case 'V':
-                this.viewPlayersInventory();
                 break;
             case 'E':
                 return true;
@@ -53,17 +50,18 @@ public class HelpMenuView extends View {
     private void displayGameObjective() {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Game Objective ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "You play as a fireman/fire-woman. A large apartment complex\n"
-                + "is on fire and you are required to save the people in\n"
-                + "the building before it burns down.\n"
+                + " You play as a fireman/fire-woman. A large apartment complex\n"
+                + " is on fire and you are required to save the people in\n"
+                + " the building before it burns down.\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 
     private void displayHowToPlay() {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ How to Play ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
-                + "Go to every room of the building looking for people to rescue.\n"
-                + "Pick up and use items in inventory to rescue them.\n"
+                + " • Go to every room of the building looking for people to rescue.\n"
+                + " • All the answers of calculations should be rounded numbers.\n"
+                + " • Pick up and use items in inventory to rescue them.\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
 
