@@ -17,7 +17,6 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author oscar
@@ -28,27 +27,27 @@ public class GameMenuView extends View {
     public int apartment;
     private int apartmentCount;
     private int floorCount;
-    
+
     private static final PrintWriter raquelLogFile = Charcoaled.getRaquelLogFile();
 
     public GameMenuView() {
         super(    "__________________                         \n"
-                + "   GAME MENU     \\________________________\n"
+                + "   GAME MENU      \\________________________\n"
                 + "                                           \n"
                 + " W - Move up        M – Map                \n"
                 + " A - Move left      V - View Items         \n"
-                + " S - Move down      R - Drop/Remove Items  \n"
-                + " D - Move right     P - Pause              \n"
-                + " G - Enter Door     X - Save Game          \n"
+                + " S - Move down                             \n"
+                + " D - Move right                            \n"
+                + " G - Enter Door                            \n"
                 + " H - Enter Final Room                      \n"
                 + " E - Exit                                  \n"
                 + "___________________________________________");
         try {
-        apartmentCount = MapControl.getRowCount();
-        floorCount = MapControl.getColumnCount();
+            apartmentCount = MapControl.getRowCount();
+            floorCount = MapControl.getColumnCount();
         } catch (GameControlException e) {
             ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
-        }        
+        }
     }
 
     @Override
@@ -91,8 +90,9 @@ public class GameMenuView extends View {
             case 'X':
                 this.saveGame();
                 break;
-                case 'H':
-                this.finalRoom();
+            case 'H':                
+                if (this.finalRoom())
+                    return true;
                 break;
             case 'E':
                 return true;
@@ -100,7 +100,7 @@ public class GameMenuView extends View {
                 this.console.println(
                           "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ WARNING! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                         + "\tInvalid selection - Please, try again.             \n"
-                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+                        + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
         }
         return true;
     }
@@ -118,7 +118,7 @@ public class GameMenuView extends View {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
-                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         /*"You are on floor " + floor + ", apartment " + apartment + "."
          + "\n ___ "
          + "\n|" + floor + "|" + apartment + "|"
@@ -140,7 +140,7 @@ public class GameMenuView extends View {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
-                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         /*"You are on floor " + floor + ", apartment " + apartment + "."
          + "\n ___ "
          + "\n|" + floor + "|" + apartment + "|"
@@ -153,7 +153,7 @@ public class GameMenuView extends View {
 
         int x = floorCount - 1;
         //if (floor < 4) {
-        if (floor < x ) {
+        if (floor < x) {
             floor += 1;
             try {
                 GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
@@ -164,7 +164,7 @@ public class GameMenuView extends View {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
-                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         /*"You are on floor " + floor + ", apartment " + apartment + "."
          + "\n ___ "
          + "\n|" + floor + "|" + apartment + "|"
@@ -177,7 +177,7 @@ public class GameMenuView extends View {
 
         int x = apartmentCount - 1;
         //if (apartment < 4) {
-        if (apartment < x ) {
+        if (apartment < x) {
             apartment += 1;
             try {
                 GameControl.getCurrentGame().setPlayerPosition(new Point(apartment, floor));
@@ -188,7 +188,7 @@ public class GameMenuView extends View {
         this.console.println(
                   "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You are on floor " + floor + ", apartment " + apartment + ".  \n"
-                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         /*"You are on floor " + floor + ", apartment " + apartment + "."
          + "\n ___ "
          + "\n|" + floor + "|" + apartment + "|"
@@ -259,30 +259,29 @@ public class GameMenuView extends View {
                 + "\n .                     ,   '                       "
                 + "\n ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
     }
-    
-    private void writePersonRoomInformationToFile (Room room, int row, int column)            
-    {
+
+    private void writePersonRoomInformationToFile(Room room, int row, int column) {
         row++;
         column++;
-        
+
         try {
-        
-        raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Room information: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");        
-        Person[] persons = room.getPersonsToRescue();
-        
-        if (persons == null)
-            return;
-        
-        for (int x = 0; x < persons.length; x++){
-            String needsRescue = java.lang.Boolean.toString(persons[x].isNeedsRescue());
-            raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Person #: " + x + "  Needs Rescue? : " + needsRescue + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");            
+
+            raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Room information: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+            Person[] persons = room.getPersonsToRescue();
+
+            if (persons == null) {
+                return;
+            }
+
+            for (int x = 0; x < persons.length; x++) {
+                String needsRescue = java.lang.Boolean.toString(persons[x].isNeedsRescue());
+                raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ Person #: " + x + "  Needs Rescue? : " + needsRescue + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+            }
+
+            raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ END ROOM: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n\n\n");
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
         }
-        
-        raquelLogFile.println("∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ END ROOM: " + row + ", " + column + " ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n\n\n\n"); }
-        
-        catch (Exception e) {
-             ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
-        }        
     }
 
     private void displayMap2() throws MapControlException {
@@ -350,48 +349,53 @@ public class GameMenuView extends View {
         }
     }
 
-    private void finalRoom() {
-        
+    private boolean finalRoom() {
+
         String gameFinalKey = null;
-        
 
         try {
             gameFinalKey = GameControl.gamefinalKey();
 
         } catch (GameControlException e) {
             ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
-            return;
+            return false;
         }
         
+        this.console.println(
+                      "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                    + "Enter the final Pass key \n"
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+
         String userFinalKey = getInput();
         if (!gameFinalKey.equals(userFinalKey)) {
             this.console.println(
                       "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "  That was not the correct answer !!!!!!\n"
-                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-            return;
+                    + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+            return false;
         }
-        
-         boolean allPersonRescued = false;
+
+        boolean allPersonRescued = false;
 
         try {
             allPersonRescued = MapControl.allPersonRescued();
         } catch (MapControlException | GameControlException e) {
             ErrorView.display(this.getClass().getName(), "ERROR: " + e.getMessage());
-            return;
+            return false;
         }
-        
-         if (!allPersonRescued) {
+
+        if (!allPersonRescued) {
             this.console.println(
                     "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                     + "  You MUST rescue all Persons in the building !!!!!!\n"
                     + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
-            return;
+            return false;
         }
 
         this.console.println(
-                "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
+                  "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞ [ INFORMATION! ] ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
                 + "  You have FINISHED THE GAME !!!!!!\n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n");
+        return true;
     }
 }

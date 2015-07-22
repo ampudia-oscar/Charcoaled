@@ -29,7 +29,7 @@ public class GameControl {
            
         Game game = new Game();
         int finalKey = (int) (Math.random() * 1000000000);
-        //int finalKey = 100;
+        finalKey = 100;
         String finalKeyString = Integer.toString(finalKey);
         game.setGameFinalKey(finalKeyString);
         game.setPlayerPosition(new Point(0, 0));
@@ -37,7 +37,7 @@ public class GameControl {
         game.setPlayer(player);
         InventoryItem[] inventoryList = InventoryControl.createPlayerInventory();
         GameControl.setGameInventory(inventoryList);
-        MapBuilding map = MapControl.createMap(5,5);
+        MapBuilding map = MapControl.createMap(1,1);
         //map = null;
         game.setMap(map);
         MapControl.moveActorToStartingLocation(map);
