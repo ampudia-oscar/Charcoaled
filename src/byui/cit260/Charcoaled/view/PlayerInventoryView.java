@@ -16,7 +16,8 @@ import byui.cit260.Charcoaled.model.InventoryItem;
 public class PlayerInventoryView extends View {
 
     public PlayerInventoryView() {
-        super("______________________                      \n"
+        super(
+                  "______________________                      \n"
                 + "   Inventory Menu     \\____________________\n"
                 + "                                            \n"
                 + " W - View Player Inventory                  \n"
@@ -82,7 +83,7 @@ public class PlayerInventoryView extends View {
         int x = InventoryControl.getQuantityOfItems(inventory);
 
         this.console.println(
-                  "\tTotal # of Items in Player Inventory --> " + x + "         \n"
+                "         Total # of Items in Player Inventory --> " + x + "         \n"
                 + "∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞\n"
         );
     }
